@@ -1,0 +1,29 @@
+# OSやエディタの設定ファイル
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# Node.js関連ファイル
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# ビルド成果物
+
+# Sassキャッシュ
+.sass-cache/
+
+# PHP CS Fixerのバックアップファイル
+*.bak
+
+# 翻訳関連の一時ファイル
+languages/*.po~
+
+# IDE設定
+.idea/
+.vscode/
+
+# その他
+0.9.*/
+update_versions.sh
