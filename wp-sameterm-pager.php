@@ -18,6 +18,16 @@ add_action( 'wp_enqueue_scripts', 'my_scripts' );
 	
 require_once('wp_sameterm_pager_scripts.php');
 
+function sameterm_get_permalink($param,$id){
+  if($param){
+    $url = get_permalink($id).'?filter='.$param;
+  }
+  else{
+    $url = get_permalink($id);
+  }
+  return $url;
+}
+
 function wp_sameterm_pager(){
   if(is_single()){
       $post_type = get_post_type();
@@ -26,8 +36,9 @@ function wp_sameterm_pager(){
       $term_id_num = '';
       $taxonomy = 'category';
       $release_bt = '';
+      $get_filter = '';
     
-      if( isset($_GET ['filter'])){
+      if( !empty($_GET ['filter']) && is_numeric($_GET ['filter'])){
         $get_filter = $_GET ['filter'];
         $get_term = get_term( $get_filter );
         $taxonomy = $get_term -> taxonomy;
@@ -128,7 +139,7 @@ function wp_sameterm_pager(){
       if( $oldest ) {
         if ( $prevpost ) {
           ?>
-        <a href="<?php echo get_permalink($oldest->ID); ?>" class="oldest-post a-wrap">
+        <a href="<?php echo sameterm_get_permalink($get_filter,$oldest->ID); ?>" class="oldest-post a-wrap">
         <div class="fas fa-angle-double-left iconfont" aria-hidden="true"></div>最初<span class="pc_none">の記事から読む</span>
         </a>
       <?php 
@@ -138,7 +149,7 @@ function wp_sameterm_pager(){
       } ?>
         <?php
         if ( $prevpost ) { //前の記事が存在しているとき
-          echo '<a href="' . get_permalink($prevpost->ID) . '" title="' . esc_attr(get_the_title($prevpost->ID)) . '" class="prev-post a-wrap border-element cf">
+          echo '<a href="' . sameterm_get_permalink($get_filter,$prevpost->ID) . '" title="' . esc_attr(get_the_title($prevpost->ID)) . '" class="prev-post a-wrap border-element cf">
                 <div class="fa fa-chevron-left iconfont" aria-hidden="true"></div>
                 <figure class="prev-post-thumb card-thumb">';
                 // get_post_navi_thumbnail_tag( $prevpost->ID, $width, $height ).
@@ -154,7 +165,7 @@ function wp_sameterm_pager(){
             echo '<div class="prev-post"></div>';
         }
         if ( $nextpost ) { //次の記事が存在しているとき
-          echo '<a href="' . get_permalink($nextpost->ID) . '" title="'. esc_attr(get_the_title($nextpost->ID)) . '" class="next-post a-wrap cf">
+          echo '<a href="' . sameterm_get_permalink($get_filter,$nextpost->ID) . '" title="'. esc_attr(get_the_title($nextpost->ID)) . '" class="next-post a-wrap cf">
                 <div class="fa fa-chevron-right iconfont" aria-hidden="true"></div>
                 <figure class="next-post-thumb card-thumb">';
                 // get_post_navi_thumbnail_tag( $nextpost->ID, $width, $height ).
@@ -174,7 +185,7 @@ function wp_sameterm_pager(){
           if( $recent ) {
             if ( $nextpost ) {
           ?>
-          <a href="<?php echo get_permalink($recent->ID); ?>" class="latest-post a-wrap">
+          <a href="<?php echo sameterm_get_permalink($get_filter,$recent->ID); ?>" class="latest-post a-wrap">
           最後<span class="pc_none">の記事を読む</span><div class="fas fa-angle-double-right iconfont" aria-hidden="true"></div>
           </a>
           <?php
