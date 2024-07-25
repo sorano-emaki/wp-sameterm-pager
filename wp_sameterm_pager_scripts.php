@@ -1,4 +1,4 @@
-<?php 
+<?php
 if(!defined('ABSPATH')) { exit; } 
 function wp_sameterm_pager_scripts() {
 ?>
@@ -34,25 +34,38 @@ function wp_sameterm_pager_scripts() {
   <?php endif; ?>
   
   <?php if(is_single()) :?>
-      <?php if( isset($_GET ['filter'])): ?>
-          <script>
-          <?php
-          $get_filter = $_GET ['filter']; 
-          $get_term = get_term( $get_filter );
-          $get_tax = $get_term -> taxonomy;
-          ?>
-          <?php if(has_term($get_filter,$get_tax)) : ?>
-          <?php else : ?>
-              jQuery(function($) {
-              // URLを取得
-              const url = new URL(window.location.href);
-              const params = url.searchParams;
-              params.delete('filter');
-              window.location.href = `${url.href}`;
-              });
-          <?php endif; ?>
-          </script>
-      <?php endif; ?>
+    <?php if( isset($_GET ['filter']) && is_numeric($_GET ['filter'])): ?>
+        <script>
+        <?php
+        $get_filter = $_GET ['filter']; 
+        $get_term = get_term( $get_filter );
+        $get_tax = null;
+        if($get_term){
+        $get_tax = $get_term -> taxonomy;
+        }
+        ?>
+        <?php if(has_term($get_filter,$get_tax)) : ?>
+        <?php else : ?>
+            jQuery(function($) {
+            // URLを取得
+            const url = new URL(window.location.href);
+            const params = url.searchParams;
+            params.delete('filter');
+            window.location.href = `${url.href}`;
+            });
+        <?php endif; ?>
+        </script>
+    <?php elseif( isset($_GET ['filter']) && !is_numeric($_GET ['filter']) ) : ?>
+    <script>        
+        jQuery(function($) {
+        // URLを取得
+        const url = new URL(window.location.href);
+        const params = url.searchParams;
+        params.delete('filter');
+        window.location.href = `${url.href}`;
+        });
+    </script>
+    <?php endif; ?>
   <?php endif; ?>
   <?php }
   add_action( 'wp_head', 'wp_sameterm_pager_scripts', 99 );

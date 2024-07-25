@@ -2,11 +2,11 @@
 /*
 Plugin Name: Wp SameTerm Pager
 Description: 移動元のアーカイブページ（カテゴリ・タグ・カスタムタクソノミー）で投稿ページのページ送りを絞り込むプラグインです。
-Version: 0.9.0
+Version: 0.9.2
 Author: emaki sorano
 */
 if(!defined('ABSPATH')) { exit; }
-function my_scripts() {
+function sameterm_pager_files() {
   // if(is_category() || is_tag() || is_tax()) {
   // wp_enqueue_script( 'wp_sameterm_pager_scripts',  plugin_dir_url(__FILE__) . 'js/script.js', array( 'jquery' ), '0.9.0' );
   // }
@@ -14,20 +14,24 @@ function my_scripts() {
   wp_enqueue_style( 'wp_sameterm_pager_css',  plugin_dir_url(__FILE__) . 'css/pager.css' );
   }
 }
-add_action( 'wp_enqueue_scripts', 'my_scripts' );
-	
+add_action( 'wp_enqueue_scripts', 'sameterm_pager_files' );
+
 require_once('wp_sameterm_pager_scripts.php');
 
+add_filter('init', function(){
+  global $wp;
+  $wp->add_query_var( 'filter' );
+} );
 function sameterm_get_permalink($param,$id){
   if($param){
-    $url = get_permalink($id).'?filter='.$param;
+    $url = add_query_arg( array( 'filter'=> $param ) , get_permalink($id));
   }
   else{
     $url = get_permalink($id);
   }
   return $url;
 }
-
+class smtrm_pager{
 function wp_sameterm_pager(){
   if(is_single()){
       $post_type = get_post_type();
@@ -36,10 +40,15 @@ function wp_sameterm_pager(){
       $term_id_num = '';
       $taxonomy = 'category';
       $release_bt = '';
-      $get_filter = '';
+      $get_filter = 0;
+      if(isset($_GET ['filter']) && is_numeric($_GET ['filter'])){
+        $get_filter = (int)$_GET ['filter'];
+        // echo 'filter'.$get_filter;
+        $term_exists = term_exists($get_filter);
+        // var_dump($term_exists);
+      }
     
-      if( !empty($_GET ['filter']) && is_numeric($_GET ['filter'])){
-        $get_filter = $_GET ['filter'];
+      if(!empty($term_exists) ){
         $get_term = get_term( $get_filter );
         $taxonomy = $get_term -> taxonomy;
         $term_name = $get_term -> name;
@@ -204,4 +213,5 @@ function wp_sameterm_pager(){
       <?php
     }
   }
-  add_shortcode('sameterm_pager', 'wp_sameterm_pager');
+}
+add_shortcode('sameterm_pager', array( new smtrm_pager(),'wp_sameterm_pager'));
