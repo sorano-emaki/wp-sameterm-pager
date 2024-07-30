@@ -1,6 +1,6 @@
 <?php
 if(!defined('ABSPATH')) { exit; } 
-class smtrm_scripts{
+class Smtrm_Scripts{
     function pager_scripts() {
         $link_class = get_option('smtrm_pager_entry_form');
     ?>
@@ -71,4 +71,4 @@ class smtrm_scripts{
     <?php endif; ?>
     <?php }
 }
-add_action( 'wp_head', array( new smtrm_scripts(),'pager_scripts'), 99 );
+add_action( 'wp_head', array( new Smtrm_Scripts(),'pager_scripts'), 99 );

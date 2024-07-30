@@ -11,7 +11,7 @@ if(!defined('ABSPATH')) { exit; }
  * 第6引数：（任意）メニューのアイコンを示す URL
  * 第7引数：（任意）メニューが表示される位置
  */
-class smtrm_admin_menu{
+class Smtrm_Admin_Menu{
   
 function add_menu() {
   // メニューに「Same Term Pager設定」を追加
@@ -43,4 +43,4 @@ function menu_page(){
     EOT;
 }
 }
-add_action( 'admin_menu', array(new smtrm_admin_menu,'add_menu') );
+add_action( 'admin_menu', array(new Smtrm_Admin_Menu,'add_menu') );

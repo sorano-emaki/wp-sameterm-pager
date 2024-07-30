@@ -13,7 +13,7 @@ img {
   aspect-ratio: var(--card-ratio);
   object-fit: cover;
 }
-.pc_none{
+.pc-none{
   display: none;
 }
 .same-term-pager {
@@ -80,19 +80,19 @@ img {
   width: 10%;
   min-width: 10%;
 }
-.pager_filter {
+.pager-filter {
   font-size: 12px;
   width:100%;
   text-align:right;
   margin-bottom:24px;
 }
-.pager_filter small{
+.pager-filter small{
   font-size: 12px;
   margin-right: 0.4em;
 }
-.pager_filter .cat-icon,
-.pager_filter .tax-icon,
-.pager_filter .tag-icon {
+.pager-filter .cat-icon,
+.pager-filter .tax-icon,
+.pager-filter .tag-icon {
   margin-right: 0.4em;
 }
 .sidebar .same-term-pager,
@@ -128,28 +128,28 @@ img {
   padding: 0;
   justify-content: flex-end;
 }
-.sidebar .pager_filter,
-.footer-widgets .pager_filter
+.sidebar .pager-filter,
+.footer-widgets .pager-filter
 {
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
-.sidebar .pager_filter small,
-.footer-widgets .pager_filter small
+.sidebar .pager-filter small,
+.footer-widgets .pager-filter small
 {
   display: block;
   width: 100%;
   text-align: left;
 }
-.sidebar .pc_none,
-.footer-widgets .pc_none
+.sidebar .pc-none,
+.footer-widgets .pc-none
 {
   display: block;
 }
 /*834px以下*/
 @media screen and (max-width: 834px){
-  .pc_none{
+  .pc-none{
     display: block;
   }
   .same-term-pager {

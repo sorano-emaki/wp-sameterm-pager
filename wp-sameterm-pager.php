@@ -2,7 +2,7 @@
 /*
 Plugin Name: Wp SameTerm Pager
 Description: 移動元のアーカイブページ（カテゴリ・タグ・カスタムタクソノミー）で投稿ページのページ送りを絞り込むプラグインです。
-Version: 0.9.3
+Version: 0.9.4
 Author: emaki sorano
 */
 if(!defined('ABSPATH')) { exit; }
@@ -21,7 +21,7 @@ add_filter('init', function(){
   $wp->add_query_var( 'filter' );
 } );
 
-class smtrm_activation{
+class Smtrm_Activation{
   function init_option(){
     //初期化の処理を行う
     if(!get_option('smtrm_pager_installed')){
@@ -30,7 +30,7 @@ class smtrm_activation{
     }
   }
 }
-register_activation_hook(__FILE__, array(new smtrm_activation,'init_option'));
+register_activation_hook(__FILE__, array(new Smtrm_Activation,'init_option'));
 
 require_once('class-smtrm-admin-menu.php');
 require_once('class-smtrm-getlink.php');

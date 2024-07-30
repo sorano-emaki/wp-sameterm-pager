@@ -1,6 +1,6 @@
 <?php
 if(!defined('ABSPATH')) { exit; } 
-class smtrm_pager{
+class Smtrm_Pager{
     function sameterm_pager(){
     if(is_single()){
         $post_type = get_post_type();
@@ -10,55 +10,57 @@ class smtrm_pager{
         $taxonomy = 'category';
         $release_bt = '';
         $get_filter = 0;
-        $link = new smtrm_getlink;
+        $term_exists = 0;
+        $link = new Smtrm_Getlink;
+        
         if(isset($_GET ['filter']) && is_numeric($_GET ['filter'])){
-        $get_filter = (int)$_GET ['filter'];
-        // echo 'filter'.$get_filter;
-        $term_exists = term_exists($get_filter);
-        // var_dump($term_exists);
+            $get_filter = (int)$_GET ['filter'];
+            // echo 'filter'.$get_filter;
+            $term_exists = term_exists($get_filter);
+            // var_dump($term_exists);
         }
 
         if(!empty($term_exists) ){
-        $get_term = get_term( $get_filter );
-        $taxonomy = $get_term -> taxonomy;
-        $term_name = $get_term -> name;
-        $get_taxonomy = get_taxonomy($taxonomy);
-        $taxonomy_name = $get_taxonomy->label;
-        $fa_icon = 'fa-folder';
-        if($taxonomy == 'post_tag' || !is_taxonomy_hierarchical( $taxonomy )){
-            $fa_icon = 'fa-tag';
-        }
-        $url = get_the_permalink();
-        $release_bt =<<<"EOT"
-        <small>
-            <span class="fas ${fa_icon}"></span>
-            ${taxonomy_name}：『${term_name}』内の投稿を絞り込み表示中
-        </small>
-        <a href="${url}" class="cat-link">
-            <span class="fas fa-times iconfont cat-icon tax-icon tag-icon"></span>解除
-        </a>
-        EOT;
-        ?>
+            $get_term = get_term( $get_filter );
+            $taxonomy = $get_term -> taxonomy;
+            $term_name = $get_term -> name;
+            $get_taxonomy = get_taxonomy($taxonomy);
+            $taxonomy_name = $get_taxonomy->label;
+            $fa_icon = 'fa-folder';
+            if($taxonomy == 'post_tag' || !is_taxonomy_hierarchical( $taxonomy )){
+                $fa_icon = 'fa-tag';
+            }
+            $url = get_the_permalink();
+            $release_bt =<<<"EOT"
+            <small>
+                <span class="fas ${fa_icon}"></span>
+                ${taxonomy_name}：『${term_name}』内の投稿を絞り込み表示中
+            </small>
+            <a href="${url}" class="cat-link">
+                <span class="fas fa-times iconfont cat-icon tax-icon tag-icon"></span>解除
+            </a>
+            EOT;
+            ?>
 
-        <?php
-        if($taxonomy == 'category'){
-            $cat_id_num = $get_filter;
-        }
-        elseif($taxonomy == 'post_tag'){
-            $tag_id_num = $get_filter;
-        }
-        else{
-            $term_id_num = $get_filter;
-        }
+            <?php
+            if($taxonomy == 'category'){
+                $cat_id_num = $get_filter;
+            }
+            elseif($taxonomy == 'post_tag'){
+                $tag_id_num = $get_filter;
+            }
+            else{
+                $term_id_num = $get_filter;
+            }
         }
         $args = array(
-        'post_type'        => $post_type,
-        'posts_per_page'   => -1, // 読み込みしたい記事数（全件取得時は-1）
-        'category'         => $cat_id_num, // 読み込みしたいカテゴリID（複数の場合は '1,2'）
-        'tag_id'           => $tag_id_num,
-        'orderby'          => 'date', // 何順で記事を読み込むか（省略時は日付順）
-        'order'            => 'ASC', // 昇順(ASC)か降順か(DESC）
-        'fields' => 'ids',            //IDだけ取得
+            'post_type'        => $post_type,
+            'posts_per_page'   => -1, // 読み込みしたい記事数（全件取得時は-1）
+            'category'         => $cat_id_num, // 読み込みしたいカテゴリID（複数の場合は '1,2'）
+            'tag_id'           => $tag_id_num,
+            'orderby'          => 'date', // 何順で記事を読み込むか（省略時は日付順）
+            'order'            => 'ASC', // 昇順(ASC)か降順か(DESC）
+            'fields' => 'ids',            //IDだけ取得
         );
         if( $term_id_num ){
         $args['tax_query'] = [
@@ -74,7 +76,7 @@ class smtrm_pager{
         $nextpost = null;
         //最初の投稿と最後の投稿
         $oldest = null;
-        $recent = null;
+        $latest = null;
         //条件で絞り込まれた投稿のIDのみを配列で取得
         $post_id_list = get_posts($args);
         //配列の総数を取得
@@ -97,19 +99,19 @@ class smtrm_pager{
         if($next_pos >= $pos_count){$next_pos = null;}
         //配列の添え字が0の場合があるので値があるかどうかをissetで判定
         if(isset($prev_pos)){
-        // echo $post_id_list[$prev_pos];
-        $prpos_id = $post_id_list[$prev_pos];
-        $prevpost = get_post($prpos_id);
-        $olpos_id = $post_id_list[0];
-        $oldest = get_post($olpos_id);
+            // echo $post_id_list[$prev_pos];
+            $prpos_id = $post_id_list[$prev_pos];
+            $prevpost = get_post($prpos_id);
+            $olpos_id = $post_id_list[0];
+            $oldest = get_post($olpos_id);
         }
         if(isset($next_pos)){
-        // echo $post_id_list[$next_pos];
-        $nxpos_id = $post_id_list[$next_pos];
-        $nextpost = get_post($nxpos_id);
-        $pos_count = $pos_count - 1;
-        $rcpos_id = $post_id_list[$pos_count];
-        $recent = get_post($rcpos_id);
+            // echo $post_id_list[$next_pos];
+            $nxpos_id = $post_id_list[$next_pos];
+            $nextpost = get_post($nxpos_id);
+            $pos_count = $pos_count - 1;
+            $ltpos_id = $post_id_list[$pos_count];
+            $latest = get_post($ltpos_id);
         }
 
         if( $prevpost || $nextpost ){ //前の記事、次の記事いずれか存在しているとき ?>
@@ -119,7 +121,7 @@ class smtrm_pager{
         if ( $prevpost ) {
             ?>
         <a href="<?php echo $link->getlink($get_filter,$oldest->ID); ?>" class="oldest-post a-wrap">
-        <div class="fas fa-angle-double-left iconfont" aria-hidden="true"></div>最初<span class="pc_none">の記事から読む</span>
+        <div class="fas fa-angle-double-left iconfont" aria-hidden="true"></div>最初<span class="pc-none">の記事から読む</span>
         </a>
         <?php 
         } 
@@ -161,11 +163,11 @@ class smtrm_pager{
         }
         ?>
         <?php
-            if( $recent ) {
+            if( $latest ) {
             if ( $nextpost ) {
             ?>
-            <a href="<?php echo $link->getlink($get_filter,$recent->ID); ?>" class="latest-post a-wrap">
-            最後<span class="pc_none">の記事を読む</span><div class="fas fa-angle-double-right iconfont" aria-hidden="true"></div>
+            <a href="<?php echo $link->getlink($get_filter,$latest->ID); ?>" class="latest-post a-wrap">
+            最後<span class="pc-none">の記事を読む</span><div class="fas fa-angle-double-right iconfont" aria-hidden="true"></div>
             </a>
             <?php
             }
@@ -174,7 +176,7 @@ class smtrm_pager{
             } ?>
         </div><!-- /.same-term-pager -->
         <?php } ?>
-        <div class="pager_filter">
+        <div class="pager-filter">
         <?php   
         if(isset($release_bt)){
         echo $release_bt;
@@ -184,4 +186,4 @@ class smtrm_pager{
     }
   }
 }
-add_shortcode('sameterm_pager', array( new smtrm_pager(),'sameterm_pager'));
+add_shortcode('sameterm_pager', array( new Smtrm_Pager(),'sameterm_pager'));
