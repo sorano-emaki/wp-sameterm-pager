@@ -6,4 +6,6 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 
 // オプション設定の削除
 delete_option('smtrm_pager_installed');
+delete_option('smtrm_pager_radio');
+delete_option('smtrm_pager_select');
 delete_option('smtrm_pager_entry_form');

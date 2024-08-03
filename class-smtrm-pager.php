@@ -11,11 +11,11 @@ class Smtrm_Pager{
         $release_bt = '';
         $get_filter = 0;
         $term_exists = 0;
-        $link = new Smtrm_Getlink;
+        $link = new Smtrm_Get_Link;
         
-        if(isset($_GET ['filter']) && is_numeric($_GET ['filter'])){
-            $get_filter = (int)$_GET ['filter'];
-            // echo 'filter'.$get_filter;
+        if(isset($_GET ['smtrm_filter']) && is_numeric($_GET ['smtrm_filter'])){
+            $get_filter = (int)$_GET ['smtrm_filter'];
+            // echo 'smtrm_filter'.$get_filter;
             $term_exists = term_exists($get_filter);
             // var_dump($term_exists);
         }
