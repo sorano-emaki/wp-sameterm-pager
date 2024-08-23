@@ -115,7 +115,7 @@ class Smtrm_Pager{
         }
 
         if( $prevpost || $nextpost ){ //前の記事、次の記事いずれか存在しているとき ?>
-        <div id="same-term-pager" class="same-term-pager cf">
+        <div class="same-term-pager cf">
         <?php
         if( $oldest ) {
         if ( $prevpost ) {
@@ -186,4 +186,3 @@ class Smtrm_Pager{
     }
   }
 }
-add_shortcode('sameterm_pager', array( new Smtrm_Pager(),'sameterm_pager'));

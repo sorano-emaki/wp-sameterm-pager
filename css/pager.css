@@ -65,7 +65,7 @@ img {
 .prev-post,
 .next-post{
   flex: 1;
-  min-width: 40%;
+  /* min-width: 40%; */
 }
 .prev-post-title,
 .next-post-title {

@@ -52,8 +52,10 @@ function add_menu() {
     $saved_class = $saved_setting->entry_form_value();
     $saved_select = $saved_setting->select_box_value();
     $saved_radio = $saved_setting->radio_value();
+    $top_checked = $saved_setting->pager_top();
+    $bottom_checked = $saved_setting->pager_bottom();
     list($s0,$s1,$s2,$s3,$s4) = Smtrm_Admin_Menu::select_swicth($saved_select);
-    list($checkd1,$checkd2,$disabled1,$disabled2) = Smtrm_Admin_Menu::radio_swicth($saved_radio);
+    list($checked1,$checked2,$disabled1,$disabled2) = Smtrm_Admin_Menu::radio_swicth($saved_radio);
     if (isset($_POST['posted']) == 'smtrm_save') {
       //設定画面で入力された設定値を保存
       if(isset($_POST['smtrm_pager_entry_form'])){
@@ -65,11 +67,19 @@ function add_menu() {
       if(isset($_POST['smtrm_pager_radio'])){
         update_option('smtrm_pager_radio', $_POST['smtrm_pager_radio']);
       }
+      if(isset($_POST['smtrm_pager_top'])){
+        update_option('smtrm_pager_top', intval($_POST['smtrm_pager_top']));
+      }
+      if(isset($_POST['smtrm_pager_bottom'])){
+        update_option('smtrm_pager_bottom', intval($_POST['smtrm_pager_bottom']));
+      }
       $saved_class = $saved_setting->entry_form_value();
       $saved_select = $saved_setting->select_box_value();
       $saved_radio = $saved_setting->radio_value();
+      $top_checked = $saved_setting->pager_top();
+      $bottom_checked = $saved_setting->pager_bottom();
       list($s0,$s1,$s2,$s3,$s4) = Smtrm_Admin_Menu::select_swicth($saved_select);
-      list($checkd1,$checkd2,$disabled1,$disabled2) = Smtrm_Admin_Menu::radio_swicth($saved_radio);
+      list($checked1,$checked2,$disabled1,$disabled2) = Smtrm_Admin_Menu::radio_swicth($saved_radio);
       echo '<div><p>設定を保存しました</p></div>';
     }
     echo <<<"EOT"
@@ -80,7 +90,7 @@ function add_menu() {
             <th scope="row">
             <label>使用するテーマ名<label>
             </th>
-            <td><input type="radio" name="smtrm_pager_radio" id="data1" value="1" onclick="changeDisabled()" required ${checkd1}></td>
+            <td><input type="radio" name="smtrm_pager_radio" id="data1" value="1" onclick="changeDisabled()" required ${checked1}></td>
             <td>
               <select name="smtrm_pager_select" id="smtrm_pager_select" ${disabled1}>
                 <option value="0" ${s0}></option>
@@ -93,9 +103,28 @@ function add_menu() {
           </tr>
           <tr valign="top">
           <th scope="row"><label>各投稿ページへのリンクに<br>使用するクラス名<label></th>
-          <td><input type="radio" name="smtrm_pager_radio" id="data2" value="2" onclick="changeDisabled()" required ${checkd2}></td>
+          <td><input type="radio" name="smtrm_pager_radio" id="data2" value="2" onclick="changeDisabled()" required ${checked2}></td>
           <td><input type="text" size="50" name="smtrm_pager_entry_form" id="smtrm_pager_entry_form" value="${saved_class}" ${disabled2}>
           <p>例：クラス名が「entry-card-wrap」の場合「.entry-card-wrap」のように半角記号のドットをつけて入力してください。</p></td>
+          </tr>
+          <tr>
+            <th rowspan="2"><p>表示する場所を選択してください</p></th>
+            <td>
+              <input type="hidden" name="smtrm_pager_top" value="0">
+              <input type="checkbox" id="smtrm_pager_top" name="smtrm_pager_top" value="1" ${top_checked}/>
+            </td>
+            <td>
+              <label for="smtrm-top">投稿ページ本文の上</label>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="hidden" name="smtrm_pager_bottom" value="0">
+              <input type="checkbox" id="smtrm_pager_bottom" name="smtrm_pager_bottom" value="1" ${bottom_checked}/>
+            </td>
+            <td>
+              <label for="smtrm-bottom">投稿ページ本文の下</label>
+            </td>
           </tr>
         </table>
         <input type="hidden" name="posted" value="smtrm_save">
