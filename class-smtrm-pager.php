@@ -26,19 +26,21 @@ class Smtrm_Pager{
             $term_name = $get_term -> name;
             $get_taxonomy = get_taxonomy($taxonomy);
             $taxonomy_name = $get_taxonomy->label;
-            $fa_icon = 'fa-folder';
+            $icon_class = 'category-icon';
             if($taxonomy == 'post_tag' || !is_taxonomy_hierarchical( $taxonomy )){
-                $fa_icon = 'fa-tag';
+                $icon_class = 'tag-icon';
             }
             $url = get_the_permalink();
             $release_bt =<<<"EOT"
-            <small>
-                <span class="fas ${fa_icon}"></span>
-                ${taxonomy_name}：『${term_name}』内の投稿を絞り込み表示中
-            </small>
-            <a href="${url}" class="cat-link">
-                <span class="fas fa-times iconfont cat-icon tax-icon tag-icon"></span>解除
-            </a>
+            <div class="same-term-message">
+                <div class="same-term-icon ${icon_class}"></div>
+                <div class="same-term-filter"><span>${taxonomy_name}：</span><span>『${term_name}』</span><span>内の投稿を絞り込み表示中</span></div>
+            </div>
+            <div>
+                <a href="${url}" class="release-button">
+                    <span class="cancel-icon"></span><span>解除</span>
+                </a>
+            </div>
             EOT;
             ?>
 
@@ -115,73 +117,75 @@ class Smtrm_Pager{
         }
 
         if( $prevpost || $nextpost ){ //前の記事、次の記事いずれか存在しているとき ?>
-        <div class="same-term-pager cf">
-        <?php
-        if( $oldest ) {
-        if ( $prevpost ) {
-            ?>
-        <a href="<?php echo $link->getlink($get_filter,$oldest->ID); ?>" class="oldest-post a-wrap">
-        <div class="fas fa-angle-double-left iconfont" aria-hidden="true"></div>最初<span class="pc-none">の記事から読む</span>
-        </a>
-        <?php 
-        } 
-        }else {
-        echo '<div class="oldest-post"></div>';
-        } ?>
-        <?php
-        if ( $prevpost ) { //前の記事が存在しているとき
-            echo '<a href="' . $link->getlink($get_filter,$prevpost->ID) . '" title="' . esc_attr(get_the_title($prevpost->ID)) . '" class="prev-post a-wrap border-element cf">
-                <div class="fa fa-chevron-left iconfont" aria-hidden="true"></div>
-                <figure class="prev-post-thumb card-thumb">';
-                // get_post_navi_thumbnail_tag( $prevpost->ID, $width, $height ).
-                if(has_post_thumbnail($prevpost->ID)){
-                echo get_the_post_thumbnail( $prevpost->ID, 'post-thumbnail', array( 'class'=>'attachment-thumb240 size-thumb240' ) );
-                }
-                else{
-                    echo '<img width="120" height="68" alt="no-image" src="'.plugin_dir_url( __FILE__ ).'images/no-image.png" class="no-image post-navi-no-image">';
-                    }
-                echo '</figure>
-                <div class="prev-post-title">' . get_the_title($prevpost->ID) . '</div></a>';
-        } else { //前の記事が存在しないとき
-            echo '<div class="prev-post"></div>';
-        }
-        if ( $nextpost ) { //次の記事が存在しているとき
-            echo '<a href="' . $link->getlink($get_filter,$nextpost->ID) . '" title="'. esc_attr(get_the_title($nextpost->ID)) . '" class="next-post a-wrap cf">
-                <div class="fa fa-chevron-right iconfont" aria-hidden="true"></div>
-                <figure class="next-post-thumb card-thumb">';
-                // get_post_navi_thumbnail_tag( $nextpost->ID, $width, $height ).
-                if(has_post_thumbnail($nextpost->ID)){
-                    echo get_the_post_thumbnail( $nextpost->ID, 'post-thumbnail', array( 'class'=>'attachment-thumb240 size-thumb240' ) );
+        <div class="same-term-pager-wrapper">
+            <nav class="same-term-pager cf">
+            <?php
+            if( $oldest ) {
+            if ( $prevpost ) {
+                ?>
+            <a href="<?php echo $link->getlink($get_filter,$oldest->ID); ?>" class="oldest-post a-wrap">
+            <div class="double-left same-term-icon" aria-hidden="true"></div>最初<span class="pc-none">の記事から読む</span>
+            </a>
+            <?php 
+            } 
+            }else {
+            echo '<div class="oldest-post"></div>';
+            } ?>
+            <?php
+            if ( $prevpost ) { //前の記事が存在しているとき
+                echo '<a href="' . $link->getlink($get_filter,$prevpost->ID) . '" title="' . esc_attr(get_the_title($prevpost->ID)) . '" class="prev-post a-wrap border-element cf">
+                    <div class="arrow-left same-term-icon" aria-hidden="true"></div>
+                    <figure class="prev-post-thumb card-thumb">';
+                    // get_post_navi_thumbnail_tag( $prevpost->ID, $width, $height ).
+                    if(has_post_thumbnail($prevpost->ID)){
+                    echo get_the_post_thumbnail( $prevpost->ID, 'post-thumbnail', array( 'class'=>'attachment-thumb240 size-thumb240' ) );
                     }
                     else{
                         echo '<img width="120" height="68" alt="no-image" src="'.plugin_dir_url( __FILE__ ).'images/no-image.png" class="no-image post-navi-no-image">';
-                    }
+                        }
                     echo '</figure>
-                    <div class="next-post-title">'. get_the_title($nextpost->ID) . '</div></a>';
-        } else { //次の記事が存在しないとき
-            echo '<div class="next-post"></div>';
-        }
-        ?>
-        <?php
-            if( $latest ) {
-            if ( $nextpost ) {
-            ?>
-            <a href="<?php echo $link->getlink($get_filter,$latest->ID); ?>" class="latest-post a-wrap">
-            最後<span class="pc-none">の記事を読む</span><div class="fas fa-angle-double-right iconfont" aria-hidden="true"></div>
-            </a>
-            <?php
+                    <div class="prev-post-title">' . get_the_title($prevpost->ID) . '</div></a>';
+            } else { //前の記事が存在しないとき
+                echo '<div class="prev-post"></div>';
             }
-            } else {
-            echo '<div class="latest-post"></div>';
-            } ?>
-        </div><!-- /.same-term-pager -->
-        <?php } ?>
-        <div class="pager-filter">
-        <?php   
-        if(isset($release_bt)){
-        echo $release_bt;
-        }?>
-        </div>
+            if ( $nextpost ) { //次の記事が存在しているとき
+                echo '<a href="' . $link->getlink($get_filter,$nextpost->ID) . '" title="'. esc_attr(get_the_title($nextpost->ID)) . '" class="next-post a-wrap cf">
+                    <div class="arrow-right same-term-icon" aria-hidden="true"></div>
+                    <figure class="next-post-thumb card-thumb">';
+                    // get_post_navi_thumbnail_tag( $nextpost->ID, $width, $height ).
+                    if(has_post_thumbnail($nextpost->ID)){
+                        echo get_the_post_thumbnail( $nextpost->ID, 'post-thumbnail', array( 'class'=>'attachment-thumb240 size-thumb240' ) );
+                        }
+                        else{
+                            echo '<img width="120" height="68" alt="no-image" src="'.plugin_dir_url( __FILE__ ).'images/no-image.png" class="no-image post-navi-no-image">';
+                        }
+                        echo '</figure>
+                        <div class="next-post-title">'. get_the_title($nextpost->ID) . '</div></a>';
+            } else { //次の記事が存在しないとき
+                echo '<div class="next-post"></div>';
+            }
+            ?>
+            <?php
+                if( $latest ) {
+                if ( $nextpost ) {
+                ?>
+                <a href="<?php echo $link->getlink($get_filter,$latest->ID); ?>" class="latest-post a-wrap">
+                最後<span class="pc-none">の記事を読む</span><div class="double-right same-term-icon" aria-hidden="true"></div>
+                </a>
+                <?php
+                }
+                } else {
+                echo '<div class="latest-post"></div>';
+                } ?>
+            </nav><!-- /.same-term-pager -->
+            <?php } ?>
+            <div class="pager-filter">
+            <?php   
+            if(isset($release_bt)){
+            echo $release_bt;
+            }?>
+            </div>
+        </div><!-- /.same-term-pager-wrapper -->
         <?php
     }
   }

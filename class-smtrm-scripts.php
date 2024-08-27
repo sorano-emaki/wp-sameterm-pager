@@ -36,21 +36,11 @@ class Smtrm_Scripts{
         jQuery(function($) {
             $('<?php echo $link_class; ?>').click(function(){
                 //リンク先を取得
-                var target_url = $(this).attr("href");
+                const target_url = new URL($(this).attr("href"));
                 //パラメータを取得
-                    var str = 'smtrm_filter=' + '<?php echo get_queried_object_id(); ?>';
-                // console.log(str);
-                prm = decodeURIComponent(str);
-                if (prm) {
-                //target_urlに'？'を含む場合
-                    if (target_url.indexOf('?') != -1) {
-                    //追加パラメータの先頭文字列を'&'に置換
-                    $(this).attr('href', target_url + '&' + prm);
-                    } 
-                    else {
-                    $(this).attr('href', target_url + '?' + prm);
-                    }
-                }
+                var str = '<?php echo get_queried_object_id(); ?>';
+                target_url.searchParams.set('smtrm_filter',str);
+                $(this).attr('href', target_url.href);
             })
         });
         </script>

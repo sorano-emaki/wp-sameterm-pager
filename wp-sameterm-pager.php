@@ -3,7 +3,7 @@
 Plugin Name: WP Same Term Pager
 Plugin URI: https://shokizerokara.com/
 Description: 移動元のアーカイブページ（カテゴリ・タグ・カスタムタクソノミー）で投稿ページのページ送りを絞り込むプラグインです。
-Version: 0.9.6
+Version: 0.9.7
 Author: emaki sorano
 Author URI: https://shokizerokara.com/
 License: GPLv2
@@ -16,6 +16,7 @@ add_action( 'wp_enqueue_scripts', function(){
   // wp_enqueue_script( 'wp_sameterm_pager_scripts',  plugin_dir_url(__FILE__) . 'js/script.js', array( 'jquery' ), '0.9.0' );
   // }
   wp_enqueue_script('jquery');
+  wp_enqueue_style('dashicons');
   if(is_single()){
     wp_enqueue_style( 'wp_sameterm_pager_css',  plugin_dir_url(__FILE__) . 'css/pager.css' );
     }
@@ -49,8 +50,8 @@ require_once('class-smtrm-get-setting.php');
 require_once('class-smtrm-admin-menu.php');
 require_once('class-smtrm-get-link.php');
 require_once('class-smtrm-pager.php');
-// require_once('class-smtrm-add-param.php');
 require_once('class-smtrm-scripts.php');
+require_once('class-smtrm-add-param.php');
 
 add_action( 'widgets_init', function(){
   register_sidebar( array(
@@ -103,19 +104,6 @@ add_shortcode('sameterm_pager', array( new Smtrm_Pager_Area(),'get_pager_area'))
 add_filter('the_content',array(new Smtrm_Pager_Area,'add_pager_area'));
 
 class Smtrm_Widget_Area{
-  function add_widget_area(){
-    if(!is_single()){
-        return;
-    }
-    elseif(is_single() && in_the_loop() && is_main_query()){
-    $new_content = '';
-    $new_content .= $this->get_dynamic_sidebar('smtrm-pager-top');
-    // $new_content .= $title;
-    // $new_content .= $this->get_dynamic_sidebar('smtrm-pager-bottom');
-    echo $new_content;
-  }
-  }
-
   //dyndamic_sidebar の文字列化
   function get_dynamic_sidebar($index = 1){
   $sidebar_contents = "";
@@ -145,52 +133,8 @@ class Smtrm_Widget_Area{
       return;
     }
   }
-
-//   function myplugin_register_my_block_template() {
-//     $post_type_object = get_post_type_object( 'post' );
-//     $post_type_object->template = array(
-//       array( 'core/image' ),
-//       array( 'core/heading' ),
-//       array( 'core/paragraph' )
-//     );
-//   }
 }
-// add_action( 'init',array(new Smtrm_Widget_Area,'myplugin_register_my_block_template') );
-  // add_action('get_template_part_content',array(new Smtrm_Widget_Area,'add_widget_area'));
-  // add_action('get_footer',array(new Smtrm_Widget_Area,'insert_after_post'));
   add_action('cocoon_part_after__tmp/header-container',array(new Smtrm_Widget_Area,'insert_before_post'));
-  // if(! function_exists( 'twentytwentytwo_support' )){
-  // $loop_action_start = 'loop_start';
-  // $loop_action_end ='loop_end';
-  // add_action($loop_action_start,array(new Smtrm_Widget_Area,'insert_before_post'));
-  // // add_action($loop_action_end,array(new Smtrm_Widget_Area,'insert_after_post'));
-  // }
-  // add_action('get_template_part_content',array(new Smtrm_Widget_Area,'add_widget_area'));
-  // add_filter('the_title',array(new Smtrm_Widget_Area,'add_widget_area'));
-  // add_action( 'the_post', array( new Smtrm_Widget_Area, 'insert_before_post' ), 10, 2 );
-// new Smtrm_Widget_Area();
-
- /**
-  * $hooked_blocks (array) – フック（挿入）するブロック
-  * $position (string) – ブロックを挿入する場所: before, after, first_child, or last_child.
-  * $anchor_block (string) – 挿入先のブロック
-  * $context (WP_Block_Template|array) – フック先のテンプレート名、テンプレートパート名、パターン名、アンカーブロック名.
-  */
-  // function example_block_hooks_001( $hooked_blocks, $position, $anchor_block, $context ) {
-
-  //   if ( $context instanceof WP_Block_Template ) {
-  //     if ( 
-  //       'core/post-title' === $anchor_block &&
-  //       'before' === $position &&
-  //       'single' === $context->slug
-  //       ) {
-  //       // 挿入するダイナミックブロック
-  //       $hooked_blocks[] = 'core/post-date';
-  //     }
-  //   }
-  //   return $hooked_blocks;
-  // }
-  // add_filter( 'hooked_block_types', 'example_block_hooks_001', 10, 4 );
-
+  add_action('get_footer',array(new Smtrm_Widget_Area,'insert_after_post'));
 
  

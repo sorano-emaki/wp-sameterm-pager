@@ -114,7 +114,7 @@ function add_menu() {
               <input type="checkbox" id="smtrm_pager_top" name="smtrm_pager_top" value="1" ${top_checked}/>
             </td>
             <td>
-              <label for="smtrm-top">投稿ページ本文の上</label>
+              <label for="smtrm_pager_top">投稿ページ本文の上</label>
             </td>
           </tr>
           <tr>
@@ -123,13 +123,23 @@ function add_menu() {
               <input type="checkbox" id="smtrm_pager_bottom" name="smtrm_pager_bottom" value="1" ${bottom_checked}/>
             </td>
             <td>
-              <label for="smtrm-bottom">投稿ページ本文の下</label>
+              <label for="smtrm_pager_bottom">投稿ページ本文の下</label>
             </td>
           </tr>
         </table>
         <input type="hidden" name="posted" value="smtrm_save">
         <input type="submit" name="submit" class="submit_btn" value="設定を保存">
       </form>
+      <div>
+        <h3>Same Term Pagerとは？</h3>
+        <p>同じターム（カテゴリーやタグ、カスタムタクソノミーの項目のこと）で絞り込んだ記事を表示できるプラグインです。</p>
+        <p>投稿に複数のタームが登録されていても、同じターム内でページ移動をすることができます。</p>
+        <h3>タームとは？</h3>
+        <p>投稿を分類（タクソノミー）した項目（ターム）のことです。</p>
+        <p>例えば、WordPressに最初から用意されているタクソノミーはカテゴリーとタグですが、カテゴリーやタグという分類に所属する項目一つ一つがターム（Term）と呼ばれます。</p>
+        <h3>ページャーとは？</h3>
+        <p>投稿のページ送り機能です。次の記事へ・前の記事へと移動することができます。</p>
+      </div>
       EOT;
   }
 
