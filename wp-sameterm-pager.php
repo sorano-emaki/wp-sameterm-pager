@@ -3,7 +3,7 @@
 Plugin Name: WP Same Term Pager
 Plugin URI: https://shokizerokara.com/
 Description: 移動元のアーカイブページ（カテゴリ・タグ・カスタムタクソノミー）で投稿ページのページ送りを絞り込むプラグインです。
-Version: 0.9.7
+Version: 0.9.8
 Author: emaki sorano
 Author URI: https://shokizerokara.com/
 License: GPLv2
@@ -22,6 +22,31 @@ add_action( 'wp_enqueue_scripts', function(){
     }
 } );
 
+/**
+ * ブロックエディター向け コンテンツアセットのエンキュー。ただし、エディター内のみ
+ */
+function smtrm_enqueue_editor_content_assets() {
+  if ( is_admin() ) {
+      wp_enqueue_style('dashicons');
+      wp_enqueue_style( 'wp_sameterm_pager_css',  plugin_dir_url(__FILE__) . 'css/pager.css' );
+  }
+}
+add_action( 'enqueue_block_assets', 'smtrm_enqueue_editor_content_assets' );
+
+function smtrm_custom_block_scripts() {
+  wp_enqueue_script(
+      'smtrm-custom-block',
+      plugin_dir_url(__FILE__) . '/blocks/smtrm-block/index.js'
+  );
+
+  wp_localize_script(
+      'smtrm-custom-block',
+      'pluginDirectoryUrl',
+       plugin_dir_url(__FILE__)
+  );
+}
+add_action( 'enqueue_block_editor_assets', 'smtrm_custom_block_scripts' );
+
 add_filter('init', function(){
   global $wp;
   $wp->add_query_var( 'smtrm_filter' );
@@ -38,7 +63,7 @@ class Smtrm_Activation{
     if(!get_option('smtrm_pager_installed')){
       add_option('smtrm_pager_installed', 1);
       add_option('smtrm_pager_radio',1);
-      add_option('smtrm_pager_select',1);
+      add_option('smtrm_pager_select',0);
       add_option('smtrm_pager_entry_form', '');
       add_option('smtrm_pager_top', 1);
       add_option('smtrm_pager_bottom', 1);
@@ -116,12 +141,12 @@ class Smtrm_Widget_Area{
   function insert_before_post() {
 
   if(is_single()){
-  $snippets = $this->get_dynamic_sidebar('smtrm-pager-top');
-  echo $snippets;
-  }
-  else{
-    return;
-  }
+    $snippets = $this->get_dynamic_sidebar('smtrm-pager-top');
+    echo $snippets;
+    }
+    else{
+      return;
+    }
   }
   function insert_after_post() {
 
@@ -134,7 +159,51 @@ class Smtrm_Widget_Area{
     }
   }
 }
-  add_action('cocoon_part_after__tmp/header-container',array(new Smtrm_Widget_Area,'insert_before_post'));
-  add_action('get_footer',array(new Smtrm_Widget_Area,'insert_after_post'));
+add_action('cocoon_part_after__tmp/header-container',array(new Smtrm_Widget_Area,'insert_before_post'));
+add_action('get_footer',array(new Smtrm_Widget_Area,'insert_after_post'));
 
- 
+class Smtrm_Widget extends WP_Widget{
+
+  //コンストラクタ
+  function __construct(){
+  // 親コンストラクタの設定
+      parent::__construct(
+    // ウィジェットID 
+    'sameterm_pager_widget',
+    // ウィジェット名
+    'WP Same Term Pager',        
+    // ウィジェットの概要
+          array('description' => 'カテゴリーやタグで絞り込めるページャーを表示します。')
+      );
+  }
+
+  /**
+   * ウィジェットの表示用関数
+   *-------------------------------------------------------
+  * @param array $args      [register_sidebar]で設定した
+  *                         「before_title, after_title, 
+  *                          before_widget, after_widget」が入る
+  * @param array $instance  Widgetの設定項目
+  * ------------------------------------------------------
+  */
+  public function widget($args, $instance){
+
+  // ウィジェット内容の前に出力
+  echo $args['before_widget'];
+
+  // ウィジェットの内容出力
+  $widget_area = new Smtrm_Pager_Area;
+  echo $widget_area->get_pager_area();
+
+  // ウィジェット内容の後に出力
+  echo $args['after_widget'];
+  }
+}
+
+  add_action(
+  'widgets_init',
+  function(){
+  // ウィジェットのクラス名を記述
+      register_widget('Smtrm_Widget'); 
+  }
+);

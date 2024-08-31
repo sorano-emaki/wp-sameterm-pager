@@ -123,7 +123,7 @@ class Smtrm_Pager{
             if( $oldest ) {
             if ( $prevpost ) {
                 ?>
-            <a href="<?php echo $link->getlink($get_filter,$oldest->ID); ?>" class="oldest-post a-wrap">
+            <a href="<?php echo $link->getlink($get_filter,$oldest->ID); ?>" class="oldest-post">
             <div class="double-left same-term-icon" aria-hidden="true"></div>最初<span class="pc-none">の記事から読む</span>
             </a>
             <?php 
@@ -133,7 +133,7 @@ class Smtrm_Pager{
             } ?>
             <?php
             if ( $prevpost ) { //前の記事が存在しているとき
-                echo '<a href="' . $link->getlink($get_filter,$prevpost->ID) . '" title="' . esc_attr(get_the_title($prevpost->ID)) . '" class="prev-post a-wrap border-element cf">
+                echo '<a href="' . $link->getlink($get_filter,$prevpost->ID) . '" title="' . esc_attr(get_the_title($prevpost->ID)) . '" class="prev-post border-element cf">
                     <div class="arrow-left same-term-icon" aria-hidden="true"></div>
                     <figure class="prev-post-thumb card-thumb">';
                     // get_post_navi_thumbnail_tag( $prevpost->ID, $width, $height ).
@@ -141,7 +141,7 @@ class Smtrm_Pager{
                     echo get_the_post_thumbnail( $prevpost->ID, 'post-thumbnail', array( 'class'=>'attachment-thumb240 size-thumb240' ) );
                     }
                     else{
-                        echo '<img width="120" height="68" alt="no-image" src="'.plugin_dir_url( __FILE__ ).'images/no-image.png" class="no-image post-navi-no-image">';
+                        echo '<img width="120" height="68" alt="no-image" src="'.plugin_dir_url( __FILE__ ).'images/no-image.png" class="no-image post-navi-no-image" />';
                         }
                     echo '</figure>
                     <div class="prev-post-title">' . get_the_title($prevpost->ID) . '</div></a>';
@@ -149,7 +149,7 @@ class Smtrm_Pager{
                 echo '<div class="prev-post"></div>';
             }
             if ( $nextpost ) { //次の記事が存在しているとき
-                echo '<a href="' . $link->getlink($get_filter,$nextpost->ID) . '" title="'. esc_attr(get_the_title($nextpost->ID)) . '" class="next-post a-wrap cf">
+                echo '<a href="' . $link->getlink($get_filter,$nextpost->ID) . '" title="'. esc_attr(get_the_title($nextpost->ID)) . '" class="next-post cf">
                     <div class="arrow-right same-term-icon" aria-hidden="true"></div>
                     <figure class="next-post-thumb card-thumb">';
                     // get_post_navi_thumbnail_tag( $nextpost->ID, $width, $height ).
@@ -157,7 +157,7 @@ class Smtrm_Pager{
                         echo get_the_post_thumbnail( $nextpost->ID, 'post-thumbnail', array( 'class'=>'attachment-thumb240 size-thumb240' ) );
                         }
                         else{
-                            echo '<img width="120" height="68" alt="no-image" src="'.plugin_dir_url( __FILE__ ).'images/no-image.png" class="no-image post-navi-no-image">';
+                            echo '<img width="120" height="68" alt="no-image" src="'.plugin_dir_url( __FILE__ ).'images/no-image.png" class="no-image post-navi-no-image" />';
                         }
                         echo '</figure>
                         <div class="next-post-title">'. get_the_title($nextpost->ID) . '</div></a>';
@@ -169,7 +169,7 @@ class Smtrm_Pager{
                 if( $latest ) {
                 if ( $nextpost ) {
                 ?>
-                <a href="<?php echo $link->getlink($get_filter,$latest->ID); ?>" class="latest-post a-wrap">
+                <a href="<?php echo $link->getlink($get_filter,$latest->ID); ?>" class="latest-post">
                 最後<span class="pc-none">の記事を読む</span><div class="double-right same-term-icon" aria-hidden="true"></div>
                 </a>
                 <?php
