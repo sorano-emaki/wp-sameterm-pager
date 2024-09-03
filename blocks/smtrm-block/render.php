@@ -5,7 +5,7 @@
 ?>
 <div <?php echo get_block_wrapper_attributes(); ?>>
 	<?php
-	$pager = new Smtrm_Pager_Area();
-	echo $pager->get_pager_area();
+	global $smtrm_pager;
+	echo $smtrm_pager->get_pager_area();
 	?>
 </div>

@@ -114,10 +114,10 @@ class Smtrm_Pager{
             $pos_count = $pos_count - 1;
             $ltpos_id = $post_id_list[$pos_count];
             $latest = get_post($ltpos_id);
-        }
+        }?>
 
-        if( $prevpost || $nextpost ){ //前の記事、次の記事いずれか存在しているとき ?>
         <div class="same-term-pager-wrapper">
+        <?php if( $prevpost || $nextpost ){ //前の記事、次の記事いずれか存在しているとき ?>
             <nav class="same-term-pager cf">
             <?php
             if( $oldest ) {
@@ -189,4 +189,31 @@ class Smtrm_Pager{
         <?php
     }
   }
+
+  function get_pager_area(){
+    $pager_contents = '';
+    ob_start();
+    echo $this->sameterm_pager();
+    $pager_contents = ob_get_clean();
+    return $pager_contents;
+  }
+
+  function add_pager_area($content){
+    $saved_setting = new Smtrm_Get_Setting;
+    if(!is_single()){
+        return $content;
+    }
+    $new_content = '';
+    if ($saved_setting->pager_top()) {
+      $new_content .= $this->get_pager_area();
+    }
+    $new_content .= $content;
+    if ($saved_setting->pager_bottom()) {
+      $new_content .= $this->get_pager_area();
+    }
+    return $new_content;
+  }
 }
+$smtrm_pager = new Smtrm_Pager();
+add_shortcode('sameterm_pager', array( $smtrm_pager,'get_pager_area'));
+add_filter('the_content',array($smtrm_pager,'add_pager_area'));

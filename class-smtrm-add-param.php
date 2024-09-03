@@ -14,5 +14,6 @@ class Smtrm_Add_Param{
         return $permalink;
     }
 }
-add_filter('post_link', array(new Smtrm_Add_Param, 'add_param_link'), 10, 2);
-add_filter('post_type_link', array(new Smtrm_Add_Param, 'add_param_link'), 10, 2);
+const smtrm_add_param = new Smtrm_Add_Param();
+add_filter('post_link', array(smtrm_add_param, 'add_param_link'), 10, 2);
+add_filter('post_type_link', array(smtrm_add_param, 'add_param_link'), 10, 2);

@@ -159,5 +159,6 @@ function add_menu() {
   <?php
   }
 }
-add_action( 'admin_head', array(new Smtrm_Admin_Menu,'add_admin_header') );
-add_action( 'admin_menu', array(new Smtrm_Admin_Menu,'add_menu') );
+const smtrm_admin_menu = new Smtrm_Admin_Menu();
+add_action( 'admin_head', array(smtrm_admin_menu,'add_admin_header') );
+add_action( 'admin_menu', array(smtrm_admin_menu,'add_menu') );
