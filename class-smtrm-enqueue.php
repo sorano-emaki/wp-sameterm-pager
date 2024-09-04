@@ -42,43 +42,19 @@ class Smtrm_Enqueue{
      */
     function pager_scripts() {
         $saved_setting = new Smtrm_Get_Setting;
-        $link_class = $saved_setting->select_box_value();
-        $radio_value = $saved_setting->radio_value();
-        if($radio_value == 1){
-            switch ($link_class){
-                case 0:
-                    $link_class = '';
-                    break;
-                case 1:
-                    $link_class = 'a.entry-card-wrap';
-                    break;
-                case 2:
-                    $link_class = 'li.wp-block-post a';
-                    break;
-                case 3:
-                    $link_class = 'li.wp-block-post a';
-                    break;
-                case 4:
-                    $link_class = 'li.wp-block-post a';
-                    break;
-                default :
-                    $link_class = '';
-                    break;
-            }
-        }
-        else{
-            $link_class = $saved_setting->entry_form_value();
-        }
+        $link_class = esc_js($saved_setting->entry_form_value());
         /**
          * メインループ外のURLパラメータ追加用
          */
-        if(is_category() || is_tag() || is_tax()){
-            wp_enqueue_script( 'add-smtrm-param', plugin_dir_url(__FILE__) . 'js/addSmtrmParam.js', array( 'jquery' )  );
-            wp_localize_script('add-smtrm-param','for_add_smtrm_param',array(
-                    'link_class' => $link_class,
-                    'queried_object_id' =>  get_queried_object_id()
-                    )
-                );
+        if($link_class){
+            if(is_category() || is_tag() || is_tax()){
+                wp_enqueue_script( 'add-smtrm-param', plugin_dir_url(__FILE__) . 'js/addSmtrmParam.js', array( 'jquery' )  );
+                wp_localize_script('add-smtrm-param','for_add_smtrm_param',array(
+                        'link_class' => $link_class,
+                        'queried_object_id' =>  get_queried_object_id()
+                        )
+                    );
+            }
         }
         /**
          * 無効なURLパラメータをJavaScriptで外す
@@ -103,8 +79,8 @@ class Smtrm_Enqueue{
         }
     }
 }
-const smtrm_enqueue = new Smtrm_Enqueue();
-add_action( 'wp_enqueue_scripts', array( smtrm_enqueue,'smtrm_enqueue_front_content_assets') );
-add_action( 'wp_enqueue_scripts', array( smtrm_enqueue,'pager_scripts'), 99 );
-add_action( 'enqueue_block_assets', array( smtrm_enqueue,'smtrm_enqueue_editor_content_assets') );
-add_action( 'enqueue_block_editor_assets', array( smtrm_enqueue,'smtrm_custom_block_scripts') );
+const SMTRM_ENQUEUE = new Smtrm_Enqueue();
+add_action( 'wp_enqueue_scripts', array( SMTRM_ENQUEUE,'smtrm_enqueue_front_content_assets') );
+add_action( 'wp_enqueue_scripts', array( SMTRM_ENQUEUE,'pager_scripts'), 99 );
+add_action( 'enqueue_block_assets', array( SMTRM_ENQUEUE,'smtrm_enqueue_editor_content_assets') );
+add_action( 'enqueue_block_editor_assets', array( SMTRM_ENQUEUE,'smtrm_custom_block_scripts') );
