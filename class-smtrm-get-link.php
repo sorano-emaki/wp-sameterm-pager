@@ -1,9 +1,9 @@
 <?php
 if(!defined('ABSPATH')) { exit; } 
 class Smtrm_Get_Link{
-  function getlink($param,$id){
+  function get_link($param,$id){
     if($param){
-      $url = add_query_arg( array( 'smtrm_filter'=> $param ) , get_permalink($id));
+      $url = add_query_arg( array( 'smtrm_filter'=> esc_attr($param) ) , get_permalink($id));
     }
     else{
       $url = get_permalink($id);

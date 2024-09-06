@@ -49,7 +49,14 @@ class Smtrm_Widget_Area{
     }
   }
 }
-const SMTRM_WIDGET_AREA = new Smtrm_Widget_Area();
-add_action( 'widgets_init',array(SMTRM_WIDGET_AREA,'smtrtm_register_widget'));
-add_action('cocoon_part_after__tmp/header-container',array(SMTRM_WIDGET_AREA,'insert_before_post'));
-add_action('get_footer',array(SMTRM_WIDGET_AREA,'insert_after_post'));
+$smtrm_widget_area = new Smtrm_Widget_Area();
+add_action( 'widgets_init',array($smtrm_widget_area,'smtrtm_register_widget'));
+
+$theme = get_template();
+if ($theme =='cocoon-master' || $theme =='cocoon-child') {
+  add_action('cocoon_part_after__tmp/header-container',array($smtrm_widget_area,'insert_before_post'));
+  add_action('cocoon_part_before__tmp/footer-bottom',array($smtrm_widget_area,'insert_after_post'));
+}
+else{
+  add_action('get_footer',array($smtrm_widget_area,'insert_after_post'));
+}

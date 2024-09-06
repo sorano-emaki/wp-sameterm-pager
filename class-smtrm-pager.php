@@ -9,12 +9,12 @@ class Smtrm_Pager{
         $term_id_num = '';
         $taxonomy = 'category';
         $release_bt = '';
-        $get_filter = 0;
+        $get_filter = isset($_GET['smtrm_filter']) ? intval($_GET['smtrm_filter']) : 0;
         $term_exists = 0;
         $link = new Smtrm_Get_Link;
         
-        if(isset($_GET ['smtrm_filter']) && is_numeric($_GET ['smtrm_filter'])){
-            $get_filter = (int)$_GET ['smtrm_filter'];
+        if($get_filter){
+            // $get_filter = (int)$_GET ['smtrm_filter'];
             // echo 'smtrm_filter'.$get_filter;
             $term_exists = term_exists($get_filter);
             // var_dump($term_exists);
@@ -123,7 +123,7 @@ class Smtrm_Pager{
             if( $oldest ) {
             if ( $prevpost ) {
                 ?>
-            <a href="<?php echo $link->getlink($get_filter,$oldest->ID); ?>" class="oldest-post">
+            <a href="<?php echo $link->get_link($get_filter,$oldest->ID); ?>" class="oldest-post">
             <div class="double-left same-term-icon" aria-hidden="true"></div>最初<span class="pc-none">の記事から読む</span>
             </a>
             <?php 
@@ -133,7 +133,7 @@ class Smtrm_Pager{
             } ?>
             <?php
             if ( $prevpost ) { //前の記事が存在しているとき
-                echo '<a href="' . $link->getlink($get_filter,$prevpost->ID) . '" title="' . esc_attr(get_the_title($prevpost->ID)) . '" class="prev-post border-element cf">
+                echo '<a href="' . $link->get_link($get_filter,$prevpost->ID) . '" title="' . esc_attr(get_the_title($prevpost->ID)) . '" class="prev-post border-element cf">
                     <div class="arrow-left same-term-icon" aria-hidden="true"></div>
                     <figure class="prev-post-thumb card-thumb">';
                     // get_post_navi_thumbnail_tag( $prevpost->ID, $width, $height ).
@@ -149,7 +149,7 @@ class Smtrm_Pager{
                 echo '<div class="prev-post"></div>';
             }
             if ( $nextpost ) { //次の記事が存在しているとき
-                echo '<a href="' . $link->getlink($get_filter,$nextpost->ID) . '" title="'. esc_attr(get_the_title($nextpost->ID)) . '" class="next-post cf">
+                echo '<a href="' . $link->get_link($get_filter,$nextpost->ID) . '" title="'. esc_attr(get_the_title($nextpost->ID)) . '" class="next-post cf">
                     <div class="arrow-right same-term-icon" aria-hidden="true"></div>
                     <figure class="next-post-thumb card-thumb">';
                     // get_post_navi_thumbnail_tag( $nextpost->ID, $width, $height ).
@@ -169,7 +169,7 @@ class Smtrm_Pager{
                 if( $latest ) {
                 if ( $nextpost ) {
                 ?>
-                <a href="<?php echo $link->getlink($get_filter,$latest->ID); ?>" class="latest-post">
+                <a href="<?php echo $link->get_link($get_filter,$latest->ID); ?>" class="latest-post">
                 最後<span class="pc-none">の記事を読む</span><div class="double-right same-term-icon" aria-hidden="true"></div>
                 </a>
                 <?php

@@ -3,6 +3,8 @@
 if(!defined('ABSPATH')) { exit; } 
 class Smtrm_Widget extends WP_Widget{
 
+  private $pager;
+
   //コンストラクタ
   function __construct(){
   // 親コンストラクタの設定
@@ -14,6 +16,8 @@ class Smtrm_Widget extends WP_Widget{
     // ウィジェットの概要
           array('description' => 'カテゴリーやタグで絞り込めるページャーを表示します。')
       );
+    global $smtrm_pager;
+    $this->pager = $smtrm_pager;
   }
 
   /**
@@ -31,8 +35,11 @@ class Smtrm_Widget extends WP_Widget{
   echo $args['before_widget'];
 
   // ウィジェットの内容出力
-  global $smtrm_pager;
-  echo $smtrm_pager->get_pager_area();
+  if ( isset( $this->pager ) && method_exists( $this->pager, 'get_pager_area' ) ) {
+    echo  $this->pager->get_pager_area();
+} else {
+    echo 'Pager is not available';
+}
 
   // ウィジェット内容の後に出力
   echo $args['after_widget'];

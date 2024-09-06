@@ -8,7 +8,7 @@ class Smtrm_Enqueue{
         wp_enqueue_script('jquery');
         wp_enqueue_style('dashicons');
         if(is_single()){
-        wp_enqueue_style( 'wp_sameterm_pager_css',  plugin_dir_url(__FILE__) . 'css/pager.css' );
+        wp_enqueue_style( 'wp_sameterm_pager_css',  SMTRM_PLUGIN_URL . 'css/pager.css' );
         }
     }
 
@@ -18,7 +18,7 @@ class Smtrm_Enqueue{
     function smtrm_enqueue_editor_content_assets() {
         if ( is_admin() ) {
             wp_enqueue_style('dashicons');
-            wp_enqueue_style( 'wp_sameterm_pager_css',  plugin_dir_url(__FILE__) . 'css/pager.css' );
+            wp_enqueue_style( 'wp_sameterm_pager_css',  SMTRM_PLUGIN_URL . 'css/pager.css' );
         }
     }
     
@@ -28,13 +28,13 @@ class Smtrm_Enqueue{
     function smtrm_custom_block_scripts() {
         wp_enqueue_script(
             'smtrm-custom-block',
-            plugin_dir_url(__FILE__) . '/blocks/smtrm-block/index.js'
+            SMTRM_PLUGIN_URL . '/blocks/smtrm-block/index.js'
         );
     
         wp_localize_script(
             'smtrm-custom-block',
             'pluginDirectoryUrl',
-            plugin_dir_url(__FILE__)
+            SMTRM_PLUGIN_URL
         );
     }
     /**
@@ -48,7 +48,7 @@ class Smtrm_Enqueue{
          */
         if($link_class){
             if(is_category() || is_tag() || is_tax()){
-                wp_enqueue_script( 'add-smtrm-param', plugin_dir_url(__FILE__) . 'js/addSmtrmParam.js', array( 'jquery' )  );
+                wp_enqueue_script( 'add-smtrm-param', SMTRM_PLUGIN_URL . 'js/addSmtrmParam.js', array( 'jquery' )  );
                 wp_localize_script('add-smtrm-param','for_add_smtrm_param',array(
                         'link_class' => $link_class,
                         'queried_object_id' =>  get_queried_object_id()
@@ -70,17 +70,17 @@ class Smtrm_Enqueue{
                 if(has_term($get_filter,$get_tax)) {
                 }
                 else{
-                    wp_enqueue_script( 'remove-smtrm-param', plugin_dir_url(__FILE__) . 'js/removeSmtrmParam.js', array( 'jquery' )  );
+                    wp_enqueue_script( 'remove-smtrm-param', SMTRM_PLUGIN_URL . 'js/removeSmtrmParam.js', array( 'jquery' )  );
                 }
             }
             elseif( isset($_GET ['smtrm_filter']) && !is_numeric($_GET ['smtrm_filter']) ) {
-                wp_enqueue_script( 'remove-smtrm-param', plugin_dir_url(__FILE__) . 'js/removeSmtrmParam.js', array( 'jquery' )  );
+                wp_enqueue_script( 'remove-smtrm-param', SMTRM_PLUGIN_URL . 'js/removeSmtrmParam.js', array( 'jquery' )  );
             }
         }
     }
 }
-const SMTRM_ENQUEUE = new Smtrm_Enqueue();
-add_action( 'wp_enqueue_scripts', array( SMTRM_ENQUEUE,'smtrm_enqueue_front_content_assets') );
-add_action( 'wp_enqueue_scripts', array( SMTRM_ENQUEUE,'pager_scripts'), 99 );
-add_action( 'enqueue_block_assets', array( SMTRM_ENQUEUE,'smtrm_enqueue_editor_content_assets') );
-add_action( 'enqueue_block_editor_assets', array( SMTRM_ENQUEUE,'smtrm_custom_block_scripts') );
+$smtrm_enqueue = new Smtrm_Enqueue();
+add_action( 'wp_enqueue_scripts', array( $smtrm_enqueue,'smtrm_enqueue_front_content_assets') );
+add_action( 'wp_enqueue_scripts', array( $smtrm_enqueue,'pager_scripts'), 99 );
+add_action( 'enqueue_block_assets', array( $smtrm_enqueue,'smtrm_enqueue_editor_content_assets') );
+add_action( 'enqueue_block_editor_assets', array( $smtrm_enqueue,'smtrm_custom_block_scripts') );

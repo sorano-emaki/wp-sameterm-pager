@@ -1,30 +1,27 @@
 <?php
 if(!defined('ABSPATH')) { exit; }
-class Smtrm_Get_Setting{
-    function entry_form_value(){
-        $get_form = esc_attr(get_option('smtrm_pager_entry_form'));
-        return $get_form;
+class Smtrm_Get_Setting {
+    private function get_setting($option_name) {
+        return esc_attr(get_option($option_name),'');
     }
-    function select_box_value(){
-        $get_select = esc_attr(get_option('smtrm_pager_select'));
-        return $get_select;
+
+    function entry_form_value() {
+        return $this->get_setting(Smtrm_Activation::SMTRM_ENTRY_FORM);
     }
-    function radio_value(){
-        $get_radio = esc_attr(get_option('smtrm_pager_radio'));
-        return $get_radio;
+
+    function select_box_value() {
+        return $this->get_setting(Smtrm_Activation::SMTRM_SELECT);
     }
-    function pager_top(){
-        $pager_top = esc_attr(get_option('smtrm_pager_top'));
-        if($pager_top){
-            return 'checked';
-        }
-        return;
+
+    function radio_value() {
+        return $this->get_setting(Smtrm_Activation::SMTRM_RADIO);
     }
-    function pager_bottom(){
-        $pager_bottom = esc_attr(get_option('smtrm_pager_bottom'));
-        if($pager_bottom){
-            return 'checked';
-        }
-        return;
+
+    function pager_top() {
+        return $this->get_setting(Smtrm_Activation::SMTRM_TOP) ? 'checked' : '';
+    }
+
+    function pager_bottom() {
+        return $this->get_setting(Smtrm_Activation::SMTRM_BOTTOM) ? 'checked' : '';
     }
 }

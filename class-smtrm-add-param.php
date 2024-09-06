@@ -6,7 +6,6 @@ class Smtrm_Add_Param{
             if(!is_admin() && is_main_query() && in_the_loop()){
                 //パラメータを取得
                 $param = get_queried_object_id();
-                $new_permalink ='';
                 $new_permalink = add_query_arg('smtrm_filter',$param,$permalink);
                 return $new_permalink;
             }
@@ -14,6 +13,6 @@ class Smtrm_Add_Param{
         return $permalink;
     }
 }
-const SMTRM_ADD_PARAM = new Smtrm_Add_Param();
-add_filter('post_link', array(SMTRM_ADD_PARAM, 'add_param_link'), 10, 2);
-add_filter('post_type_link', array(SMTRM_ADD_PARAM, 'add_param_link'), 10, 2);
+$smtrm_add_param = new Smtrm_Add_Param();
+add_filter('post_link', array($smtrm_add_param, 'add_param_link'), 10, 2);
+add_filter('post_type_link', array($smtrm_add_param, 'add_param_link'), 10, 2);

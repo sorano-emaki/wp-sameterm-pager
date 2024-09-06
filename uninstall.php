@@ -5,9 +5,9 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 }
 
 // オプション設定の削除
-delete_option('smtrm_pager_installed');
-delete_option('smtrm_pager_radio');
-delete_option('smtrm_pager_select');
-delete_option('smtrm_pager_entry_form');
-delete_option('smtrm_pager_top');
-delete_option('smtrm_pager_bottom');
+delete_option(Smtrm_Activation::SMTRM_INSTALLED);
+delete_option(Smtrm_Activation::SMTRM_RADIO);
+delete_option(Smtrm_Activation::SMTRM_SELECT);
+delete_option(Smtrm_Activation::SMTRM_ENTRY_FORM);
+delete_option(Smtrm_Activation::SMTRM_TOP);
+delete_option(Smtrm_Activation::SMTRM_BOTTOM);
