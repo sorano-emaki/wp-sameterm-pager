@@ -1,147 +1,51 @@
 <?php
 if(!defined('ABSPATH')) { exit; } 
 class Smtrm_Pager{
+    private static $post_type;
+    private static $cat_id_num;
+    private static $tag_id_num;
+    private static $term_id_num;
+    private static $get_filter;
+    private static $taxonomy;
+    private static $term_exists;
+    private static $get_term;
+
     function sameterm_pager(){
     if(is_single()){
-        $post_type = get_post_type();
-        $cat_id_num = '';
-        $tag_id_num = '';
-        $term_id_num = '';
-        $taxonomy = 'category';
-        $release_bt = '';
-        $get_filter = isset($_GET['smtrm_filter']) ? intval($_GET['smtrm_filter']) : 0;
-        $term_exists = 0;
+        self::$post_type = get_post_type();
+        list(self::$get_filter,self::$taxonomy,self::$term_exists,self::$get_term) = SmtrmAdjacentPost::smtrm_param_check();
         $link = new Smtrm_Get_Link;
-        
-        if($get_filter){
-            // $get_filter = (int)$_GET ['smtrm_filter'];
-            // echo 'smtrm_filter'.$get_filter;
-            $term_exists = term_exists($get_filter);
-            // var_dump($term_exists);
-        }
-
-        if(!empty($term_exists) ){
-            $get_term = get_term( $get_filter );
-            $taxonomy = $get_term -> taxonomy;
-            $term_name = $get_term -> name;
-            $get_taxonomy = get_taxonomy($taxonomy);
-            $taxonomy_name = $get_taxonomy->label;
-            $icon_class = 'category-icon';
-            if($taxonomy == 'post_tag' || !is_taxonomy_hierarchical( $taxonomy )){
-                $icon_class = 'tag-icon';
-            }
-            $url = get_the_permalink();
-            $release_bt =<<<"EOT"
-            <div class="same-term-message">
-                <div class="same-term-icon ${icon_class}"></div>
-                <div class="same-term-filter"><span>${taxonomy_name}：</span><span>『${term_name}』</span><span>内の投稿を絞り込み表示中</span></div>
-            </div>
-            <div>
-                <a href="${url}" class="release-button">
-                    <span class="cancel-icon"></span><span>解除</span>
-                </a>
-            </div>
-            EOT;
-            ?>
-
-            <?php
-            if($taxonomy == 'category'){
-                $cat_id_num = $get_filter;
-            }
-            elseif($taxonomy == 'post_tag'){
-                $tag_id_num = $get_filter;
-            }
-            else{
-                $term_id_num = $get_filter;
-            }
-        }
-        $args = array(
-            'post_type'        => $post_type,
-            'posts_per_page'   => -1, // 読み込みしたい記事数（全件取得時は-1）
-            'category'         => $cat_id_num, // 読み込みしたいカテゴリID（複数の場合は '1,2'）
-            'tag_id'           => $tag_id_num,
-            'orderby'          => 'date', // 何順で記事を読み込むか（省略時は日付順）
-            'order'            => 'ASC', // 昇順(ASC)か降順か(DESC）
-            'fields' => 'ids',            //IDだけ取得
-        );
-        if( $term_id_num ){
-        $args['tax_query'] = [
-            [
-                'taxonomy' => $taxonomy,
-                'field'    => 'id',
-                'terms'    => $term_id_num,
-            ]
-        ];
-        }
-        //前の投稿と次の投稿
-        $prevpost = null;
-        $nextpost = null;
-        //最初の投稿と最後の投稿
-        $oldest = null;
-        $latest = null;
-        //条件で絞り込まれた投稿のIDのみを配列で取得
-        $post_id_list = get_posts($args);
-        //配列の総数を取得
-        $pos_count = count($post_id_list);
-        // var_dump($post_id_list);
-        //現在表示中の投稿IDを取得
-        $current_id = get_the_id();
-        //配列の中から現在の投稿のIDを捜す（検索結果は配列の添え字）
-        $pos = array_search($current_id, $post_id_list, true);
-        // var_dump($pos);
-        //一つ前の配列の添え字
-        $prev_pos = $pos - 1;
-        // var_dump($prev_pos);
-        //一つ後の配列の添え字
-        $next_pos = $pos + 1;
-        // var_dump($next_pos);
-        //配列の添え字（0スタート）がマイナスになる場合は前の投稿がないのでnull
-        if($prev_pos < 0) {$prev_pos = null;}
-        //配列の添え字が配列の総数より多い場合は次の投稿がないのでnull
-        if($next_pos >= $pos_count){$next_pos = null;}
-        //配列の添え字が0の場合があるので値があるかどうかをissetで判定
-        if(isset($prev_pos)){
-            // echo $post_id_list[$prev_pos];
-            $prpos_id = $post_id_list[$prev_pos];
-            $prevpost = get_post($prpos_id);
-            $olpos_id = $post_id_list[0];
-            $oldest = get_post($olpos_id);
-        }
-        if(isset($next_pos)){
-            // echo $post_id_list[$next_pos];
-            $nxpos_id = $post_id_list[$next_pos];
-            $nextpost = get_post($nxpos_id);
-            $pos_count = $pos_count - 1;
-            $ltpos_id = $post_id_list[$pos_count];
-            $latest = get_post($ltpos_id);
-        }?>
+        $oldest = self::smtrm_get_post('ASC');
+        // var_dump($oldest);
+        $latest = self::smtrm_get_post('DESC');
+        // var_dump($latest);
+        $prevpost = get_adjacent_post(false, '', true );
+        $nextpost = get_adjacent_post(false, '', false);
+    ?>
 
         <div class="same-term-pager-wrapper">
         <?php if( $prevpost || $nextpost ){ //前の記事、次の記事いずれか存在しているとき ?>
             <nav class="same-term-pager cf">
             <?php
-            if( $oldest ) {
             if ( $prevpost ) {
                 ?>
-            <a href="<?php echo $link->get_link($get_filter,$oldest->ID); ?>" class="oldest-post">
+            <a href="<?php echo $link->get_link(self::$get_filter,$oldest[0]); ?>" class="oldest-post">
             <div class="double-left same-term-icon" aria-hidden="true"></div>最初<span class="pc-none">の記事から読む</span>
             </a>
             <?php 
-            } 
             }else {
             echo '<div class="oldest-post"></div>';
             } ?>
             <?php
             if ( $prevpost ) { //前の記事が存在しているとき
-                echo '<a href="' . $link->get_link($get_filter,$prevpost->ID) . '" title="' . esc_attr(get_the_title($prevpost->ID)) . '" class="prev-post border-element cf">
+                echo '<a href="' . $link->get_link(self::$get_filter,$prevpost->ID) . '" title="' . esc_attr(get_the_title($prevpost->ID)) . '" class="prev-post cf">
                     <div class="arrow-left same-term-icon" aria-hidden="true"></div>
-                    <figure class="prev-post-thumb card-thumb">';
-                    // get_post_navi_thumbnail_tag( $prevpost->ID, $width, $height ).
+                    <figure class="prev-post-thumb">';
                     if(has_post_thumbnail($prevpost->ID)){
                     echo get_the_post_thumbnail( $prevpost->ID, 'post-thumbnail', array( 'class'=>'attachment-thumb240 size-thumb240' ) );
                     }
                     else{
-                        echo '<img width="120" height="68" alt="no-image" src="'.plugin_dir_url( __FILE__ ).'images/no-image.png" class="no-image post-navi-no-image" />';
+                        echo '<img width="120" height="68" alt="no-image" src="'.SMTRM_PLUGIN_URL.'images/no-image.png" class="no-image post-navi-no-image" />';
                         }
                     echo '</figure>
                     <div class="prev-post-title">' . get_the_title($prevpost->ID) . '</div></a>';
@@ -149,15 +53,14 @@ class Smtrm_Pager{
                 echo '<div class="prev-post"></div>';
             }
             if ( $nextpost ) { //次の記事が存在しているとき
-                echo '<a href="' . $link->get_link($get_filter,$nextpost->ID) . '" title="'. esc_attr(get_the_title($nextpost->ID)) . '" class="next-post cf">
+                echo '<a href="' . $link->get_link(self::$get_filter,$nextpost->ID) . '" title="'. esc_attr(get_the_title($nextpost->ID)) . '" class="next-post cf">
                     <div class="arrow-right same-term-icon" aria-hidden="true"></div>
-                    <figure class="next-post-thumb card-thumb">';
-                    // get_post_navi_thumbnail_tag( $nextpost->ID, $width, $height ).
+                    <figure class="next-post-thumb">';
                     if(has_post_thumbnail($nextpost->ID)){
                         echo get_the_post_thumbnail( $nextpost->ID, 'post-thumbnail', array( 'class'=>'attachment-thumb240 size-thumb240' ) );
                         }
                         else{
-                            echo '<img width="120" height="68" alt="no-image" src="'.plugin_dir_url( __FILE__ ).'images/no-image.png" class="no-image post-navi-no-image" />';
+                            echo '<img width="120" height="68" alt="no-image" src="'.SMTRM_PLUGIN_URL.'images/no-image.png" class="no-image post-navi-no-image" />';
                         }
                         echo '</figure>
                         <div class="next-post-title">'. get_the_title($nextpost->ID) . '</div></a>';
@@ -166,34 +69,97 @@ class Smtrm_Pager{
             }
             ?>
             <?php
-                if( $latest ) {
                 if ( $nextpost ) {
                 ?>
-                <a href="<?php echo $link->get_link($get_filter,$latest->ID); ?>" class="latest-post">
+                <a href="<?php echo $link->get_link(self::$get_filter,$latest[0]); ?>" class="latest-post">
                 最後<span class="pc-none">の記事を読む</span><div class="double-right same-term-icon" aria-hidden="true"></div>
                 </a>
                 <?php
-                }
                 } else {
                 echo '<div class="latest-post"></div>';
                 } ?>
             </nav><!-- /.same-term-pager -->
-            <?php } ?>
-            <div class="pager-filter">
-            <?php   
-            if(isset($release_bt)){
-            echo $release_bt;
-            }?>
-            </div>
+            <?php 
+            }
+            self::smtrm_pager_release_button();?>
         </div><!-- /.same-term-pager-wrapper -->
         <?php
     }
+  }
+  public static function smtrm_pager_release_button(){
+    if(is_single()){
+        list(self::$get_filter,self::$taxonomy,self::$term_exists,self::$get_term) = SmtrmAdjacentPost::smtrm_param_check();
+        if(!empty(self::$term_exists) ){
+            $term_name = self::$get_term -> name;
+            $get_taxonomy = get_taxonomy(self::$taxonomy);
+            $taxonomy_name = $get_taxonomy->label;
+            $icon_class = 'category-icon';
+            if(self::$taxonomy == 'post_tag' || !is_taxonomy_hierarchical( self::$taxonomy )){
+                $icon_class = 'tag-icon';
+            }
+            $url = get_the_permalink();
+            $release_bt =<<<"EOT"
+            <div class="pager-filter">
+                <div class="same-term-message">
+                    <div class="same-term-icon ${icon_class}"></div>
+                    <div class="same-term-filter"><span>${taxonomy_name}：</span><span>『${term_name}』</span><span>内の投稿を絞り込み表示中</span></div>
+                </div>
+                <div>
+                    <a href="${url}" class="release-button">
+                        <span class="cancel-icon"></span><span>解除</span>
+                    </a>
+                </div>
+            </div>
+            EOT;
+            ?>
+
+            <?php
+            if(self::$taxonomy == 'category'){
+                self::$cat_id_num = self::$get_filter;
+            }
+            elseif(self::$taxonomy == 'post_tag'){
+                self::$tag_id_num = self::$get_filter;
+            }
+            else{
+                self::$term_id_num = self::$get_filter;
+            }
+            echo $release_bt;
+        }
+    }
+  }
+  private static function smtrm_get_post($order){
+    $args = array(
+        'post_type'        => self::$post_type,
+        'posts_per_page'   => 1, // 読み込みしたい記事数
+        'category'         => self::$cat_id_num, // 読み込みしたいカテゴリID（複数の場合は '1,2'）
+        'tag_id'           => self::$tag_id_num,
+        'orderby'          => 'date', // 何順で記事を読み込むか（省略時は日付順）
+        'order'            => $order, // 昇順(ASC)か降順か(DESC）
+        'fields' => 'ids',            //IDだけ取得
+    );
+    if( self::$term_id_num ){
+    $args['tax_query'] = [
+        [
+            'taxonomy' => self::$taxonomy,
+            'field'    => 'id',
+            'terms'    => self::$term_id_num,
+        ]
+    ];
+    }
+    return get_posts($args);
   }
 
   function get_pager_area(){
     $pager_contents = '';
     ob_start();
     echo $this->sameterm_pager();
+    $pager_contents = ob_get_clean();
+    return $pager_contents;
+  }
+  function get_pager_release_button(){
+    $pager_contents = '';
+    ob_start();
+    echo $this->smtrm_pager_release_button();
     $pager_contents = ob_get_clean();
     return $pager_contents;
   }
@@ -216,4 +182,5 @@ class Smtrm_Pager{
 }
 $smtrm_pager = new Smtrm_Pager();
 add_shortcode('sameterm_pager', array( $smtrm_pager,'get_pager_area'));
+add_shortcode('sameterm_release', array( $smtrm_pager,'get_pager_release_button'));
 add_filter('the_content',array($smtrm_pager,'add_pager_area'));

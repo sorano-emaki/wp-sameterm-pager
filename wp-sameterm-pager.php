@@ -3,7 +3,7 @@
 Plugin Name: WP Same Term Pager
 Plugin URI: https://shokizerokara.com/
 Description: 移動元のアーカイブページ（カテゴリ・タグ・カスタムタクソノミー）で投稿ページのページ送りを絞り込むプラグインです。
-Version: 0.9.11
+Version: 0.9.12
 Author: emaki sorano
 Author URI: https://shokizerokara.com/
 License: GPLv2
@@ -34,6 +34,7 @@ class Smtrm_Activation{
 }
 register_activation_hook(__FILE__, array(new Smtrm_Activation,'init_option'));
 require_once('globals.php');
+require_once('class-smtrm-adjacent-post.php');
 require_once('class-smtrm-init-setting.php');
 require_once('class-smtrm-get-setting.php');
 require_once('class-smtrm-enqueue.php');

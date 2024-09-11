@@ -60,20 +60,15 @@ class Smtrm_Enqueue{
          * 無効なURLパラメータをJavaScriptで外す
          */
         if(is_single()){
-            if( isset($_GET ['smtrm_filter']) && is_numeric($_GET ['smtrm_filter'])){
-                $get_filter = $_GET ['smtrm_filter']; 
-                $get_term = get_term( $get_filter );
-                $get_tax = null;
-                if(isset( $get_term ) && !is_wp_error( $get_term )){
-                    $get_tax = $get_term -> taxonomy;
-                }
-                if(has_term($get_filter,$get_tax)) {
+            list($get_filter,$taxonomy,$term_exists,$get_term) = SmtrmAdjacentPost::smtrm_param_check();
+            if( isset($_GET ['smtrm_filter']) && $term_exists){
+                if(has_term($get_filter,$taxonomy)) {
                 }
                 else{
                     wp_enqueue_script( 'remove-smtrm-param', SMTRM_PLUGIN_URL . 'js/removeSmtrmParam.js', array( 'jquery' )  );
                 }
             }
-            elseif( isset($_GET ['smtrm_filter']) && !is_numeric($_GET ['smtrm_filter']) ) {
+            elseif( isset($_GET ['smtrm_filter']) && !$term_exists ) {
                 wp_enqueue_script( 'remove-smtrm-param', SMTRM_PLUGIN_URL . 'js/removeSmtrmParam.js', array( 'jquery' )  );
             }
         }
