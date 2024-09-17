@@ -1,0 +1,11 @@
+{
+	"name": "wp-sameterm-pager",
+	"version": "0.1.0",
+	"devDependencies": {
+		"@wordpress/scripts": "^29.0.0"
+	},
+	"scripts": {
+		"build": "wp-scripts build",
+		"start": "wp-scripts start"
+	  }
+}

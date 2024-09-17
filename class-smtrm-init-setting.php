@@ -6,7 +6,7 @@ class Smtrm_Init_Setting{
     return $vars;
   }
   function smtrm_register_block(){
-    foreach ( glob( SMTRM_PLUGIN_PATH . 'blocks/*' ) as $block ) {
+    foreach ( glob( SMTRM_PLUGIN_PATH . 'dist/blocks/*' ) as $block ) {
       if ( is_dir( $block ) && file_exists( $block . '/block.json' ) ) {
         register_block_type( $block );
       }

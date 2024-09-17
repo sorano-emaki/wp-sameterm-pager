@@ -18,80 +18,84 @@ function add_menu() {
   add_menu_page( 'Same Term Pager設定', 'Same Term Pager設定', 'manage_options', 'wp_sameterm_pager', array( &$this, 'menu_page' ), 'dashicons-admin-post');
 }
   function menu_page(){
-    $text_replase = str_replace( '%7E', '~', $_SERVER['REQUEST_URI']);
-    $saved_setting = new Smtrm_Get_Setting;
-    $saved_class = $saved_setting->entry_form_value();
-    $top_checked = $saved_setting->pager_top();
-    $bottom_checked = $saved_setting->pager_bottom();
-    $smtrm_entry = Smtrm_Activation::SMTRM_ENTRY_FORM;
-    $smtrm_top = Smtrm_Activation::SMTRM_TOP;
-    $smtrm_bottom = Smtrm_Activation::SMTRM_BOTTOM;
-    $smtrm_nonce = wp_nonce_field( 'smtrm_save_settings', 'smtrm_nonce' );
-    if (isset($_POST['posted']) == 'smtrm_save') {
-      //設定画面で入力された設定値を保存
-      if(isset($_POST[$smtrm_entry])){
-        $entory_form = sanitize_text_field($_POST[$smtrm_entry]);
-        update_option($smtrm_entry,$entory_form);
-      }
-      if(isset($_POST[$smtrm_top])){
-        update_option($smtrm_top, intval($_POST[$smtrm_top]));
-      }
-      if(isset($_POST[$smtrm_bottom])){
-        update_option($smtrm_bottom, intval($_POST[$smtrm_bottom]));
-      }
-      if (!isset($_POST['smtrm_nonce']) || !wp_verify_nonce($_POST['smtrm_nonce'], 'smtrm_save_settings')) {
-        wp_die('セキュリティチェックに失敗しました。');
-      }
-      $saved_class = $saved_setting->entry_form_value();
-      $top_checked = $saved_setting->pager_top();
-      $bottom_checked = $saved_setting->pager_bottom();
-      echo '<div><p>設定を保存しました</p></div>';
-    }
-    echo <<<"EOT"
-      <h2>Same Term Pager設定</h2>
-      <form method="post" action="${text_replase}">
-      {$smtrm_nonce}
-        <table class="form-table">
-          <tr valign="top">
-          <th scope="row"><label>各投稿ページへのリンクに<br>使用するクラス名<label></th>
-          <td><input type="text" size="50" name="{$smtrm_entry}" id="{$smtrm_entry}" value="${saved_class}">
-          <p>この設定は、ページャーの絞り込み機能が動作しない場合に入力してください。</p>
-          <p>クラス名が「entry-card-wrap」の場合「.entry-card-wrap」のように半角記号のドット「.」をつけて入力してください。</p>
-          <p>複数のクラスを指定する場合は、半角記号のコンマ「,」で区切ってください。</p>
-          </td>
-          </tr>
-          <tr>
-            <th rowspan="2"><p>表示する場所を選択してください</p></th>
-            <td>
-              <input type="hidden" name="{$smtrm_top}" value="0">
-              <input type="checkbox" id="{$smtrm_top}" name="{$smtrm_top}" value="1" ${top_checked}/>
-              <label for="{$smtrm_top}">投稿ページ本文の上</label>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input type="hidden" name="{$smtrm_bottom}" value="0">
-              <input type="checkbox" id="{$smtrm_bottom}" name="{$smtrm_bottom}" value="1" ${bottom_checked}/>
-              <label for="{$smtrm_bottom}">投稿ページ本文の下</label>
-            </td>
-          </tr>
-        </table>
-        <input type="hidden" name="posted" value="smtrm_save">
-        <input type="submit" name="submit" class="submit_btn" value="設定を保存">
-      </form>
-      <div>
-        <h3>Same Term Pagerとは？</h3>
-        <p>同じターム（カテゴリーやタグ、カスタムタクソノミーの項目のこと）で絞り込んだ記事を表示できるプラグインです。</p>
-        <p>投稿に複数のタームが登録されていても、同じターム内でページ移動をすることができます。</p>
-        <h3>タームとは？</h3>
-        <p>投稿を分類（タクソノミー）した項目（ターム）のことです。</p>
-        <p>例えば、WordPressに最初から用意されているタクソノミーはカテゴリーとタグですが、カテゴリーやタグという分類に所属する項目一つ一つがターム（Term）と呼ばれます。</p>
-        <h3>ページャーとは？</h3>
-        <p>投稿のページ送り機能です。次の記事へ・前の記事へと移動することができます。</p>
-      </div>
-      EOT;
+    echo '<div id="smtrm-pager-admin"></div>';
   }
+  function smtrm_admin_scripts() {
 
+    // 依存スクリプト・バージョンが記述されたファイルを読み込み
+    $asset_file = include( plugin_dir_path( __FILE__ ) . 'dist/admin/admin.asset.php' );
+
+    // CSSファイルの読み込み
+    wp_enqueue_style(
+        'smtrm-pager-admin--style',
+        plugin_dir_url( __FILE__ ) . '/dist/admin/admin.css',
+        array( 'wp-components' ) // ←Gutenbergコンポーネントのデフォルトスタイルを読み込み
+    );
+
+    // JavaScriptファイルの読み込み
+    wp_enqueue_script(
+        'smtrm-pager-admin-script',
+        plugin_dir_url( __FILE__ ) . '/dist/admin/admin.js',
+        $asset_file['dependencies'],
+        $asset_file['version'],
+        array(
+          'in_footer' => false,
+          'strategy' => 'defer',
+        )// </body>`終了タグの直前でスクリプトを読み込む
+    );
+}
+  // 設定項目の登録
+  function smtrm_register_settings() {
+    // ページャー上を表示する
+    register_setting(
+        'smtrm_pager_settings',
+        'smtrm_pager_top',
+        array(
+            'type'         => 'boolean',
+            'show_in_rest' => true,
+            'default'      => true,
+        )
+    );
+    // ページャー下を表示する
+    register_setting(
+        'smtrm_pager_settings',
+        'smtrm_pager_bottom',
+        array(
+            'type'         => 'boolean',
+            'show_in_rest' => true,
+            'default'      => true,
+        )
+    );
+    // テキスト
+    register_setting(
+        'smtrm_pager_settings',
+        'smtrm_pager_entry_form',
+        array(
+            'type'         => 'string',
+            'sanitize_callback' => 'sanitize_text_field',
+            'show_in_rest' => true,
+            'default'      => '',
+        )
+    );
+  }
+  function smtrtm_admin_plugin_enqueue_scripts() {
+    // スクリプトの登録
+    wp_enqueue_script(
+        'smtrm-pager-admin-js',
+        plugins_url('admin.js', __FILE__), // スクリプトファイルのパス
+        array('wp-api-fetch', 'wp-element', 'wp-components'),
+        false,
+        true
+    );
+
+    // nonceの生成とJavaScriptへの渡し
+    wp_localize_script('smtrm-pager-admin-js', 'smtrmPagerAdmin', array(
+        'nonce' => wp_create_nonce('wp_rest')
+    ));
+  }
 }
 $smtrm_admin_menu = new Smtrm_Admin_Menu();
 add_action( 'admin_menu', array($smtrm_admin_menu,'add_menu') );
+add_action( 'admin_enqueue_scripts', array($smtrm_admin_menu,'smtrm_admin_scripts') );
+add_action( 'init', array($smtrm_admin_menu,'smtrm_register_settings' ));
+add_action('admin_enqueue_scripts', array($smtrm_admin_menu,'smtrtm_admin_plugin_enqueue_scripts'));
