@@ -1,1 +1,94 @@
-.smtrm-admin-wrapper h1{margin-bottom:2em}.smtrm-admin-wrapper .components-base-control{margin-bottom:20px;max-width:400px}.custom-spinner{animation:spin 1s linear infinite;border-color:#3498db #3498db #3498db transparent;border-width:4px;display:block;height:100x;margin:20px auto;width:100px}@keyframes spin{0%{transform:rotate(0deg)}to{transform:rotate(-1turn)}}.smtrm-admin-loading{align-items:center;display:flex;flex-direction:column;height:100vh;justify-content:center;text-align:center}
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/admin/admin.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+.smtrm-admin-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-content {
+  flex: 3; /* 左カラム（メインコンテンツ） */
+  padding: 20px;
+  position: relative;
+}
+.admin-content h1 {
+  margin-bottom: 2em;
+}
+.admin-content .components-base-control {
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+.admin-content .components-button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.setting-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+.setting-wrapper .setting-box {
+  width: 400px;
+}
+
+.admin-sidebar {
+  flex: 1; /* 右カラム（ナビゲーション） */
+  padding: 20px;
+  background-color: #f1f1f1;
+  border-right: 1px solid #ddd;
+}
+
+.admin-sidebar ul {
+  list-style: none;
+  padding-right: 0;
+}
+
+.admin-sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.admin-sidebar ul li a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #007cba;
+}
+
+.admin-sidebar ul li a:hover {
+  text-decoration: underline;
+}
+
+.smtrm-admin-loading {
+  /* 管理画面全体を中央に配置するためのスタイル */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 画面全体にスピナーを中央配置 */
+  text-align: center;
+  /* Spinnerのスタイル調整 */
+}
+.smtrm-admin-loading .custom-spinner {
+  width: 100px; /* スピナーの幅 */
+  height: 100x; /* スピナーの高さ */
+  border-width: 4px; /* スピナーの円の太さ */
+  border-color: #3498db; /* スピナーの色 (例えば青) */
+  border-left-color: transparent; /* 回転を強調するために一部透明に */
+  margin: 20px auto; /* 上下の余白と中央配置 */
+  display: block; /* スピナーを中央に配置するために block に設定 */
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}

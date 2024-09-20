@@ -14,27 +14,42 @@ if(!defined('ABSPATH')) { exit; }
 class Smtrm_Admin_Menu{
   
 function add_menu() {
-  // メニューに「Same Term Pager設定」を追加
-  add_menu_page( 'Same Term Pager設定', 'Same Term Pager設定', 'manage_options', 'wp_sameterm_pager', array( &$this, 'menu_page' ), 'dashicons-admin-post');
-}
-  function menu_page(){
-    echo '<div id="smtrm-pager-admin"></div>';
-  }
-  function smtrm_admin_scripts() {
-
-    // 依存スクリプト・バージョンが記述されたファイルを読み込み
-    $asset_file = include( plugin_dir_path( __FILE__ ) . 'dist/admin/admin.asset.php' );
-
-    // CSSファイルの読み込み
-    wp_enqueue_style(
-        'smtrm-pager-admin--style',
-        plugin_dir_url( __FILE__ ) . '/dist/admin/admin.css',
-        array( 'wp-components' ) // ←Gutenbergコンポーネントのデフォルトスタイルを読み込み
+    // メニューに「Same Term Pager設定」を追加
+    add_menu_page(
+      'Same Term Pager設定',        // ページタイトル
+      'Same Term Pager設定',        // メニュー名
+      'manage_options',             // 権限
+      'wp_sameterm_pager',          // スラッグ
+      array( &$this, 'menu_page' ), // コールバック関数
+      'dashicons-admin-post'        // アイコン
+    );
+    // サブメニュー: 追加設定
+    add_submenu_page(
+      'wp_sameterm_pager',      // 親メニューのスラッグ
+      '追加設定',             // ページタイトル
+      '追加設定',             // メニュー名
+      'manage_options',       // 権限
+      'wp_sameterm_pager_additional', // スラッグ
+      array( &$this, 'additional_page' ) // コールバック関数
     );
 
+    // サブメニュー: 解説ページ
+    add_submenu_page(
+        'wp_sameterm_pager',      // 親メニューのスラッグ
+        'ヘルプ',           // ページタイトル
+        'ヘルプ',           // メニュー名
+        'manage_options',       // 権限
+        'wp_sameterm_pager_help', // スラッグ
+        array( &$this, 'help_page' ) // コールバック関数
+    );
+  }
+  function menu_page(){
+    echo '<div id="smtrm-pager-admin"></div>';
+    // 依存スクリプト・バージョンが記述されたファイルを読み込み
+    $asset_file = include( plugin_dir_path( __FILE__ ) . 'dist/admin/admin.asset.php' );
     // JavaScriptファイルの読み込み
     wp_enqueue_script(
-        'smtrm-pager-admin-script',
+        'smtrm-pager-admin-js',
         plugin_dir_url( __FILE__ ) . '/dist/admin/admin.js',
         $asset_file['dependencies'],
         $asset_file['version'],
@@ -43,6 +58,58 @@ function add_menu() {
           'strategy' => 'defer',
         )// </body>`終了タグの直前でスクリプトを読み込む
     );
+    // nonceの生成とJavaScriptへの渡し
+    wp_localize_script('smtrm-pager-admin-js', 'smtrmPagerAdmin', array(
+        'nonce' => wp_create_nonce('wp_rest')
+    ));
+  }
+  // 追加設定ページの表示
+  function additional_page() {
+    echo '<div id="smtrm-pager-additional"></div>';
+    // 依存スクリプト・バージョンが記述されたファイルを読み込み
+    $asset_file = include( plugin_dir_path( __FILE__ ) . 'dist/admin/additional.asset.php' );
+    // JavaScriptファイルの読み込み
+    wp_enqueue_script(
+        'smtrm-pager-additional-js',
+        plugin_dir_url( __FILE__ ) . '/dist/admin/additional.js',
+        $asset_file['dependencies'],
+        $asset_file['version'],
+        array(
+          'in_footer' => false,
+          'strategy' => 'defer',
+        )// </body>`終了タグの直前でスクリプトを読み込む
+    );
+    // nonceの生成とJavaScriptへの渡し
+    wp_localize_script('smtrm-pager-additional-js', 'smtrmPagerAdmin', array(
+        'nonce' => wp_create_nonce('wp_rest')
+    ));
+  }
+
+  // 解説ページの表示
+  function help_page() {
+    echo '<div id="smtrm-pager-help"></div>';
+        // 依存スクリプト・バージョンが記述されたファイルを読み込み
+        $asset_file = include( plugin_dir_path( __FILE__ ) . 'dist/admin/help.asset.php' );
+        // JavaScriptファイルの読み込み
+        wp_enqueue_script(
+            'smtrm-pager-help-js',
+            plugin_dir_url( __FILE__ ) . '/dist/admin/help.js',
+            $asset_file['dependencies'],
+            $asset_file['version'],
+            array(
+              'in_footer' => false,
+              'strategy' => 'defer',
+            )// </body>`終了タグの直前でスクリプトを読み込む
+        );
+  }
+  function smtrm_admin_scripts() {
+    // CSSファイルの読み込み
+    wp_enqueue_style(
+      'smtrm-pager-admin-style',
+      plugin_dir_url( __FILE__ ) . '/dist/admin/admin.css',
+      array( 'wp-components' ) // ←Gutenbergコンポーネントのデフォルトスタイルを読み込み
+  );
+
 }
   // 設定項目の登録
   function smtrm_register_settings() {
@@ -79,19 +146,7 @@ function add_menu() {
     );
   }
   function smtrtm_admin_plugin_enqueue_scripts() {
-    // スクリプトの登録
-    wp_enqueue_script(
-        'smtrm-pager-admin-js',
-        plugins_url('admin.js', __FILE__), // スクリプトファイルのパス
-        array('wp-api-fetch', 'wp-element', 'wp-components'),
-        false,
-        true
-    );
 
-    // nonceの生成とJavaScriptへの渡し
-    wp_localize_script('smtrm-pager-admin-js', 'smtrmPagerAdmin', array(
-        'nonce' => wp_create_nonce('wp_rest')
-    ));
   }
 }
 $smtrm_admin_menu = new Smtrm_Admin_Menu();
