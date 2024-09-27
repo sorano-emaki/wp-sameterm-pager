@@ -9,14 +9,21 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+@media screen and (max-width: 834px) {
+  .smtrm-admin-wrapper {
+    flex-direction: column-reverse;
+  }
+}
 
 .admin-content {
   flex: 3; /* 左カラム（メインコンテンツ） */
   padding: 20px;
   position: relative;
+  background-color: #f1f1f1;
 }
 .admin-content h1 {
   margin-bottom: 2em;
+  line-height: 1em;
 }
 .admin-content .components-base-control {
   max-width: 400px;
@@ -24,8 +31,15 @@
 }
 .admin-content .components-button {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 100px;
+  right: 20px;
+}
+@media screen and (max-width: 834px) {
+  .admin-content .components-button {
+    display: block;
+    position: static;
+    margin-left: auto;
+  }
 }
 
 .setting-wrapper {
@@ -40,28 +54,15 @@
 
 .admin-sidebar {
   flex: 1; /* 右カラム（ナビゲーション） */
-  padding: 20px;
-  background-color: #f1f1f1;
-  border-left: 1px solid #ddd;
 }
-
-.admin-sidebar ul {
-  list-style: none;
-  padding-left: 0;
+@media screen and (min-width: 835px) {
+  .admin-sidebar {
+    border-left: 1px solid #ccc; /* カラム間の仕切り線 */
+    min-height: calc(100vh - 32px);
+  }
 }
-
-.admin-sidebar ul li {
-  margin-bottom: 10px;
-}
-
-.admin-sidebar ul li a {
-  text-decoration: none;
-  font-weight: bold;
-  color: #007cba;
-}
-
-.admin-sidebar ul li a:hover {
-  text-decoration: underline;
+.admin-sidebar h3 {
+  padding-left: 10px;
 }
 
 .smtrm-admin-loading {
@@ -90,6 +91,69 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* 共通スタイル */
+.tab-navigation {
+  display: flex;
+  flex-direction: column; /* デフォルトでは縦に積む */
+  padding-right: 10px;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+.tab-navigation a {
+  padding: 20px 15px;
+  margin-bottom: 3px;
+  margin-left: 0;
+  text-decoration: none;
+  color: #0073aa;
+  font-size: 1.4em;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  border-radius: 0 5px 5px 0;
+  border-left: none;
+  background-color: #f1f1f1;
+  transition: background-color 0.3s ease;
+}
+
+.tab-navigation a.inactive:hover {
+  background-color: #e2e2e2;
+  color: #005177;
+}
+
+.tab-navigation a.active {
+  background-color: #f0f0f1;
+  margin-left: -2px;
+  color: #333;
+  cursor: default;
+  pointer-events: none;
+  color: inherit;
+}
+
+/* 画面幅が834px以下の場合 */
+@media screen and (max-width: 834px) {
+  .tab-navigation {
+    flex-direction: row; /* 横並びに変更 */
+    flex-wrap: wrap; /* 折り返し可能にする */
+    justify-content: flex-start;
+    border-bottom: 2px solid #ccc;
+    padding: 0;
+    margin-bottom: 0;
+  }
+  .tab-navigation a {
+    padding: 10px 15px;
+    margin-right: 10px; /* 各タブの間にスペースを追加 */
+    margin-bottom: 0;
+    border: 1px solid #ccc;
+    border-radius: 5px 5px 0 0; /* 上側を丸くしてタブのように */
+    border-bottom: none; /* アクティブなタブの下のボーダーを隠す */
+  }
+  .tab-navigation a.active {
+    background-color: #fff;
+    border-bottom: 2px solid #fff; /* アクティブタブの下のボーダー */
+    margin-left: 0;
   }
 }
 

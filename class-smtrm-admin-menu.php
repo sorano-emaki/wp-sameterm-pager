@@ -44,6 +44,9 @@ function add_menu() {
     );
   }
   function menu_page(){
+    $saved_setting = new Smtrm_Get_Setting;
+    $top_checked = $saved_setting->pager_top();
+    $bottom_checked = $saved_setting->pager_bottom();
     echo '<div id="smtrm-pager-admin"></div>';
     // 依存スクリプト・バージョンが記述されたファイルを読み込み
     $asset_file = include( plugin_dir_path( __FILE__ ) . 'dist/admin/admin.asset.php' );
@@ -60,11 +63,15 @@ function add_menu() {
     );
     // nonceの生成とJavaScriptへの渡し
     wp_localize_script('smtrm-pager-admin-js', 'smtrmPagerAdmin', array(
-        'nonce' => wp_create_nonce('wp_rest')
+        'nonce' => wp_create_nonce('wp_rest'),
+        'top' => $top_checked,
+        'bottom' => $bottom_checked
     ));
   }
   // 追加設定ページの表示
   function additional_page() {
+    $saved_setting = new Smtrm_Get_Setting;
+    $saved_class = $saved_setting->entry_form_value();
     echo '<div id="smtrm-pager-additional"></div>';
     // 依存スクリプト・バージョンが記述されたファイルを読み込み
     $asset_file = include( plugin_dir_path( __FILE__ ) . 'dist/admin/additional.asset.php' );
@@ -81,7 +88,8 @@ function add_menu() {
     );
     // nonceの生成とJavaScriptへの渡し
     wp_localize_script('smtrm-pager-additional-js', 'smtrmPagerAdmin', array(
-        'nonce' => wp_create_nonce('wp_rest')
+        'nonce' => wp_create_nonce('wp_rest'),
+        'archive' => $saved_class
     ));
   }
 

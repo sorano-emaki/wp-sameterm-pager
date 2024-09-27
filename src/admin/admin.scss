@@ -4,15 +4,19 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-
+    @media screen and (max-width: 834px){
+        flex-direction: column-reverse;
+    }
 }
 .admin-content {
     flex: 3; /* 左カラム（メインコンテンツ） */
     padding: 20px;
     position: relative;
+    background-color: #f1f1f1;
     
     h1{
         margin-bottom: 2em;
+        line-height: 1em;
     }    
     .components-base-control {
         max-width: 400px;
@@ -20,8 +24,13 @@
     }
     .components-button {
         position: absolute;
-        bottom: 0;
-        right: 0;
+        bottom: 100px;
+        right: 20px;
+        @media screen and (max-width: 834px){
+            display: block;
+            position: static;
+            margin-left: auto;
+        }
     }
 
 }
@@ -36,29 +45,74 @@
 }
 .admin-sidebar {
     flex: 1; /* 右カラム（ナビゲーション） */
-    padding: 20px;
-    background-color: #f1f1f1;
-    border-left: 1px solid #ddd;
+    @media screen and (min-width: 835px){
+        border-left: 1px solid #ccc; /* カラム間の仕切り線 */
+        min-height: calc(100vh - 32px);
+        }
+    // padding: 20px;
+    // background-color: #f1f1f1;
+    // border-left: 1px solid #ddd;
+    // @media screen and (max-width: 834px){
+    //     text-align: right;
+    //     border-left: none;
+    //     border-bottom: 1px solid #ddd;
+    // }
+    h3{
+        padding-left: 10px;
+    }
 }
 
-.admin-sidebar ul {
-    list-style: none;
-    padding-left: 0;
-}
+// .admin-sidebar ul {
+//     width: 98%;
+//     list-style: none;
+//     padding-left: 0;
+//     font-size: 1.4em;
+//     @media screen and (min-width: 835px){
+        
+//     }
+//     @media screen and (max-width: 834px){
+//         display: flex;
+//         flex-wrap: wrap;
+//         justify-content: flex-end;
+//         margin-bottom: 0;
+//     }
 
-.admin-sidebar ul li {
-    margin-bottom: 10px;
-}
+// }
 
-.admin-sidebar ul li a {
-    text-decoration: none;
-    font-weight: bold;
-    color: #007cba;
-}
+// .admin-sidebar ul li {
+//     padding: 20px;
+//     padding-bottom: 16px;
+//     margin: 0;
+//     border: 1px #ddd solid;
+//     border-left: none;
+//     border-top-right-radius: 10px;
+//     background-color: #f0f0f1;
 
-.admin-sidebar ul li a:hover {
-    text-decoration: underline;
-}
+//     @media screen and (max-width: 834px){
+//         margin-right: 10px;
+//         border-left: 1px #ddd solid;
+//         border-top-left-radius: 10px;
+//         border-bottom: none;
+//     }
+//     .active {
+//         pointer-events: none;
+//         color: inherit;
+        
+//     }
+// }
+// .admin-sidebar ul li:has(.active){
+//     border-bottom: 6px #007cba solid;
+// }
+
+// .admin-sidebar ul li a {
+//     text-decoration: none;
+//     font-weight: bold;
+//     color: #007cba;
+// }
+
+// .admin-sidebar ul li a:hover {
+//     text-decoration: underline;
+// }
 .smtrm-admin-loading{
     /* 管理画面全体を中央に配置するためのスタイル */
     display: flex;
@@ -81,5 +135,73 @@
     @keyframes spin {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
+    }
+}
+
+/* 共通スタイル */
+.tab-navigation {
+    display: flex;
+    flex-direction: column; /* デフォルトでは縦に積む */
+    padding-right: 10px;
+    padding-left:0;
+    margin-bottom: 20px;
+}
+
+.tab-navigation a {
+    padding: 20px 15px;
+    margin-bottom: 3px;
+    margin-left: 0;
+    text-decoration: none;
+    color: #0073aa;
+    font-size: 1.4em;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 0 5px 5px 0;
+    border-left: none;
+    background-color: #f1f1f1;
+    transition: background-color 0.3s ease;
+}
+
+.tab-navigation a.inactive:hover {
+    background-color: #e2e2e2;
+    color: #005177;
+    // margin-left: -1px;
+}
+
+.tab-navigation a.active {
+    background-color: #f0f0f1;
+    margin-left: -2px;
+    color: #333;
+
+    // border-bottom: none;
+    cursor: default;
+    pointer-events: none;
+    color: inherit;
+}
+
+/* 画面幅が834px以下の場合 */
+@media screen and (max-width: 834px) {
+    .tab-navigation {
+        flex-direction: row;   /* 横並びに変更 */
+        flex-wrap: wrap;       /* 折り返し可能にする */
+        justify-content: flex-start;
+        border-bottom: 2px solid #ccc;
+        padding: 0;
+        margin-bottom: 0;
+    }
+
+    .tab-navigation a {
+        padding: 10px 15px;
+        margin-right: 10px;     /* 各タブの間にスペースを追加 */
+        margin-bottom: 0;
+        border: 1px solid #ccc;
+        border-radius: 5px 5px 0 0; /* 上側を丸くしてタブのように */
+        border-bottom: none;    /* アクティブなタブの下のボーダーを隠す */
+    }
+
+    .tab-navigation a.active {
+        background-color: #fff;
+        border-bottom: 2px solid #fff; /* アクティブタブの下のボーダー */
+        margin-left: 0;
     }
 }

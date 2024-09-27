@@ -18,10 +18,10 @@ class Smtrm_Get_Setting {
     }
 
     function pager_top() {
-        return $this->get_setting(Smtrm_Activation::SMTRM_TOP) ? 'checked' : '';
+        return $this->get_setting(Smtrm_Activation::SMTRM_TOP);
     }
 
     function pager_bottom() {
-        return $this->get_setting(Smtrm_Activation::SMTRM_BOTTOM) ? 'checked' : '';
+        return $this->get_setting(Smtrm_Activation::SMTRM_BOTTOM);
     }
 }
