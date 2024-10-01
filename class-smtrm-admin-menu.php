@@ -57,7 +57,7 @@ function add_menu() {
         $asset_file['dependencies'],
         $asset_file['version'],
         array(
-          'in_footer' => false,
+          'in_footer' => true,
           'strategy' => 'defer',
         )// </body>`終了タグの直前でスクリプトを読み込む
     );
@@ -82,7 +82,7 @@ function add_menu() {
         $asset_file['dependencies'],
         $asset_file['version'],
         array(
-          'in_footer' => false,
+          'in_footer' => true,
           'strategy' => 'defer',
         )// </body>`終了タグの直前でスクリプトを読み込む
     );
@@ -121,6 +121,7 @@ function add_menu() {
 }
   // 設定項目の登録
   function smtrm_register_settings() {
+    $smtrm_sanitize = new Smtrm_Sanitize;
     // ページャー上を表示する
     register_setting(
         'smtrm_pager_settings',
@@ -147,18 +148,15 @@ function add_menu() {
         'smtrm_pager_entry_form',
         array(
             'type'         => 'string',
-            'sanitize_callback' => 'sanitize_text_field',
+            'sanitize_callback' => array($smtrm_sanitize,'sanitize_css_selector' ),
             'show_in_rest' => true,
             'default'      => '',
         )
     );
   }
-  function smtrtm_admin_plugin_enqueue_scripts() {
 
-  }
 }
 $smtrm_admin_menu = new Smtrm_Admin_Menu();
 add_action( 'admin_menu', array($smtrm_admin_menu,'add_menu') );
 add_action( 'admin_enqueue_scripts', array($smtrm_admin_menu,'smtrm_admin_scripts') );
 add_action( 'init', array($smtrm_admin_menu,'smtrm_register_settings' ));
-add_action('admin_enqueue_scripts', array($smtrm_admin_menu,'smtrtm_admin_plugin_enqueue_scripts'));

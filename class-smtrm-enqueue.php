@@ -42,7 +42,7 @@ class Smtrm_Enqueue{
      */
     function pager_scripts() {
         $saved_setting = new Smtrm_Get_Setting;
-        $link_class = esc_js($saved_setting->entry_form_value());
+        $link_class = $saved_setting->entry_form_value();
         /**
          * メインループ外のURLパラメータ追加用
          */
@@ -54,6 +54,18 @@ class Smtrm_Enqueue{
                         'queried_object_id' =>  get_queried_object_id()
                         )
                     );
+                // $id = get_queried_object_id();
+                // $data = <<<"EOT"
+                //     jQuery(function($) {
+                //     $('$link_class').click(function(){
+                //         //リンク先を取得
+                //         const target_url = new URL($(this).attr("href"));
+                //         target_url.searchParams.set('smtrm_filter',$id);
+                //         $(this).attr('href', target_url.href);
+                //     })
+                // });
+                // EOT;
+                // wp_add_inline_script('jquery-core',$data);
             }
         }
         /**

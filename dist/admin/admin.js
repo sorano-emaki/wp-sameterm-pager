@@ -62,7 +62,7 @@ const PageNavigation = () => {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
       children: "\u8A2D\u5B9A\u30E1\u30CB\u30E5\u30FC"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "tab-navigation",
+      className: "smtrm-tab-navigation",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
         href: "admin.php?page=wp_sameterm_pager",
         className: currentPage === 'wp_sameterm_pager' ? 'active' : 'inactive',
@@ -264,61 +264,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Admin = () => {
-  // ローディング状態の管理
-  // const [isLoading, setIsLoading] = useState(false); 
-
   // ローディング状態、メッセージ状態の追加
   const [isSaving, setIsSaving] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
   const [statusMessage, setStatusMessage] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
   const [hasChanges, setHasChanges] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false); // 変更があったかどうかのフラグ
-  // const [isApiError, setIsApiError] = useState(false); // REST APIエラーフラグ
   const isApiError = (0,_components_ApiCheck__WEBPACK_IMPORTED_MODULE_6__.useApiCheck)();
   const confirmSave = (0,_components_SaveConfirmation__WEBPACK_IMPORTED_MODULE_5__.useSaveConfirmation)(hasChanges);
   const [showPagerTop, setShowPagerTop] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(Boolean(smtrmPagerAdmin?.top));
   const [showPagerBtm, setShowPagerBtm] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(Boolean(smtrmPagerAdmin?.bottom));
-
-  // 画面遷移時に保存確認ダイアログを追加
-  // useEffect(() => {
-  //     const handleBeforeUnload = (event) => {
-  //         if (hasChanges) {
-  //             event.preventDefault();
-  //             event.returnValue = ''; // これを設定することで、確認ダイアログが表示される
-  //         }
-  //     };
-
-  //     window.addEventListener('beforeunload', handleBeforeUnload);
-
-  //     // クリーンアップ
-  //     return () => {
-  //         window.removeEventListener('beforeunload', handleBeforeUnload);
-  //     };
-  // }, [hasChanges]);
-
-  // REST APIが動作しているか確認する処理
-  // useEffect(() => {
-  //     // setIsLoading(true);
-
-  //     apiFetch({ path: '/wp/v2/settings' })
-  //         .then(response => {
-  //             // 正常にAPIリクエストが成功した場合、設定値を取得
-  //             setIsApiError(false);  // エラーフラグをオフ
-  //             setIsDisable(false);
-  //         })
-  //         .catch((error) => {
-  //             // APIリクエストが失敗した場合
-  //             console.error('API Fetch Error:', error);
-  //             setIsApiError(true);  // エラーフラグをオン
-  //         })
-  //         .finally(() => {
-  //             setIsLoading(false);  // ローディング終了
-  //         });
-  // }, []);
-
   const onClick = async () => {
-    // 保存確認ダイアログ
-    // if (!window.confirm('本当に設定を保存しますか？')) {
-    //     return;
-    // }
     if (!confirmSave()) {
       return;
     }
@@ -357,16 +311,6 @@ const Admin = () => {
       setIsSaving(false);
     }
   };
-
-  // ローディング中であればSpinnerを表示
-  // if (isLoading) {
-  //     return (
-  //         <div className="smtrm-admin-loading">
-  //             <Spinner className="custom-spinner" /> {/* ローディングインジケーター */}
-  //             <p>設定を読み込んでいます...</p>
-  //         </div>
-  //     );
-  // }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     className: "smtrm-admin-wrapper",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {

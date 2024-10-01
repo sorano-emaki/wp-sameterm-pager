@@ -11,7 +11,7 @@ const PageNavigation = () => {
     return (
         <div className="admin-sidebar">
             <h3>設定メニュー</h3>
-            <div className="tab-navigation">
+            <div className="smtrm-tab-navigation">
                 <a
                     href="admin.php?page=wp_sameterm_pager"
                     className={currentPage === 'wp_sameterm_pager' ? 'active' : 'inactive'}

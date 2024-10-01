@@ -2,7 +2,8 @@
 if(!defined('ABSPATH')) { exit; }
 class Smtrm_Get_Setting {
     private function get_setting($option_name) {
-        return esc_attr(get_option($option_name),'');
+        // return esc_attr(get_option($option_name),'');
+        return htmlspecialchars(get_option($option_name,''),ENT_NOQUOTES );
     }
 
     function entry_form_value() {

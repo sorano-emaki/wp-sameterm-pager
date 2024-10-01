@@ -95,7 +95,7 @@
 }
 
 /* 共通スタイル */
-.tab-navigation {
+.smtrm-tab-navigation {
   display: flex;
   flex-direction: column; /* デフォルトでは縦に積む */
   padding-right: 10px;
@@ -103,7 +103,7 @@
   margin-bottom: 20px;
 }
 
-.tab-navigation a {
+.smtrm-tab-navigation a {
   padding: 20px 15px;
   margin-bottom: 3px;
   margin-left: 0;
@@ -118,12 +118,12 @@
   transition: background-color 0.3s ease;
 }
 
-.tab-navigation a.inactive:hover {
+.smtrm-tab-navigation a.inactive:hover {
   background-color: #e2e2e2;
   color: #005177;
 }
 
-.tab-navigation a.active {
+.smtrm-tab-navigation a.active {
   background-color: #f0f0f1;
   margin-left: -2px;
   color: #333;
@@ -134,7 +134,7 @@
 
 /* 画面幅が834px以下の場合 */
 @media screen and (max-width: 834px) {
-  .tab-navigation {
+  .smtrm-tab-navigation {
     flex-direction: row; /* 横並びに変更 */
     flex-wrap: wrap; /* 折り返し可能にする */
     justify-content: flex-start;
@@ -142,7 +142,7 @@
     padding: 0;
     margin-bottom: 0;
   }
-  .tab-navigation a {
+  .smtrm-tab-navigation a {
     padding: 10px 15px;
     margin-right: 10px; /* 各タブの間にスペースを追加 */
     margin-bottom: 0;
@@ -150,11 +150,53 @@
     border-radius: 5px 5px 0 0; /* 上側を丸くしてタブのように */
     border-bottom: none; /* アクティブなタブの下のボーダーを隠す */
   }
-  .tab-navigation a.active {
+  .smtrm-tab-navigation a.active {
     background-color: #fff;
     border-bottom: 2px solid #fff; /* アクティブタブの下のボーダー */
     margin-left: 0;
   }
+}
+.help-content {
+  padding-right: 1em;
+}
+.help-content section {
+  padding: 1em;
+}
+.help-content ol {
+  counter-reset: cnt;
+  list-style: none;
+}
+.help-content ol li::before {
+  counter-increment: cnt;
+  content: counters(cnt, ".") ". ";
+}
+.help-content ul {
+  padding-left: 2em;
+}
+.help-content ul li {
+  list-style-type: disc;
+}
+.help-content h1 {
+  counter-reset: chapter; /* h1 で章番号のカウンタをリセット */
+}
+.help-content h2[id^=section] {
+  counter-increment: chapter; /* 章番号をカウントアップ */
+  counter-reset: subchapter; /* サブ章番号(subchapter)をリセット */
+}
+.help-content h2[id^=section]::before {
+  content: counter(chapter) ". "; /* 章番号を表示 */
+}
+.help-content h3[id^=section] {
+  counter-increment: subchapter; /* サブ章番号をカウントアップ */
+}
+.help-content h3[id^=section]::before {
+  content: counter(chapter) "-" counter(subchapter) ". "; /* 章-サブ章番号を表示 */
+}
+.help-content h4[id^=section] {
+  counter-increment: section; /* h4のカウントアップ */
+}
+.help-content h4[id^=section]::before {
+  content: "(" counter(section) ") "; /* h4のカウンタ表示 */
 }
 
 /*# sourceMappingURL=admin.css.map*/

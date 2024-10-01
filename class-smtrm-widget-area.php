@@ -1,7 +1,7 @@
 <?php
 if(!defined('ABSPATH')) { exit; } 
 class Smtrm_Widget_Area{
-  function smtrtm_register_widget(){
+  function smtrm_register_widget(){
     register_sidebar( array(
       'name' => 'Pager Top', // 管理画面のウィジェットエリアの名称
       'id' => 'smtrm-pager-top', // ウィジェットエリアの識別名称（出力時にも使用）
@@ -50,7 +50,7 @@ class Smtrm_Widget_Area{
   }
 }
 $smtrm_widget_area = new Smtrm_Widget_Area();
-add_action( 'widgets_init',array($smtrm_widget_area,'smtrtm_register_widget'));
+add_action( 'widgets_init',array($smtrm_widget_area,'smtrm_register_widget'));
 
 $theme = get_template();
 if ($theme =='cocoon-master' || $theme =='cocoon-child') {
