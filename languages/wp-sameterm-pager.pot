@@ -1,0 +1,865 @@
+# Copyright (C) 2024 Emaki Sorano
+# This file is distributed under the GPLv2.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Same Term Pager 0.9.17\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-sameterm-pager\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-11-08T07:51:23+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: wp-sameterm-pager\n"
+
+#. Plugin Name of the plugin
+#: wp-sameterm-pager.php
+#: class-smtrm-widget.php:14
+msgid "WP Same Term Pager"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: wp-sameterm-pager.php
+msgid "https://shokizerokara.com/"
+msgstr ""
+
+#. Description of the plugin
+#: wp-sameterm-pager.php
+msgid "Navigate between posts within the same term using pagination."
+msgstr ""
+
+#. Author of the plugin
+#: wp-sameterm-pager.php
+msgid "Emaki Sorano"
+msgstr ""
+
+#: class-smtrm-admin-menu.php:10
+#: class-smtrm-admin-menu.php:11
+msgid "Same Term Pager Settings"
+msgstr ""
+
+#: class-smtrm-admin-menu.php:21
+#: class-smtrm-admin-menu.php:22
+#: dist/admin/admin.js:1
+#: dist/admin/advanced.js:1
+#: dist/admin/help.js:1
+msgid "Advanced Settings"
+msgstr ""
+
+#: class-smtrm-admin-menu.php:31
+#: class-smtrm-admin-menu.php:32
+#: dist/admin/admin.js:1
+#: dist/admin/advanced.js:1
+#: dist/admin/help.js:1
+msgid "Help"
+msgstr ""
+
+#: class-smtrm-admin-menu.php:114
+#: dist/blocks/smtrm-pager/index.js:1
+msgid "Read the oldest post"
+msgstr ""
+
+#: class-smtrm-admin-menu.php:115
+#: dist/blocks/smtrm-pager/index.js:1
+msgid "Read the latest post"
+msgstr ""
+
+#: class-smtrm-pager.php:68
+msgid "<span class=\"pc-none\">Read the oldest post</span><span class=\"sp-none\">Oldest</span>"
+msgstr ""
+
+#: class-smtrm-pager.php:120
+msgid "<span class=\"pc-none\">Read the latest post</span><span class=\"sp-none\">Latest</span>"
+msgstr ""
+
+#. Translators: 1: Taxonomy name (e.g., Category), 2: Term name (e.g., Technology)
+#: class-smtrm-pager.php:158
+msgid "Displaying posts filtered by %1$s: “%2$s”"
+msgstr ""
+
+#: class-smtrm-pager.php:162
+#: dist/blocks/smtrm-pager/index.js:1
+msgid "Release"
+msgstr ""
+
+#: class-smtrm-widget.php:16
+msgid "Display a pager on posts that can be filtered by category, tags or taxonomy."
+msgstr ""
+
+#: class-smtrm-widget.php:40
+msgid "An error occurred while displaying the pager."
+msgstr ""
+
+#: dist/admin/admin.js:1
+#: dist/admin/advanced.js:1
+#: dist/admin/help.js:1
+msgid "Settings Menu"
+msgstr ""
+
+#: dist/admin/admin.js:1
+#: dist/admin/advanced.js:1
+#: dist/admin/help.js:1
+msgid "General Settings"
+msgstr ""
+
+#: dist/admin/admin.js:1
+#: dist/admin/advanced.js:1
+msgid "Do you really want to save the settings?"
+msgstr ""
+
+#: dist/admin/admin.js:1
+msgid "Same Term Pager Plugin General Settings Page"
+msgstr ""
+
+#: dist/admin/admin.js:1
+msgid "REST API is disabled. Please enable WordPress REST API."
+msgstr ""
+
+#: dist/admin/admin.js:1
+#: dist/admin/help.js:1
+msgid "Pager Above and Below Posts"
+msgstr ""
+
+#: dist/admin/admin.js:1
+msgid "Display pager above the post"
+msgstr ""
+
+#: dist/admin/admin.js:1
+msgid "Display pager below the post"
+msgstr ""
+
+#: dist/admin/admin.js:1
+#: dist/admin/help.js:1
+msgid "Custom Text for Pager"
+msgstr ""
+
+#: dist/admin/admin.js:1
+#: dist/admin/help.js:1
+msgid "Text for \"Read the oldest post\""
+msgstr ""
+
+#: dist/admin/admin.js:1
+#: dist/admin/help.js:1
+msgid "Text for \"Read the latest post\""
+msgstr ""
+
+#: dist/admin/admin.js:1
+msgid "You can use HTML tags such as <span>."
+msgstr ""
+
+#: dist/admin/admin.js:1
+msgid "Unavailable HTML tags are automatically removed."
+msgstr ""
+
+#: dist/admin/admin.js:1
+#: dist/admin/advanced.js:1
+msgid "Settings have been saved!"
+msgstr ""
+
+#: dist/admin/admin.js:1
+#: dist/admin/advanced.js:1
+msgid "Failed to save settings."
+msgstr ""
+
+#: dist/admin/admin.js:1
+msgid "Saving..."
+msgstr ""
+
+#: dist/admin/admin.js:1
+#: dist/admin/advanced.js:1
+msgid "Save"
+msgstr ""
+
+#: dist/admin/advanced.js:1
+msgid "Same Term Pager Plugin Advanced Settings Page"
+msgstr ""
+
+#: dist/admin/advanced.js:1
+msgid "The REST API is disabled. Please enable the WordPress REST API."
+msgstr ""
+
+#: dist/admin/advanced.js:1
+msgid "Archive Page Setting"
+msgstr ""
+
+#: dist/admin/advanced.js:1
+msgid "CSS selectors to use if the filter function is not working (multiple selectors can be separated by commas)"
+msgstr ""
+
+#: dist/admin/advanced.js:1
+msgid "e.g. .class1, .class2, .class3"
+msgstr ""
+
+#: dist/admin/advanced.js:1
+msgid "There are invalid CSS selectors. Valid selectors include letters, numbers, IDs, classes, attribute selectors, and pseudo-classes."
+msgstr ""
+
+#: dist/admin/advanced.js:1
+msgid "Saving…"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Same Term Pager Plugin Help Page"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "What is the Same Term Pager Plugin?"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "This plugin displays pagination for post pages filtered by the same term (such as category, tag, or custom taxonomy item)."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Even if a post is registered under multiple terms, it enables navigation to previous and next posts based on post date while maintaining the same term filter."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "The previous and next post links include an icon indicating direction, a thumbnail of the featured image (or a \"No Image\" thumbnail if no featured image is set), and the post title, all displayed in a single line. This visually clear navigation allows users to move between posts easily."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Using the \"oldest\" link, you can navigate to the post with the earliest publication date, while the \"latest\" link lets you move to the most recent post, both filtered by the same term."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "The term filter (smtrm_filter) is activated based on the type of archive page the user navigates from, such as a category, tag, or custom taxonomy archive page. It does not activate when moving from the front page, date-based archive, author archive, search results page, or external websites."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "The filter can be removed at any time using the \"Release\" button."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "When the filter is removed, users can navigate to previous and next posts by post date or move to the oldest or latest post among all posts."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "What Does \"Term\" Mean in WordPress?"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Terms are items that categorize posts (taxonomy) in WordPress."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "For example, WordPress includes two default taxonomies: categories and tags. Each individual item within these taxonomies (such as each category or tag) is called a term."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "What is a Pager?"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "A pager refers to a post pagination feature. In this plugin, \"pager\" is used synonymously with \"pagination.\""
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "To help visitors easily find the articles they want, pagers often appear on post pages, providing navigation links to move to the previous or next post."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "On archive pages, pagers usually appear as \"Previous,\" \"Next,\" and numbered page links."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "The Same Term Pager plugin offers a pager specifically designed for post pages, including a filter feature that limits navigation to posts within the same term."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Audience: This manual is intended for users who manage their site using the WordPress admin panel. Please refer to the developer's website for detailed usage instructions."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Table of Contents"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "What is the Settings Menu?"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "How to Use General Settings"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Saving and Applying General Settings"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Detailed Explanation of General Settings"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "How to Customize"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Using HTML Tags"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Special Note for the \"pc-none\" and \"sp-none\" Classes"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Responsive Layout"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "How to Use Advanced Settings"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Saving and Applying Advanced Settings"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Detailed Explanation of Advanced Settings"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Archive Page Settings"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Help Menu"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Notes and Tips"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "The settings menu is a menu for selecting the settings page of the Same Term Pager plugin. The menu contents are only visible to users with administrative privileges, but it allows you to configure settings related to site behavior and display."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "In \"General Settings,\" you can configure basic settings that affect the entire site. The settings you configure here will be reflected in pages and features visible to all users, including visitors who are not logged in."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Select \"General Settings\" from the settings menu."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Change each item as needed."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Click the \"Save\" button located at the bottom right of the screen."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "A confirmation dialog will appear. If you want to save, click \"OK\"."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Changes will be applied to the site."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Make sure to save your changes; they will not be applied unless saved. If there are changes to the settings, a confirmation dialog will appear when navigating away or reloading the page. Clicking \"Leave this Page\" will discard the changes. To save the changes, click \"Cancel\" to cancel the page navigation and start over from step 3."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "You can choose whether to display a pager (navigation for moving between pages) above and below post pages by toggling a button. The pager is displayed only on post pages (including custom posts) and not on other pages (static pages, archive pages, front pages, etc.)."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "When the toggle button is enabled, a pager created by the Same Term Pager plugin will be displayed above and below the post content. Below are sample states of the toggle button for explanation purposes."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Enabled State"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Disabled State"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "This setting is enabled from the time the Same Term Pager plugin is installed, so you can check the pager functionality immediately after installation. If you want to disable it, toggle the button to the disabled state and save."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "The filtering function is enabled when navigating from various archive pages (category, tag, custom taxonomy). When navigating from the site's top or other navigation links, it will not be filtered and posts will be retrieved based on post date."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "You can easily navigate to previous and next posts, as well as the oldest and latest posts, within the categories, tags, or custom taxonomies you have set."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "If you do not want to display the pager above and below posts and want to add it elsewhere, disable the \"Pager Above and Below Posts\" setting. For adding the pager to other locations, please refer to the \"How to Add Pagers\" instructions."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "You can customize the text displayed for the \"Read the oldest post\" and \"Read the latest post\" pagination links. This allows you to modify the labels for these pagination links to fit your needs."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Navigate to the \"General Settings\" page."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "In the \"Custom Text for Pager\" section, you will find two text fields:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "You can enter custom text in these fields. For example:"
+msgstr ""
+
+#: dist/admin/help.js:1
+#: dist/blocks/smtrm-pager/index.js:1
+msgid "Latest"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "<span class=\"pc-none\">Start from the </span>oldest post"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "<span class=\"sp-none\">New</span><span class=\"pc-none\">Begin reading the latest post</span>"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "The text entered will be applied to the corresponding pagination links."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "You can use HTML tags like <span>, <b>, <i>, and others that are allowed by WordPress' wp_kses_post() function. Unsupported tags will be automatically removed."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Here are the allowed HTML tags:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "and more."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "If you want to hide specific parts of the text in the PC view but display it in a mobile or sidebar layout, you can use the \"pc-none\" class. Text wrapped in this class will not be displayed when the pager is shown in a single-line layout on PC, but it will appear when the pager links stack vertically in narrow views, such as in mobile or sidebar displays."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Similarly, if you want to hide specific parts of the text in the mobile or sidebar layout but display them in the PC view, you can use the \"sp-none\" class. Text wrapped in this class will not be displayed when the pager is shown in a mobile or sidebar layout, but it will appear in the PC view when the pager links are displayed horizontally."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "For example:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "In PC view with a single-line layout, only \"oldest post\" will be shown. In mobile view (600px or less), or in the sidebar, \"Start from the oldest post\" will be fully visible."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "In the PC view with a single-line layout, only \"New\" will be shown. In mobile view (600px or less), or in the sidebar, only \"Begin reading the latest post\" will be visible."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "When the pagination is placed in areas narrower than 600px (like in mobile view or a sidebar), the pagination links will stack vertically for better readability. The \"pc-none\" and \"sp-none\" classes help manage what text is shown or hidden depending on the display width, allowing you to tailor the appearance of pagination links for both PC and mobile views."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Advanced Settings include more advanced features compared to general settings. In most basic WordPress themes, it is assumed that the pager will function correctly with only general settings. However, depending on your theme or customizations, the pager filtering feature may not work."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "By using Advanced Settings, you can enable the pager filtering feature if it does not work with general settings alone."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Select \"Advanced Settings\"."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "If the pager filtering feature does not work after navigating from various archive pages (category, tag, custom taxonomy), JavaScript will add URL parameters to the post links. If it is already working, leave this field blank."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "In the input field, enter the class names used in the <a> tags of post links within the article list on the archive page, prefixed with a period (.)."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Class names can be specified multiple times, separated by commas."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Other CSS selectors besides class names can also be specified."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "If you enter characters that cannot be used in CSS selectors, you will not be able to save the settings."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "The \"Help\" menu provides a simple guide for operating the settings, as well as support information. If you are unsure about something, refer to this page for useful information on how to operate the plugin or troubleshoot problems."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Mobile Support:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "When the screen becomes narrow (e.g., on smartphone displays), the menu automatically adjusts to be displayed as horizontally arranged tabs."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Troubleshooting:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "If there are display issues on the site after changing settings, reverting the most recent changes often resolves the problem."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "How to Add Pagers"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "This page explains how to add a pager of the Same Term Pager plugin to any desired location. The following features are available:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Classic Widget for Classic Themes"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Custom Block for Block Themes and Block Editors"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Shortcode for Flexible Usage"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "How to Add Classic Widgets (For Classic Themes)"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Steps to Use the Pager Widget"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Pager Widget Settings"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "How to Add Custom Blocks (For Block Themes)"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Steps to Use the Pager Block in Block Themes"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Pager Block Settings"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "How to Add Shortcodes"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Steps to Use Shortcodes"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Preview and Publish"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Troubleshooting"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "When Blocks or Widgets Don’t Appear"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "When Shortcodes Don’t Work Correctly"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Support"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Log in to the admin panel."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "From the menu, go to \"Appearance\" → \"Widgets\"."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Select the widget area you want to use from the list of widget areas displayed on the left."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Find \"WP Same Term Pager\" in \"Available Widgets\" on the right, and click to add it."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Enter the necessary settings for the widget and click the \"Save\" button."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "You can change the display settings options within the widget settings screen."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Classic widgets do not have a preview feature."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "After saving, the changes will be reflected in real-time on the pages visible to all users, including visitors who are not logged in."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Go to \"Appearance\" → \"Editor\" to open the \"Design Editor\"."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Select the item where you want to add the block and open the editor."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Move the cursor to the position where you want to add the block in the editor, and click the \"+\" button (Toggle block inserter) at the top left to open the block addition panel."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Search for \"Same Term Pager Block\" or find it under \"Category > Widgets\"."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Add the block to the desired position."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "You can intuitively customize the display position in the editor."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "The settings are reflected in real-time in the preview."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Although the pager block can be added anywhere, if you expect repeated use throughout the site, it is recommended to add it as \"Navigation\" or \"Pattern\", and configure it as a \"Template Part\" when editing the \"Template\"."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "In the preview display, the pager will appear on pages other than the post page (such as archive pages and fixed pages), but the pager will only be displayed on the post page (including custom posts)."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Open the \"Post\" editing screen."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Enter the shortcode in the following format where you want to use it.You can copy the shortcode to the clipboard using the Copy button."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "To add the entire pager"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Copied!"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Copy"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "To add the release button for the filtering function"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "To add a “Read the Oldest post” pagination link"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "To add a “Read the Prev post” pagination link"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "To add a “Read the Next post” pagination link"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "To add a “Read the latest post” pagination link"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "After entering the shortcode, you can use the preview feature in the post screen to see how it will actually be displayed. If there are no issues, click the \"Publish\" button or the \"Update\" button to publish it."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Shortcodes can also be registered as \"Text\" widgets in widget areas. Note that text widgets do not have a preview display. When you click the \"Save\" button, the settings are immediately reflected on the site."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "In the widget area, you can also use Classic Widgets and Custom Blocks. These are easier to add than shortcodes, so consider using them."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "There may be a conflict with the theme or plugins you are using. Disable the theme or other plugins to check for conflicts."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Check for any spelling mistakes in the shortcode."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "If you have further questions or encounter any problems, please contact the developer."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "About This Plugin"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "For developer information and updates, please refer to the official website."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Plugin Name:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Plugin URI:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Description:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Version:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Author:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Author URI:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "System Requirements"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "WordPress Version:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid " or higher"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "PHP Version:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "FAQ"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Q:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Where can I check widget settings?"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "A:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "You can configure the settings from the “Appearance” → “Widgets” menu."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "I don’t know how to customize a block theme."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Detailed instructions for using the editor are not supported. Please check the WordPress official site editor support page for more information."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Can I customize shortcode options?"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "There are currently no options for shortcodes. If you have requests, please contact the developer for consideration."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "I see the error message \"REST API is disabled. Please enable WordPress REST API.\" What should I do?"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Same Term Pager uses the REST API in the admin panel. Please enable REST API for the admin panel only or allow Same Term Pager to use the REST API."
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Getting Started"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Setting Menu"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Adding a Pager"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Frequently Asked Questions"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "About this Plugin"
+msgstr ""
+
+#: dist/blocks/smtrm-pager/index.js:1
+msgid "Oldest"
+msgstr ""
+
+#: dist/blocks/smtrm-pager/index.js:1
+msgid "Previous post title"
+msgstr ""
+
+#: dist/blocks/smtrm-pager/index.js:1
+msgid "No image"
+msgstr ""
+
+#: dist/blocks/smtrm-pager/index.js:1
+msgid "Next post title"
+msgstr ""
+
+#: dist/blocks/smtrm-pager/index.js:1
+msgid "Displaying posts filtered by Category: “Category Name”"
+msgstr ""
+
+#: dist/blocks/smtrm-pager/block.json
+msgctxt "block title"
+msgid "Same Term Pager Block"
+msgstr ""
+
+#: dist/blocks/smtrm-pager/block.json
+msgctxt "block description"
+msgid "Block for Same Term Pager."
+msgstr ""

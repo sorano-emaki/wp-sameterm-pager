@@ -1,0 +1,1278 @@
+# Copyright (C) 2024 Emaki Sorano
+# This file is distributed under the GPLv2.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Same Term Pager 0.9.17\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-sameterm-"
+"pager\n"
+"POT-Creation-Date: 2024-11-08T07:51:23+00:00\n"
+"PO-Revision-Date: 2024-11-08 16:52+0900\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Domain: wp-sameterm-pager\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPathExcluded-0: ../src\n"
+"X-Poedit-SearchPathExcluded-1: ../node_modules\n"
+
+#. Plugin Name of the plugin
+#: wp-sameterm-pager.php class-smtrm-widget.php:14
+msgid "WP Same Term Pager"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: wp-sameterm-pager.php
+msgid "https://shokizerokara.com/"
+msgstr ""
+
+#. Description of the plugin
+#: wp-sameterm-pager.php
+msgid "Navigate between posts within the same term using pagination."
+msgstr ""
+"同じターム（カテゴリー・タグ・カスタムタクソノミーの内の各項目）の投稿を移動"
+"するページャーです。"
+
+#. Author of the plugin
+#: wp-sameterm-pager.php
+msgid "Emaki Sorano"
+msgstr ""
+
+#: class-smtrm-admin-menu.php:10 class-smtrm-admin-menu.php:11
+msgid "Same Term Pager Settings"
+msgstr "Same Term Pager 設定"
+
+#: class-smtrm-admin-menu.php:21 class-smtrm-admin-menu.php:22
+#: dist/admin/admin.js:1 dist/admin/advanced.js:1 dist/admin/help.js:1
+msgid "Advanced Settings"
+msgstr "詳細設定"
+
+#: class-smtrm-admin-menu.php:31 class-smtrm-admin-menu.php:32
+#: dist/admin/admin.js:1 dist/admin/advanced.js:1 dist/admin/help.js:1
+msgid "Help"
+msgstr "ヘルプ"
+
+#: class-smtrm-admin-menu.php:114 dist/blocks/smtrm-pager/index.js:1
+msgid "Read the oldest post"
+msgstr "最初の記事を読む"
+
+#: class-smtrm-admin-menu.php:115 dist/blocks/smtrm-pager/index.js:1
+msgid "Read the latest post"
+msgstr "最後の記事を読む"
+
+#: class-smtrm-pager.php:68
+msgid ""
+"<span class=\"pc-none\">Read the oldest post</span><span class=\"sp-"
+"none\">Oldest</span>"
+msgstr ""
+"<span class=\"pc-none\">最初の記事を読む</span><span class=\"sp-none\">最初</"
+"span>"
+
+#: class-smtrm-pager.php:120
+msgid ""
+"<span class=\"pc-none\">Read the latest post</span><span class=\"sp-"
+"none\">Latest</span>"
+msgstr ""
+"<span class=\"pc-none\">最後の記事を読む</span><span class=\"sp-none\">最後</"
+"span>"
+
+#. Translators: 1: Taxonomy name (e.g., Category), 2: Term name (e.g., Technology)
+#: class-smtrm-pager.php:158
+msgid "Displaying posts filtered by %1$s: “%2$s”"
+msgstr "%1$s: 『%2$s』内の投稿を絞り込み表示中"
+
+#: class-smtrm-pager.php:162 dist/blocks/smtrm-pager/index.js:1
+msgid "Release"
+msgstr "解除"
+
+#: class-smtrm-widget.php:16
+msgid ""
+"Display a pager on posts that can be filtered by category, tags or taxonomy."
+msgstr ""
+"カテゴリやタグやカスタムタクソノミーで投稿を絞り込めるページャーを表示しま"
+"す。"
+
+#: class-smtrm-widget.php:40
+msgid "An error occurred while displaying the pager."
+msgstr "ページャーの表示中にエラーが発生しました。"
+
+#: dist/admin/admin.js:1 dist/admin/advanced.js:1 dist/admin/help.js:1
+msgid "Settings Menu"
+msgstr "設定メニュー"
+
+#: dist/admin/admin.js:1 dist/admin/advanced.js:1 dist/admin/help.js:1
+msgid "General Settings"
+msgstr "一般設定"
+
+#: dist/admin/admin.js:1 dist/admin/advanced.js:1
+msgid "Do you really want to save the settings?"
+msgstr "本当に設定を保存しますか？"
+
+#: dist/admin/admin.js:1
+msgid "Same Term Pager Plugin General Settings Page"
+msgstr "Same Term Pagerプラグイン 一般設定ページ"
+
+#: dist/admin/admin.js:1
+msgid "REST API is disabled. Please enable WordPress REST API."
+msgstr "REST APIが無効です。WordPress REST APIを有効にしてください。"
+
+#: dist/admin/admin.js:1 dist/admin/help.js:1
+msgid "Pager Above and Below Posts"
+msgstr "投稿上下のページャー"
+
+#: dist/admin/admin.js:1
+msgid "Display pager above the post"
+msgstr "投稿上に表示する"
+
+#: dist/admin/admin.js:1
+msgid "Display pager below the post"
+msgstr "投稿下に表示する"
+
+#: dist/admin/admin.js:1 dist/admin/help.js:1
+msgid "Custom Text for Pager"
+msgstr "ページャーに表示する文字列"
+
+#: dist/admin/admin.js:1 dist/admin/help.js:1
+msgid "Text for \"Read the oldest post\""
+msgstr "「最初の記事を読む」リンクに表示する文字列"
+
+#: dist/admin/admin.js:1 dist/admin/help.js:1
+msgid "Text for \"Read the latest post\""
+msgstr "「最後の記事を読む」リンクに表示する文字列"
+
+#: dist/admin/admin.js:1
+msgid "You can use HTML tags such as <span>."
+msgstr "spanタグのようなHTMLタグを使用できます。"
+
+#: dist/admin/admin.js:1
+msgid "Unavailable HTML tags are automatically removed."
+msgstr "使用できないHTMLタグは自動で除去されます。"
+
+#: dist/admin/admin.js:1 dist/admin/advanced.js:1
+msgid "Settings have been saved!"
+msgstr "設定が保存されました！"
+
+#: dist/admin/admin.js:1 dist/admin/advanced.js:1
+msgid "Failed to save settings."
+msgstr "設定の保存に失敗しました。"
+
+#: dist/admin/admin.js:1
+msgid "Saving..."
+msgstr "保存中…"
+
+#: dist/admin/admin.js:1 dist/admin/advanced.js:1
+msgid "Save"
+msgstr "保存"
+
+#: dist/admin/advanced.js:1
+msgid "Same Term Pager Plugin Advanced Settings Page"
+msgstr "Same Term Pagerプラグイン 詳細設定ページ"
+
+#: dist/admin/advanced.js:1
+msgid "The REST API is disabled. Please enable the WordPress REST API."
+msgstr "REST APIが無効です。WordPress REST APIを有効にしてください。"
+
+#: dist/admin/advanced.js:1
+msgid "Archive Page Setting"
+msgstr "アーカイブページ設定"
+
+#: dist/admin/advanced.js:1
+msgid ""
+"CSS selectors to use if the filter function is not working (multiple "
+"selectors can be separated by commas)"
+msgstr ""
+"絞り込み機能が動作しない場合に使用する CSS セレクタ (複数のセレクタをカンマ区"
+"切りで指定可能)"
+
+#: dist/admin/advanced.js:1
+msgid "e.g. .class1, .class2, .class3"
+msgstr "例：.class1, .class2, .class3"
+
+#: dist/admin/advanced.js:1
+msgid ""
+"There are invalid CSS selectors. Valid selectors include letters, numbers, "
+"IDs, classes, attribute selectors, and pseudo-classes."
+msgstr ""
+"無効なCSSセレクタがあります。有効なセレクタには、半角英数字、ID、クラス、属性"
+"セレクタ、擬似クラスがあります。"
+
+#: dist/admin/advanced.js:1
+msgid "Saving…"
+msgstr "保存中…"
+
+#: dist/admin/help.js:1
+msgid "Same Term Pager Plugin Help Page"
+msgstr "Same Term Pagerプラグイン ヘルプページ"
+
+#: dist/admin/help.js:1
+msgid "What is the Same Term Pager Plugin?"
+msgstr "Same Term Pagerとは？"
+
+#: dist/admin/help.js:1
+msgid ""
+"This plugin displays pagination for post pages filtered by the same term "
+"(such as category, tag, or custom taxonomy item)."
+msgstr ""
+"同じターム（カテゴリーやタグ、カスタムタクソノミー内の各項目）で絞り込んだ投"
+"稿ページ用ページネーションを表示できるプラグインです。"
+
+#: dist/admin/help.js:1
+msgid ""
+"Even if a post is registered under multiple terms, it enables navigation to "
+"previous and next posts based on post date while maintaining the same term "
+"filter."
+msgstr ""
+"投稿に複数のタームが登録されていても、同じタームで絞り込んだ状態で、投稿日時"
+"が前後の投稿ページへ移動することができます。"
+
+#: dist/admin/help.js:1
+msgid ""
+"The previous and next post links include an icon indicating direction, a "
+"thumbnail of the featured image (or a \"No Image\" thumbnail if no featured "
+"image is set), and the post title, all displayed in a single line. This "
+"visually clear navigation allows users to move between posts easily."
+msgstr ""
+"前後の投稿ページへのリンクには、方向アイコン、投稿記事のアイキャッチ画像のサ"
+"ムネイル（画像がない場合は「No Image」表示）とタイトルが一行で含まれていま"
+"す。わかりやすいナビゲーションで前後の記事に移動できます。"
+
+#: dist/admin/help.js:1
+msgid ""
+"Using the \"oldest\" link, you can navigate to the post with the earliest "
+"publication date, while the \"latest\" link lets you move to the most recent "
+"post, both filtered by the same term."
+msgstr ""
+"「最初」リンクで投稿日時が一番古い記事へ、「最後」リンクで投稿日時が一番新し"
+"い記事へ、同じタームで絞り込んだ状態で移動することができます。"
+
+#: dist/admin/help.js:1
+msgid ""
+"The term filter (smtrm_filter) is activated based on the type of archive "
+"page the user navigates from, such as a category, tag, or custom taxonomy "
+"archive page. It does not activate when moving from the front page, date-"
+"based archive, author archive, search results page, or external websites."
+msgstr ""
+"移動元のアーカイブページ（カテゴリ・タグ・カスタムタクソノミー）の種類を元に"
+"タームの絞り込みフィルター（smtrm_filter）が有効になります。フロントページや"
+"日時別アーカイブ、著者アーカイブ、検索結果ページからの移動や、外部サイトから"
+"の移動等では絞り込みフィルターが有効になりません。"
+
+#: dist/admin/help.js:1
+msgid "The filter can be removed at any time using the \"Release\" button."
+msgstr "絞り込みフィルターは「解除」ボタンでいつでも解除することができます。"
+
+#: dist/admin/help.js:1
+msgid ""
+"When the filter is removed, users can navigate to previous and next posts by "
+"post date or move to the oldest or latest post among all posts."
+msgstr ""
+"絞り込みフィルターが解除された状態では、投稿日時の前後記事とすべての記事の最"
+"初・最後へ移動できます。"
+
+#: dist/admin/help.js:1
+msgid "What Does \"Term\" Mean in WordPress?"
+msgstr "WordPressにおける「ターム」とは？"
+
+#: dist/admin/help.js:1
+msgid "Terms are items that categorize posts (taxonomy) in WordPress."
+msgstr "投稿を分類（タクソノミー）した項目（ターム）のことです。"
+
+#: dist/admin/help.js:1
+msgid ""
+"For example, WordPress includes two default taxonomies: categories and tags. "
+"Each individual item within these taxonomies (such as each category or tag) "
+"is called a term."
+msgstr ""
+"例えば、WordPressに最初から用意されているタクソノミーはカテゴリーとタグです"
+"が、カテゴリーやタグという分類（タクソノミー）に所属する項目一つ一つがターム"
+"（Term）と呼ばれます。"
+
+#: dist/admin/help.js:1
+msgid "What is a Pager?"
+msgstr "ページャーとは？"
+
+#: dist/admin/help.js:1
+msgid ""
+"A pager refers to a post pagination feature. In this plugin, \"pager\" is "
+"used synonymously with \"pagination.\""
+msgstr ""
+"投稿のページ送り機能です。このプラグインで使用しているページャーという用語は"
+"ページネーションと同じ意味です。"
+
+#: dist/admin/help.js:1
+msgid ""
+"To help visitors easily find the articles they want, pagers often appear on "
+"post pages, providing navigation links to move to the previous or next post."
+msgstr ""
+"サイト訪問者が目的の記事を捜しやすいように、投稿ページでは次の記事へ・前の記"
+"事へと移動するページャーが表示されることが多いです。"
+
+#: dist/admin/help.js:1
+msgid ""
+"On archive pages, pagers usually appear as \"Previous,\" \"Next,\" and "
+"numbered page links."
+msgstr ""
+"アーカイブページでは「前へ」と「ページ番号」と「次へ」のような形式で表示され"
+"ることが多いです。"
+
+#: dist/admin/help.js:1
+msgid ""
+"The Same Term Pager plugin offers a pager specifically designed for post "
+"pages, including a filter feature that limits navigation to posts within the "
+"same term."
+msgstr ""
+"Same Term Pagerはターム絞り込み機能付き投稿ページ向けのページャーを提供してい"
+"ます。"
+
+#: dist/admin/help.js:1
+msgid ""
+"Audience: This manual is intended for users who manage their site using the "
+"WordPress admin panel. Please refer to the developer's website for detailed "
+"usage instructions."
+msgstr ""
+"対象者：このマニュアルは、WordPressの管理画面を使用してサイトを管理するユー"
+"ザーを対象としています。詳しい使い方ついては製作者のサイトをご参照ください。"
+
+#: dist/admin/help.js:1
+msgid "Table of Contents"
+msgstr "目次"
+
+#: dist/admin/help.js:1
+msgid "What is the Settings Menu?"
+msgstr "設定メニューとは"
+
+#: dist/admin/help.js:1
+msgid "How to Use General Settings"
+msgstr "一般設定の使い方"
+
+#: dist/admin/help.js:1
+msgid "Saving and Applying General Settings"
+msgstr "一般設定の保存と反映"
+
+#: dist/admin/help.js:1
+msgid "Detailed Explanation of General Settings"
+msgstr "一般設定の詳細説明"
+
+#: dist/admin/help.js:1
+msgid "How to Customize"
+msgstr "カスタマイズ方法"
+
+#: dist/admin/help.js:1
+msgid "Using HTML Tags"
+msgstr "使用できるHTMLタグ"
+
+#: dist/admin/help.js:1
+msgid "Special Note for the \"pc-none\" and \"sp-none\" Classes"
+msgstr "「pc-none」と「sp-none」クラスに関する説明"
+
+#: dist/admin/help.js:1
+msgid "Responsive Layout"
+msgstr "レスポンシブレイアウト"
+
+#: dist/admin/help.js:1
+msgid "How to Use Advanced Settings"
+msgstr "詳細設定の使い方"
+
+#: dist/admin/help.js:1
+msgid "Saving and Applying Advanced Settings"
+msgstr "詳細設定の保存と反映"
+
+#: dist/admin/help.js:1
+msgid "Detailed Explanation of Advanced Settings"
+msgstr "詳細設定の詳細説明"
+
+#: dist/admin/help.js:1
+msgid "Archive Page Settings"
+msgstr "アーカイブページ設定"
+
+#: dist/admin/help.js:1
+msgid "Help Menu"
+msgstr "ヘルプメニュー"
+
+#: dist/admin/help.js:1
+msgid "Notes and Tips"
+msgstr "注意事項とヒント"
+
+#: dist/admin/help.js:1
+msgid ""
+"The settings menu is a menu for selecting the settings page of the Same Term "
+"Pager plugin. The menu contents are only visible to users with "
+"administrative privileges, but it allows you to configure settings related "
+"to site behavior and display."
+msgstr ""
+"設定メニューは、Same Term Pagerプラグインの設定ページを選択するためのメニュー"
+"です。メニューの内容は管理者権限を持つユーザーにしか表示されませんが、サイト"
+"の動作や表示に関わる設定を行います。"
+
+#: dist/admin/help.js:1
+msgid ""
+"In \"General Settings,\" you can configure basic settings that affect the "
+"entire site. The settings you configure here will be reflected in pages and "
+"features visible to all users, including visitors who are not logged in."
+msgstr ""
+"「一般設定」では、サイト全体に影響を与える基本的な設定を行うことができます。"
+"ここで設定した内容は、ログインしていない訪問者を含んだすべてのユーザーに表示"
+"されるページや機能に反映されます。"
+
+#: dist/admin/help.js:1
+msgid "Select \"General Settings\" from the settings menu."
+msgstr "設定メニューから「一般設定」を選択します。"
+
+#: dist/admin/help.js:1
+msgid "Change each item as needed."
+msgstr "各項目を変更します。"
+
+#: dist/admin/help.js:1
+msgid "Click the \"Save\" button located at the bottom right of the screen."
+msgstr "画面右下に表示される「保存」ボタンをクリックします。"
+
+#: dist/admin/help.js:1
+msgid "A confirmation dialog will appear. If you want to save, click \"OK\"."
+msgstr "確認ダイアログが表示されるので、保存する場合は「OK」をクリックします。"
+
+#: dist/admin/help.js:1
+msgid "Changes will be applied to the site."
+msgstr "変更がサイトに反映されます。"
+
+#: dist/admin/help.js:1
+msgid ""
+"Make sure to save your changes; they will not be applied unless saved. If "
+"there are changes to the settings, a confirmation dialog will appear when "
+"navigating away or reloading the page. Clicking \"Leave this Page\" will "
+"discard the changes. To save the changes, click \"Cancel\" to cancel the "
+"page navigation and start over from step 3."
+msgstr ""
+"保存されないと変更が反映されませんので、忘れずに保存するようにしましょう。設"
+"定の内容に変更がある場合は、画面移動・リロード時に確認ダイアログが表示されま"
+"すが、「このページを離れる」をクリックすると変更内容が破棄されます。変更内容"
+"を保存したい場合は「キャンセル」をクリックして画面移動をキャンセルし、もう一"
+"度手順3からやり直してください。"
+
+#: dist/admin/help.js:1
+msgid ""
+"You can choose whether to display a pager (navigation for moving between "
+"pages) above and below post pages by toggling a button. The pager is "
+"displayed only on post pages (including custom posts) and not on other pages "
+"(static pages, archive pages, front pages, etc.)."
+msgstr ""
+"投稿ページの上下にページャー（ページ移動のためのナビゲーション）を表示するか"
+"をボタンの切り替えで選択できます。ページャーは投稿ページ（カスタム投稿を含"
+"む）にのみ表示され、その他のページ（固定ページ・アーカイブページ・フロント"
+"ページ等）では表示されません。"
+
+#: dist/admin/help.js:1
+msgid ""
+"When the toggle button is enabled, a pager created by the Same Term Pager "
+"plugin will be displayed above and below the post content. Below are sample "
+"states of the toggle button for explanation purposes."
+msgstr ""
+"切り替えボタンを有効にすると、投稿本文の上下にSame Term Pagerプラグインが作成"
+"したページャーが表示されます。以下のボタンは説明のための表示状態のサンプルで"
+"す。"
+
+#: dist/admin/help.js:1
+msgid "Enabled State"
+msgstr "有効な状態"
+
+#: dist/admin/help.js:1
+msgid "Disabled State"
+msgstr "無効な状態"
+
+#: dist/admin/help.js:1
+msgid ""
+"This setting is enabled from the time the Same Term Pager plugin is "
+"installed, so you can check the pager functionality immediately after "
+"installation. If you want to disable it, toggle the button to the disabled "
+"state and save."
+msgstr ""
+"この設定はSame Term Pagerプラグインインストール時から有効になっているので、イ"
+"ンストール後すぐにページャーの機能を確認できます。無効にしたい場合はボタンを"
+"無効側に切り替えて保存してください。"
+
+#: dist/admin/help.js:1
+msgid ""
+"The filtering function is enabled when navigating from various archive pages "
+"(category, tag, custom taxonomy). When navigating from the site's top or "
+"other navigation links, it will not be filtered and posts will be retrieved "
+"based on post date."
+msgstr ""
+"各種アーカイブページ（カテゴリー・タグ・カスタムタクソノミー）の記事一覧から"
+"移動した場合に、絞り込み機能が有効になります。サイトトップや他のナビゲーショ"
+"ンリンクから移動した場合は絞り込まれず、投稿日時の前後で投稿を取得します。"
+
+#: dist/admin/help.js:1
+msgid ""
+"You can easily navigate to previous and next posts, as well as the oldest "
+"and latest posts, within the categories, tags, or custom taxonomies you have "
+"set."
+msgstr ""
+"WordPressのカテゴリーやタグや、ご自身で設定されたカスタムタクソノミーのターム"
+"（項目）で絞り込んだ状態で、簡単に前後の記事と最も古い記事と最も新しい記事に"
+"移動できるようになります。"
+
+#: dist/admin/help.js:1
+msgid ""
+"If you do not want to display the pager above and below posts and want to "
+"add it elsewhere, disable the \"Pager Above and Below Posts\" setting. For "
+"adding the pager to other locations, please refer to the \"How to Add "
+"Pagers\" instructions."
+msgstr ""
+"投稿の上下に表示せず、他の場所に追加したい場合は、「投稿上下のページャー」設"
+"定は無効にしてください。任意の場所に追加する方法は「ページャーの追加方法」を"
+"ご確認ください。"
+
+#: dist/admin/help.js:1
+msgid ""
+"You can customize the text displayed for the \"Read the oldest post\" and "
+"\"Read the latest post\" pagination links. This allows you to modify the "
+"labels for these pagination links to fit your needs."
+msgstr ""
+"「最初の記事を読む」と「最後の記事を読む」リンクに表示されるテキストを必要に"
+"応じて変更することができます。"
+
+#: dist/admin/help.js:1
+msgid "Navigate to the \"General Settings\" page."
+msgstr "「一般設定」ページに移動します。"
+
+#: dist/admin/help.js:1
+msgid ""
+"In the \"Custom Text for Pager\" section, you will find two text fields:"
+msgstr "「ページャーに表示する文字列」には、２つの入力欄があります。"
+
+#: dist/admin/help.js:1
+msgid "You can enter custom text in these fields. For example:"
+msgstr "これらの入力欄には、次の例のようなカスタムテキストを入力できます。"
+
+#: dist/admin/help.js:1 dist/blocks/smtrm-pager/index.js:1
+msgid "Latest"
+msgstr "最後"
+
+#: dist/admin/help.js:1
+msgid "<span class=\"pc-none\">Start from the </span>oldest post"
+msgstr "古い<span class=\"pc-none\">記事から読む</span>"
+
+#: dist/admin/help.js:1
+msgid ""
+"<span class=\"sp-none\">New</span><span class=\"pc-none\">Begin reading the "
+"latest post</span>"
+msgstr ""
+"<span class=\"sp-none\">New</span><span class=\"pc-none\">最新の記事から読む"
+"</span>"
+
+#: dist/admin/help.js:1
+msgid "The text entered will be applied to the corresponding pagination links."
+msgstr "入力された文字列は、対応するリンクに適用されます。"
+
+#: dist/admin/help.js:1
+msgid ""
+"You can use HTML tags like <span>, <b>, <i>, and others that are allowed by "
+"WordPress' wp_kses_post() function. Unsupported tags will be automatically "
+"removed."
+msgstr ""
+"<span>,<b>,<i> など、WordPressのwp_kses_post()関数で許可されているHTMLタグを"
+"使用することができます。サポートされていないタグは自動的に削除されます。"
+
+#: dist/admin/help.js:1
+msgid "Here are the allowed HTML tags:"
+msgstr "以下は許可されたHTMLタグです。"
+
+#: dist/admin/help.js:1
+msgid "and more."
+msgstr "などがあります。"
+
+#: dist/admin/help.js:1
+msgid ""
+"If you want to hide specific parts of the text in the PC view but display it "
+"in a mobile or sidebar layout, you can use the \"pc-none\" class. Text "
+"wrapped in this class will not be displayed when the pager is shown in a "
+"single-line layout on PC, but it will appear when the pager links stack "
+"vertically in narrow views, such as in mobile or sidebar displays."
+msgstr ""
+"PC向けの横並びレイアウトではテキストの特定の部分を非表示にし、モバイルまたは"
+"サイドバー向けの縦積みレイアウトでは表示したい場合、「pc-none」クラスを使用で"
+"きます。このクラスで囲まれたテキストは、ページャーがPCで1行横並びレイアウトで"
+"表示されるときには非表示ですが、ページャーリンクがモバイルやサイドバー表示の"
+"ような狭い領域で縦積みされるときには表示されます。"
+
+#: dist/admin/help.js:1
+msgid ""
+"Similarly, if you want to hide specific parts of the text in the mobile or "
+"sidebar layout but display them in the PC view, you can use the \"sp-none\" "
+"class. Text wrapped in this class will not be displayed when the pager is "
+"shown in a mobile or sidebar layout, but it will appear in the PC view when "
+"the pager links are displayed horizontally."
+msgstr ""
+"同様に、モバイルまたはサイドバー向けの縦積みレイアウトではテキストの特定の部"
+"分を非表示にし、PC向けの横並び1行レイアウトでは表示したい場合、「sp-none 」ク"
+"ラスを使用できます。このクラスで囲まれたテキストは、ページャーがモバイルレイ"
+"アウトまたはサイドバーレイアウトで縦積み表示されるときには表示されませんが、"
+"ページャーリンクがPC版の1行横並びレイアウトのときには表示されます。"
+
+#: dist/admin/help.js:1
+msgid "For example:"
+msgstr "例："
+
+#: dist/admin/help.js:1
+msgid ""
+"In PC view with a single-line layout, only \"oldest post\" will be shown. In "
+"mobile view (600px or less), or in the sidebar, \"Start from the oldest "
+"post\" will be fully visible."
+msgstr ""
+"PC向けの横並び1行レイアウトでは、「古い」のみが表示されます。モバイルビュー"
+"（600px以下）やサイドバー向けの縦積みレイアウトでは、「古い記事を読む」がすべ"
+"て表示されます。"
+
+#: dist/admin/help.js:1
+msgid ""
+"In the PC view with a single-line layout, only \"New\" will be shown. In "
+"mobile view (600px or less), or in the sidebar, only \"Begin reading the "
+"latest post\" will be visible."
+msgstr ""
+"PC向けの横並び1行レイアウトでは、「New」のみが表示されます。モバイルビュー"
+"（600px以下）やサイドバー向けの縦積みレイアウトでは、「最新の記事から読む」が"
+"表示されます。"
+
+#: dist/admin/help.js:1
+msgid ""
+"When the pagination is placed in areas narrower than 600px (like in mobile "
+"view or a sidebar), the pagination links will stack vertically for better "
+"readability. The \"pc-none\" and \"sp-none\" classes help manage what text "
+"is shown or hidden depending on the display width, allowing you to tailor "
+"the appearance of pagination links for both PC and mobile views."
+msgstr ""
+"ページネーションが（モバイルビューやサイドバーのような）600pxより狭い領域に配"
+"置されている場合、読みやすくするため、ページャーリンクは縦積みになります。"
+"「pc-none 」および 「sp-none 」クラスは、表示幅に応じて表示されるテキストや非"
+"表示にされるテキストを管理するのに役立ちます。"
+
+#: dist/admin/help.js:1
+msgid ""
+"Advanced Settings include more advanced features compared to general "
+"settings. In most basic WordPress themes, it is assumed that the pager will "
+"function correctly with only general settings. However, depending on your "
+"theme or customizations, the pager filtering feature may not work."
+msgstr ""
+"詳細設定には、一般設定より一歩踏み込んだ内容の機能が含まれています。基本的な"
+"WordPressテーマの場合、一般設定のみでページャーが正常に動作する想定ですが、お"
+"使いのテーマやカスタマイズ内容によってページャーの絞り込み機能が動作しない場"
+"合があります。"
+
+#: dist/admin/help.js:1
+msgid ""
+"By using Advanced Settings, you can enable the pager filtering feature if it "
+"does not work with general settings alone."
+msgstr ""
+"「詳細設定を行うことでページャーの絞り込み機能を有効にできる場合がありますの"
+"で一般設定のみでページャーの絞り込み機能が動作しない場合にご使用ください。"
+
+#: dist/admin/help.js:1
+msgid "Select \"Advanced Settings\"."
+msgstr "「詳細設定」を選択します。"
+
+#: dist/admin/help.js:1
+msgid ""
+"If the pager filtering feature does not work after navigating from various "
+"archive pages (category, tag, custom taxonomy), JavaScript will add URL "
+"parameters to the post links. If it is already working, leave this field "
+"blank."
+msgstr ""
+"各種アーカイブページ（カテゴリー・タグ・カスタムタクソノミー）の記事一覧から"
+"移動後にページャーの絞り込み機能が動作しない場合、JavaScriptでURLパラメータを"
+"投稿リンクに付与します。動作している場合は空欄のままでお使いください。"
+
+#: dist/admin/help.js:1
+msgid ""
+"In the input field, enter the class names used in the <a> tags of post links "
+"within the article list on the archive page, prefixed with a period (.)."
+msgstr ""
+"入力欄には、アーカイブページの記事一覧内の各投稿リンクのaタグに使用されている"
+"クラス名を、半角ピリオド（.）に続けて入力します。"
+
+#: dist/admin/help.js:1
+msgid "Class names can be specified multiple times, separated by commas."
+msgstr "クラス名は半角コンマ（,）を区切り文字にして複数指定可能です。"
+
+#: dist/admin/help.js:1
+msgid "Other CSS selectors besides class names can also be specified."
+msgstr "クラス名以外のCSSセレクタも設定可能です。"
+
+#: dist/admin/help.js:1
+msgid ""
+"If you enter characters that cannot be used in CSS selectors, you will not "
+"be able to save the settings."
+msgstr ""
+"CSSセレクタに使用できない文字を入力した場合は保存することができません。"
+
+#: dist/admin/help.js:1
+msgid ""
+"The \"Help\" menu provides a simple guide for operating the settings, as "
+"well as support information. If you are unsure about something, refer to "
+"this page for useful information on how to operate the plugin or "
+"troubleshoot problems."
+msgstr ""
+"「ヘルプ」メニューでは、設定の操作に関する簡単なガイドや、サポート情報を確認"
+"できます。困ったときにはこのページを参照することで、操作方法やトラブルシュー"
+"ティングに役立つ情報を得られます。"
+
+#: dist/admin/help.js:1
+msgid "Mobile Support:"
+msgstr "モバイル対応："
+
+#: dist/admin/help.js:1
+msgid ""
+"When the screen becomes narrow (e.g., on smartphone displays), the menu "
+"automatically adjusts to be displayed as horizontally arranged tabs."
+msgstr ""
+"画面が狭くなる（例：スマートフォン表示）場合、メニューが上部に移動し、横並び"
+"のタブ形式で表示されるように自動で調整されます。"
+
+#: dist/admin/help.js:1
+msgid "Troubleshooting:"
+msgstr "トラブル時："
+
+#: dist/admin/help.js:1
+msgid ""
+"If there are display issues on the site after changing settings, reverting "
+"the most recent changes often resolves the problem."
+msgstr ""
+"設定を変更した後にサイトの表示に問題が生じた場合、直前に行った変更を元に戻す"
+"ことで解決することが多いです。"
+
+#: dist/admin/help.js:1
+msgid "How to Add Pagers"
+msgstr "ページャーの追加方法について"
+
+#: dist/admin/help.js:1
+msgid ""
+"This page explains how to add a pager of the Same Term Pager plugin to any "
+"desired location. The following features are available:"
+msgstr ""
+"このページでは、Same Term Pagerプラグインのページャーを任意の場所に追加する方"
+"法について説明します。ご利用いただける機能は以下の通りです。"
+
+#: dist/admin/help.js:1
+msgid "Classic Widget for Classic Themes"
+msgstr "クラッシックテーマ向けのクラシックウィジェット"
+
+#: dist/admin/help.js:1
+msgid "Custom Block for Block Themes and Block Editors"
+msgstr "ブロックテーマ、ブロックエディター向けのカスタムブロック"
+
+#: dist/admin/help.js:1
+msgid "Shortcode for Flexible Usage"
+msgstr "パーツ別にご使用いただけるショートコード"
+
+#: dist/admin/help.js:1
+msgid "How to Add Classic Widgets (For Classic Themes)"
+msgstr "クラシックウィジェットの追加方法（クラシックテーマ向け）"
+
+#: dist/admin/help.js:1
+msgid "Steps to Use the Pager Widget"
+msgstr "ページャーウィジェットの使用手順"
+
+#: dist/admin/help.js:1
+msgid "Pager Widget Settings"
+msgstr "ページャーウィジェットの設定について"
+
+#: dist/admin/help.js:1
+msgid "How to Add Custom Blocks (For Block Themes)"
+msgstr "カスタムブロックの追加方法（ブロックテーマ向け）"
+
+#: dist/admin/help.js:1
+msgid "Steps to Use the Pager Block in Block Themes"
+msgstr "ブロックテーマでのページャーブロック使用手順"
+
+#: dist/admin/help.js:1
+msgid "Pager Block Settings"
+msgstr "ページャーブロックの設定について"
+
+#: dist/admin/help.js:1
+msgid "How to Add Shortcodes"
+msgstr "ショートコードの追加方法"
+
+#: dist/admin/help.js:1
+msgid "Steps to Use Shortcodes"
+msgstr "ショートコードの使用手順"
+
+#: dist/admin/help.js:1
+msgid "Preview and Publish"
+msgstr "プレビューと公開"
+
+#: dist/admin/help.js:1
+msgid "Troubleshooting"
+msgstr "トラブルシューティング"
+
+#: dist/admin/help.js:1
+msgid "When Blocks or Widgets Don’t Appear"
+msgstr "ブロックやウィジェットが表示されない場合"
+
+#: dist/admin/help.js:1
+msgid "When Shortcodes Don’t Work Correctly"
+msgstr "ショートコードが正しく機能しない場合"
+
+#: dist/admin/help.js:1
+msgid "Support"
+msgstr "サポート"
+
+#: dist/admin/help.js:1
+msgid "Log in to the admin panel."
+msgstr "管理画面にログインします。"
+
+#: dist/admin/help.js:1
+msgid "From the menu, go to \"Appearance\" → \"Widgets\"."
+msgstr "メニューから 「外観」→「ウィジェット」 を選択します。"
+
+#: dist/admin/help.js:1
+msgid ""
+"Select the widget area you want to use from the list of widget areas "
+"displayed on the left."
+msgstr ""
+"左側に表示されるウィジェットエリアのリストから、利用したいウィジェットエリア"
+"を選択します。"
+
+#: dist/admin/help.js:1
+msgid ""
+"Find \"WP Same Term Pager\" in \"Available Widgets\" on the right, and click "
+"to add it."
+msgstr ""
+"右側にある「利用できるウィジェット」で、「WP Same Term Pager」 を探し、クリッ"
+"クして追加します。"
+
+#: dist/admin/help.js:1
+msgid ""
+"Enter the necessary settings for the widget and click the \"Save\" button."
+msgstr "ウィジェットに必要な設定を入力し、「保存」ボタンをクリックします。"
+
+#: dist/admin/help.js:1
+msgid ""
+"You can change the display settings options within the widget settings "
+"screen."
+msgstr "ウィジェット設定画面内で、表示設定オプションを変更できます。"
+
+#: dist/admin/help.js:1
+msgid "Classic widgets do not have a preview feature."
+msgstr "クラシックウィジェットにプレビュー機能はありません。"
+
+#: dist/admin/help.js:1
+msgid ""
+"After saving, the changes will be reflected in real-time on the pages "
+"visible to all users, including visitors who are not logged in."
+msgstr ""
+"保存後、ログインしていない訪問者を含んだすべてのユーザーに表示されるページに"
+"リアルタイムで変更が反映されます。"
+
+#: dist/admin/help.js:1
+msgid "Go to \"Appearance\" → \"Editor\" to open the \"Design Editor\"."
+msgstr "「外観」→「エディター」を選択して、「デザイン編集画面」を開きます。"
+
+#: dist/admin/help.js:1
+msgid "Select the item where you want to add the block and open the editor."
+msgstr "ブロックを追加したい項目を選択し、編集画面を開きます。"
+
+#: dist/admin/help.js:1
+msgid ""
+"Move the cursor to the position where you want to add the block in the "
+"editor, and click the \"+\" button (Toggle block inserter) at the top left "
+"to open the block addition panel."
+msgstr ""
+"編集画面のブロックを追加したい位置にカーソルを合わせ、画面左上の 「＋」ボタン"
+"（ブロック挿入ツールを切り替え）をクリックして、ブロック追加パネルを開きま"
+"す。"
+
+#: dist/admin/help.js:1
+msgid ""
+"Search for \"Same Term Pager Block\" or find it under \"Category > Widgets\"."
+msgstr ""
+"「Same Term Pager Block」 を検索または、「カテゴリ＞ウィジェット」から探しま"
+"す。"
+
+#: dist/admin/help.js:1
+msgid "Add the block to the desired position."
+msgstr "使用したい位置にブロックを追加します。"
+
+#: dist/admin/help.js:1
+msgid "You can intuitively customize the display position in the editor."
+msgstr "エディター上で直感的に表示位置をカスタマイズできます。"
+
+#: dist/admin/help.js:1
+msgid "The settings are reflected in real-time in the preview."
+msgstr "設定内容はプレビューにリアルタイムで反映されます。"
+
+#: dist/admin/help.js:1
+msgid ""
+"Although the pager block can be added anywhere, if you expect repeated use "
+"throughout the site, it is recommended to add it as \"Navigation\" or "
+"\"Pattern\", and configure it as a \"Template Part\" when editing the "
+"\"Template\"."
+msgstr ""
+"ページャーブロックは任意の位置に追加できますが、サイト全体での繰り返し使用が"
+"想定される場合、「ナビゲーション」か「パターン」として追加し、「テンプレー"
+"ト」編集時に「テンプレートパーツ」として設定することをおすすめします。"
+
+#: dist/admin/help.js:1
+msgid ""
+"In the preview display, the pager will appear on pages other than the post "
+"page (such as archive pages and fixed pages), but the pager will only be "
+"displayed on the post page (including custom posts)."
+msgstr ""
+"プレビュー表示では投稿ページ以外（アーカイブや固定ページ）にも表示されます"
+"が、実際のページャーは投稿ページ（カスタム投稿を含む）にだけ表示されます。"
+
+#: dist/admin/help.js:1
+msgid "Open the \"Post\" editing screen."
+msgstr "「投稿」の編集画面を開きます。"
+
+#: dist/admin/help.js:1
+msgid ""
+"Enter the shortcode in the following format where you want to use it.You can "
+"copy the shortcode to the clipboard using the Copy button."
+msgstr ""
+"ショートコードを利用したい場所に次の形式で入力します。Copyボタンでショート"
+"コードをクリップボードにコピーできます。"
+
+#: dist/admin/help.js:1
+msgid "To add the entire pager"
+msgstr "ページャー全体を追加する場合"
+
+#: dist/admin/help.js:1
+msgid "Copied!"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Copy"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "To add the release button for the filtering function"
+msgstr "絞り込み機能の解除ボタンを追加する場合"
+
+#: dist/admin/help.js:1
+msgid "To add a “Read the Oldest post” pagination link"
+msgstr "最も古い投稿を読むページネーションリンクを追加する場合"
+
+#: dist/admin/help.js:1
+msgid "To add a “Read the Prev post” pagination link"
+msgstr "前の記事を読むページネーションリンクを追加する場合"
+
+#: dist/admin/help.js:1
+msgid "To add a “Read the Next post” pagination link"
+msgstr "次の記事を読むページネーションリンクを追加する場合"
+
+#: dist/admin/help.js:1
+msgid "To add a “Read the latest post” pagination link"
+msgstr "最新の記事を読むページネーションリンクを追加する場合"
+
+#: dist/admin/help.js:1
+msgid ""
+"After entering the shortcode, you can use the preview feature in the post "
+"screen to see how it will actually be displayed. If there are no issues, "
+"click the \"Publish\" button or the \"Update\" button to publish it."
+msgstr ""
+"ショートコードを入力後、投稿画面の場合はプレビュー機能が利用できます。実際に"
+"どのように表示されるか確認して問題がなければ、「公開」ボタンまたは「更新」ボ"
+"タンをクリックして公開します。"
+
+#: dist/admin/help.js:1
+msgid ""
+"Shortcodes can also be registered as \"Text\" widgets in widget areas. Note "
+"that text widgets do not have a preview display. When you click the \"Save\" "
+"button, the settings are immediately reflected on the site."
+msgstr ""
+"ショートコードは「テキスト」ウィジェットとしてウィジェットエリアにも登録でき"
+"ます。テキストウィジェットにはプレビュー表示がありません。「保存」ボタンを押"
+"すと即座にサイトに設定が反映されますのでご注意ください。"
+
+#: dist/admin/help.js:1
+msgid ""
+"In the widget area, you can also use Classic Widgets and Custom Blocks. "
+"These are easier to add than shortcodes, so consider using them."
+msgstr ""
+"ウィジェットエリアではクラシックウィジェットやカスタムブロックもご利用いただ"
+"けます。ショートコードよりも簡単な手順で追加できますので、そちらの使用もご検"
+"討ください。"
+
+#: dist/admin/help.js:1
+msgid ""
+"There may be a conflict with the theme or plugins you are using. Disable the "
+"theme or other plugins to check for conflicts."
+msgstr ""
+"使用しているテーマやプラグインの競合が原因の場合があります。テーマや他のプラ"
+"グインを無効化して、競合を確認してください。"
+
+#: dist/admin/help.js:1
+msgid "Check for any spelling mistakes in the shortcode."
+msgstr "ショートコードのスペルミスがないか確認してください。"
+
+#: dist/admin/help.js:1
+msgid ""
+"If you have further questions or encounter any problems, please contact the "
+"developer."
+msgstr ""
+"さらに質問がある場合やトラブルが発生した場合は、開発者までお問い合わせくださ"
+"い。"
+
+#: dist/admin/help.js:1
+msgid "About This Plugin"
+msgstr "このプラグインについて"
+
+#: dist/admin/help.js:1
+msgid ""
+"For developer information and updates, please refer to the official website."
+msgstr "開発者情報やアップデート情報については、公式サイトを参照してください。"
+
+#: dist/admin/help.js:1
+msgid "Plugin Name:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Plugin URI:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Description:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Version:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Author:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Author URI:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "System Requirements"
+msgstr "動作環境"
+
+#: dist/admin/help.js:1
+msgid "WordPress Version:"
+msgstr "WordPressバージョン:"
+
+#: dist/admin/help.js:1
+msgid " or higher"
+msgstr "以上"
+
+#: dist/admin/help.js:1
+msgid "PHP Version:"
+msgstr "PHPバージョン:"
+
+#: dist/admin/help.js:1
+msgid "FAQ"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Q:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "Where can I check widget settings?"
+msgstr "ウィジェットの設定はどこで確認できますか？"
+
+#: dist/admin/help.js:1
+msgid "A:"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "You can configure the settings from the “Appearance” → “Widgets” menu."
+msgstr "「外観」→「ウィジェット」メニューから設定可能です。"
+
+#: dist/admin/help.js:1
+msgid "I don’t know how to customize a block theme."
+msgstr "ブロックテーマのカスタマイズ方法が分かりません。"
+
+#: dist/admin/help.js:1
+msgid ""
+"Detailed instructions for using the editor are not supported. Please check "
+"the WordPress official site editor support page for more information."
+msgstr ""
+"エディターの詳しい操作方法についてはサポート外となっております。WordPress公式"
+"のサイトエディターのサポートページをご確認ください。"
+
+#: dist/admin/help.js:1
+msgid "Can I customize shortcode options?"
+msgstr "ショートコードのオプションをカスタマイズできますか？"
+
+#: dist/admin/help.js:1
+msgid ""
+"There are currently no options for shortcodes. If you have requests, please "
+"contact the developer for consideration."
+msgstr ""
+"各ショートコードには現在オプションがありません。ご要望があれば追加を検討しま"
+"すので開発者までご連絡ください。"
+
+#: dist/admin/help.js:1
+msgid ""
+"I see the error message \"REST API is disabled. Please enable WordPress REST "
+"API.\" What should I do?"
+msgstr ""
+"エラーメッセージ「REST APIが無効です。WordPress REST APIを有効にしてくださ"
+"い。」が表示されましたがどうすればいいですか？"
+
+#: dist/admin/help.js:1
+msgid ""
+"Same Term Pager uses the REST API in the admin panel. Please enable REST API "
+"for the admin panel only or allow Same Term Pager to use the REST API."
+msgstr ""
+"「Same Term Pager」では管理画面にREST APIを使用しています。REST APIを管理画面"
+"でのみ有効にするか、Same Term PagerのREST APIの利用を許可してください。"
+
+#: dist/admin/help.js:1
+msgid "Getting Started"
+msgstr "はじめに"
+
+#: dist/admin/help.js:1
+msgid "Setting Menu"
+msgstr "設定メニュー"
+
+#: dist/admin/help.js:1
+msgid "Adding a Pager"
+msgstr "ページャーの追加方法"
+
+#: dist/admin/help.js:1
+msgid "Frequently Asked Questions"
+msgstr "よくある質問"
+
+#: dist/admin/help.js:1
+msgid "About this Plugin"
+msgstr "このプラグインについて"
+
+#: dist/blocks/smtrm-pager/index.js:1
+msgid "Oldest"
+msgstr "最初"
+
+#: dist/blocks/smtrm-pager/index.js:1
+msgid "Previous post title"
+msgstr "前の記事のタイトル"
+
+#: dist/blocks/smtrm-pager/index.js:1
+msgid "No image"
+msgstr ""
+
+#: dist/blocks/smtrm-pager/index.js:1
+msgid "Next post title"
+msgstr "次の記事のタイトル"
+
+#: dist/blocks/smtrm-pager/index.js:1
+msgid "Displaying posts filtered by Category: “Category Name”"
+msgstr "カテゴリー: 『カテゴリー名』内の投稿を絞り込み表示中"
+
+#: dist/blocks/smtrm-pager/block.json
+msgctxt "block title"
+msgid "Same Term Pager Block"
+msgstr ""
+
+#: dist/blocks/smtrm-pager/block.json
+msgctxt "block description"
+msgid "Block for Same Term Pager."
+msgstr "Same Term Pagerを表示するためのブロックです。"
+
+#~ msgid ""
+#~ "WP Same Term Pager plugin provides a pager function within specific terms."
+#~ msgstr ""
+#~ "Same Term Pagerプラグインは、特定のターム内でのページャー機能を提供しま"
+#~ "す。"
+
+#~ msgid "Read the Oldest post"
+#~ msgstr "最初の記事を読む"
+
+#~ msgid ""
+#~ "<span class=\"pc-none\">Read the&nbsp;</span><span>oldest</span><span "
+#~ "class=\"pc-none\">&nbsp;post</span>"
+#~ msgstr "最初<span class=\"pc-none\">の記事を読む</span>"
+
+#~ msgid "What is the recommended environment for this plugin?"
+#~ msgstr "このプラグインの動作環境は？"
+
+#~ msgid ""
+#~ "Recommended environment: WordPress version 5.8 or higher, PHP version 7.4 "
+#~ "or higher."
+#~ msgstr ""
+#~ "WordPressバージョン: 5.8以上、PHPバージョン: 7.4以上推奨しています。"
+
+#~ msgid ""
+#~ "With the \"oldest\" button, users can move to the oldest post, and with "
+#~ "the \"latest\" button, they can navigate to the latest post, all while "
+#~ "staying within the filtered term."
+#~ msgstr ""
+#~ "「最初」ボタンで投稿日時が一番古い記事へ、「最後」ボタンで投稿日時が一番新"
+#~ "しい記事へ、同じタームで絞り込んだ状態で移動することができます。"
+
+#~ msgid ""
+#~ "Audience: This manual is intended for users who manage their site using "
+#~ "the WordPress admin panel. For more detailed instructions, please refer "
+#~ "to the developer's website."
+#~ msgstr ""
+#~ "対象者：このマニュアルは、WordPressの管理画面を使用してサイトを管理する"
+#~ "ユーザーを対象としています。 詳しい使い方ついては製作者のサイトをご参照く"
+#~ "ださい。"
+
+#~ msgid "About the Settings Menu"
+#~ msgstr "設定メニューについて"
+
+#~ msgid ""
+#~ "This page explains the settings menu of the Same Term Pager plugin. By "
+#~ "using the settings menu, you can easily customize the plugin's settings "
+#~ "and enable or disable specific features. Additionally, you can adjust "
+#~ "additional features using the advanced settings."
+#~ msgstr ""
+#~ "このページでは、Same Term Pagerプラグインの設定メニューについて説明しま"
+#~ "す。 設定メニューを使用することで、Same Term Pagerプラグインの設定を簡単に"
+#~ "カスタマイズし、特定の機能を有効または無効にすることができます。また、詳細"
+#~ "設定を使って追加機能の調整を行うことができます。"
+
+#~ msgid "Special Note for the \"pc-none\" and \"sp-none"
+#~ msgstr "「pc-none」と「sp-none」に関する説明"
+
+#~ msgid "Read the last post"
+#~ msgstr "最後の記事を読む"
+
+#~ msgid "Read from the oldest post"
+#~ msgstr "最初の記事から読む"
+
+#~ msgid "Text for \"Read from the oldest post\""
+#~ msgstr "「最初の記事を読む」リンクに表示する文字列"
+
+#~ msgid "Plugin Name: WP Same Term Pager"
+#~ msgstr "プラグイン名: WP Same Term Pager"
+
+#~ msgid "Author: Emaki Sorano"
+#~ msgstr "開発者: Emaki Sorano"
+
+#~ msgid "How to Use Detailed Settings"
+#~ msgstr "詳細設定の使い方"
+
+#~ msgid "Saving and Applying Detailed Settings"
+#~ msgstr "詳細設定の保存と反映"
+
+#~ msgid "Detailed Explanation of Detailed Settings"
+#~ msgstr "詳細設定の詳細説明"
+
+#~ msgid ""
+#~ "Detailed settings include more advanced features compared to general "
+#~ "settings. In most basic WordPress themes, it is assumed that the pager "
+#~ "will function correctly with only general settings. However, depending on "
+#~ "your theme or customizations, the pager filtering feature may not work."
+#~ msgstr ""
+#~ "詳細設定には、一般設定より一歩踏み込んだ内容の機能が含まれています。基本的"
+#~ "なWordPressテーマの場合、一般設定のみでページャーが正常に動作する想定です"
+#~ "が、お使いのテーマやカスタマイズ内容によってページャーの絞り込み機能が動作"
+#~ "しない場合があります。"
+
+#~ msgid ""
+#~ "By using detailed settings, you can enable the pager filtering feature if "
+#~ "it does not work with general settings alone."
+#~ msgstr ""
+#~ "「詳細設定を行うことでページャーの絞り込み機能を有効にできる場合があります"
+#~ "ので一般設定のみでページャーの絞り込み機能が動作しない場合にご使用くださ"
+#~ "い。"
+
+#~ msgid "Select \"Detailed Settings\"."
+#~ msgstr "「詳細設定」を選択します。"

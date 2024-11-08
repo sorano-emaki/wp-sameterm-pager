@@ -31,9 +31,11 @@ class Smtrm_Widget_Area{
   }
   
   function insert_before_post() {
-  if(is_single()){
-    $snippets = $this->get_dynamic_sidebar('smtrm-pager-top');
-    echo $snippets;
+    if(is_single()){
+      $snippets = $this->get_dynamic_sidebar('smtrm-pager-top');
+      if (!empty($snippets)) {
+        echo $snippets;
+      }
     }
     else{
       return;
@@ -42,7 +44,9 @@ class Smtrm_Widget_Area{
   function insert_after_post() {
     if(is_single()){
     $snippets = $this->get_dynamic_sidebar('smtrm-pager-bottom');
-    echo $snippets;
+      if (!empty($snippets)) {
+        echo $snippets;
+      }
     }
     else{
       return;

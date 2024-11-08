@@ -1,6 +1,6 @@
 <?php
 if(!defined('ABSPATH')) { exit; }
-class SmtrmAdjacentPost{
+class Smtrm_Adjacent_Post{
     public static function smtrm_param_check(){
         $get_filter = isset($_GET['smtrm_filter']) ? intval($_GET['smtrm_filter']) : 0;
         $taxonomy = '';
@@ -57,7 +57,7 @@ class SmtrmAdjacentPost{
         }
     }
 }
-$smtrm_adj_post = new SmtrmAdjacentPost;
+$smtrm_adj_post = new Smtrm_Adjacent_Post;
 add_filter('get_next_post_where', array($smtrm_adj_post,'smtrm_post_where'), 10, 3);
 add_filter('get_next_post_join', array($smtrm_adj_post,'smtrm_post_join'), 10, 3);
 add_filter('get_previous_post_where', array($smtrm_adj_post,'smtrm_post_where'), 10, 3);

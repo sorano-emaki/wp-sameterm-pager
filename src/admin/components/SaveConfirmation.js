@@ -1,3 +1,5 @@
+//保存確認コンポーネント SaveConfirmation.js
+import { __ } from '@wordpress/i18n';  // WordPressの翻訳機能を使用
 import { 
     useEffect
 } from '@wordpress/element';
@@ -17,8 +19,7 @@ export const useSaveConfirmation = (hasChanges) => {
     }, [hasChanges]);
 
     const confirmSave = () => {
-        return window.confirm('本当に設定を保存しますか？');
+        return window.confirm( __('Do you really want to save the settings?', 'wp-sameterm-pager'));
     };
-
     return confirmSave;
 };

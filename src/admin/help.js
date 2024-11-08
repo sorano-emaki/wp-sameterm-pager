@@ -1,3 +1,5 @@
+import { useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';  // WordPressの翻訳機能を使用
 import {
     ToggleControl,
 } from '@wordpress/components';
@@ -5,158 +7,69 @@ import {
     render
 } from '@wordpress/element';
 import PageNavigation from './components/Navigation';
+import GettingStarted from './help/GettingStarted'; // Additional component // 追加のコンポーネント
+import SettingMenu from './help/SettingMenu'; // Additional component // 追加のコンポーネント
+import PagerAdditionManual from './help/PagerAdditionManual'; // Additional component // 追加のコンポーネント
+import PluginInfo from './help/PluginInfo'; // Additional component // 追加のコンポーネント
+import FrequentlyAskedQuestions from './help/FrequentlyAskedQuestions'; // Additional component // 追加のコンポーネント
 
 const HelpPage = () => {
+    const [activeTab, setActiveTab] = useState('GettingStarted'); // Tab state management // タブの状態管理
+
+    const renderContent = () => {
+        switch (activeTab) {
+            case 'GettingStarted':
+                return <GettingStarted />;
+            case 'settingMenu':
+                return <SettingMenu />;
+            case 'pagerAddition':
+                return <PagerAdditionManual />; // Content for adding a pager // ページャー追加方法のコンテンツ
+            case 'faq':
+                return <FrequentlyAskedQuestions />;
+            case 'pluginInfo':
+                return <PluginInfo />; // Content about the plugin // プラグインについてのコンテンツ
+            default:
+                return null;
+        }
+    };
+
     return (
         <div className="smtrm-admin-wrapper">
             <div className="admin-content">
-                <div class="help-content">
-                    <h1>Same Term Pagerプラグイン ヘルプページ</h1>
-
-                    <p>
-                        このヘルプページでは、Same Term Pagerプラグインの設定メニューについて説明します。
-                        設定メニューを使用することで、Same Term Pagerプラグインの設定を簡単にカスタマイズし、
-                        特定の機能を有効または無効にすることができます。また、詳細設定を使って追加機能の調整を行うことができます。
-                    </p>
-
-                    <p>
-                        対象者：このマニュアルは、WordPressの管理画面を使用してサイトを管理するユーザーを対象としています。
-                        詳しい使い方ついては製作者のサイトをご参照ください。
-                    </p>
-
-                    <div>
-                        <h2>目次</h2>
-                        <ol>
-                            <li><a href="#section1">設定メニューとは</a></li>
-                            <li>
-                                <a href="#section2">一般設定の使い方</a>
-                                <ol>
-                                    <li><a href="#section2-1">一般設定の保存と反映</a></li>
-                                    <li>
-                                        <a href="#section2-2">一般設定の詳細説明</a>
-                                        <ol>
-                                            <li><a href="#section2-2-1">投稿上下のページャー</a></li>
-                                        </ol>
-                                    </li>
-                                </ol>
-                            </li>
-                            <li>
-                                <a href="#section3">追加設定の使い方</a>
-                                <ol>
-                                    <li><a href="#section3-1">追加設定の保存と反映</a></li>
-                                    <li>
-                                        <a href="#section3-2">追加設定の詳細説明</a>
-                                        <ol>
-                                            <li><a href="#section3-2-1">アーカイブページ設定</a></li>
-                                        </ol>
-                                    </li>
-                                </ol>
-                            </li>
-                            <li><a href="#section4">ヘルプメニュー</a></li>
-                            <li><a href="#section5">注意事項とヒント</a></li>
-                        </ol>
-                    </div>
-
-                    <section>
-                        <h2 id="section1">設定メニューとは</h2>
-                        <p>
-                            設定メニューは、Same Term Pagerプラグインの設定ページを選択するためのメニューです。メニューの内容は管理者権限を持つユーザーにしか表示されませんが、サイトの動作や表示に関わる設定を行います。
-                        </p>
-                    </section>
-
-                    <section>
-                        <h2 id="section2">一般設定の使い方</h2>
-                        <p>
-                            「一般設定」では、サイト全体に影響を与える基本的な設定を行うことができます。ここで設定した内容は、ログインしていない訪問者を含んだすべてのユーザーに表示されるページや機能に反映されます。
-                        </p>
-                        <section>
-                            <h3 id="section2-1">一般設定の保存と反映</h3>
-                            <ol>
-                                <li>設定メニューから「一般設定」を選択します。</li>
-                                <li>各項目を変更します。</li>
-                                <li>画面右下に表示される「保存」ボタンをクリックします。</li>
-                                <li>確認ダイアログが表示されるので、保存する場合は「OK」をクリックします。</li>
-                                <li>変更がサイトに反映されます。</li>
-                            </ol>
-                            <p>
-                                保存されないと変更が反映されませんので、忘れずに保存するようにしましょう。
-                                設定の内容に変更がある場合は、画面移動・リロード時に確認ダイアログが表示されますが、「このページを離れる」をクリックすると変更内容が破棄されます。変更内容を保存したい場合は「キャンセル」をクリックして画面移動をキャンセルし、もう一度手順3からやり直してください。
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 id="section2-2">一般設定の詳細説明</h3>
-                            <h4 id="section2-2-1">投稿上下のページャー</h4>
-                            <ul>
-                                <li>投稿ページの上下にページャー（ページ移動のためのナビゲーション）を表示するかをボタンの切り替えで選択できます。ページャーは投稿ページ（カスタム投稿を含む）にのみ表示され、その他のページ（固定ページ・アーカイブページ・フロントページ等）では表示されません。</li>
-                                <li>切り替えボタンを有効にすると、投稿本文の上下にSame Term Pagerプラグインが作成したページャーが表示されます。以下のボタンは説明のための表示状態のサンプルです。</li>
-                                <ToggleControl
-                                    label="有効な状態"
-                                    checked
-                                />
-                                <ToggleControl
-                                    label="無効な状態"
-                                />
-                                <li>この設定はSame Term Pagerプラグインインストール時から有効になっているので、インストール後すぐにページャーの機能を確認できます。無効にしたい場合はボタンを無効側に切り替えて保存してください。</li>
-                                <li>WordPressのカテゴリーやタグや、ご自身で設定されたカスタムタクソノミーのターム（項目）で絞り込んだ状態で、簡単に前後の記事と最初と最後の記事に移動できるようになります。</li>
-                                <li>各種アーカイブページ（カテゴリー・タグ・カスタムタクソノミー）の記事一覧から移動した場合に、絞り込み機能が有効になります。サイトトップや他のナビゲーションリンクから移動した場合は絞り込まれず、投稿日時の前後で投稿を取得します。</li>
-                            </ul>
-                        </section>
-                    </section>
-                    <section>
-                        <h2 id="section3">追加設定の使い方</h2>
-                        <p>
-                            追加設定には、一般設定より一歩踏み込んだ内容の機能が含まれています。
-                            基本的なWordPressテーマの場合、一般設定のみでページャーが正常に動作する想定ですが、
-                            お使いのテーマやカスタマイズ内容によってページャーの絞り込み機能が動作しない場合があります。
-                            追加設定を行うことでページャーの絞り込み機能を有効にできる場合がありますので一般設定のみで動作しない場合にご使用ください。
-                        </p>
-                        <section>
-                            <h3 id="section3-1">追加設定の保存と反映</h3>
-                            <ol>
-                                <li>「追加設定」を選択します。</li>
-                                <li>各項目を変更します。</li>
-                                <li>画面右下に表示される「保存」ボタンをクリックします。</li>
-                                <li>確認ダイアログが表示されるので、保存する場合は「OK」をクリックします。</li>
-                                <li>変更がサイトに反映されます。</li>
-                            </ol>
-                        </section>
-
-                        <section>
-                            <h3 id="section3-2">追加設定の詳細説明</h3>
-                            <h4 id="section3-2-1">アーカイブページ設定</h4>
-                            <ul>
-                                <li>ページャーが動作しない場合、JavaScriptでURLパラメータを付与します。動作している場合は空欄のままでお使いください。</li>
-                                <li>アーカイブページに表示される各投稿のリンクのaタグに使用されているクラス名を半角ピリオド（.）に続けて記述します。</li>
-                                <li>クラス名は半角コンマ（,）を区切り文字にして複数指定可能です。</li>
-                                <li>クラス名以外のCSSセレクタも設定可能です。</li>
-                                <li>CSSセレクタに使用できない文字を入力した場合は保存することができません。</li>
-                            </ul>
-                        </section>
-                    </section>
-                    <section>
-                        <h2 id="section4">ヘルプメニュー</h2>
-                        <p>
-                        「ヘルプ」メニューでは、設定の操作に関する簡単なガイドや、サポート情報を確認できます。
-                        困ったときにはこのページを参照することで、操作方法やトラブルシューティングに役立つ情報を得られます。
-                        </p>
-                    </section>
-
-                    <section>
-                        <h2 id="section5">注意事項とヒント</h2>
-                        <ul>
-                            <li><strong>モバイル対応：</strong>画面が狭くなる（例：スマートフォン表示）場合、メニューが上部に移動し、横並びのタブ形式で表示されるように自動で調整されます。</li>
-                            <li><strong>トラブル時：</strong>設定を変更した後にサイトの表示に問題が生じた場合、直前に行った変更を元に戻すことで解決することが多いです。</li>
-                        </ul>
-                    </section>
+                {/* Tab navigation */}
+                {/* タブナビゲーション */}
+                <div className="tab-navigation">
+                    <button onClick={() => setActiveTab('GettingStarted')} className={activeTab === 'GettingStarted' ? 'active' : ''}>
+                        { __('Getting Started','wp-sameterm-pager') }
+                    </button>
+                    <button onClick={() => setActiveTab('settingMenu')} className={activeTab === 'settingMenu' ? 'active' : ''}>
+                        { __('Setting Menu','wp-sameterm-pager') }
+                    </button>
+                    <button onClick={() => setActiveTab('pagerAddition')} className={activeTab === 'pagerAddition' ? 'active' : ''}>
+                        { __('Adding a Pager', 'wp-sameterm-pager') }
+                    </button>
+                    <button onClick={() => setActiveTab('faq')} className={activeTab === 'faq' ? 'active' : ''}>
+                        { __('Frequently Asked Questions', 'wp-sameterm-pager') }
+                    </button>
+                    <button onClick={() => setActiveTab('pluginInfo')} className={activeTab === 'pluginInfo' ? 'active' : ''}>
+                        { __('About this Plugin', 'wp-sameterm-pager') }
+                    </button>
                 </div>
 
+                {/* Content display area */}
+                {/* コンテンツの表示エリア */}
+                <div className="tab-content">
+                    {renderContent()}
+                </div>
             </div>
+
+            {/* Right column (navigation) */}
             {/* 右カラム（ナビゲーション） */}
             <PageNavigation />
         </div>
     );
 };
 
+// Render the entry point
 // エントリーポイントにレンダリング
 render(<HelpPage />, document.getElementById('smtrm-pager-help'));

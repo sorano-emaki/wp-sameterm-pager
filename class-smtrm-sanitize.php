@@ -3,7 +3,7 @@ class Smtrm_Sanitize{
     // CSSセレクタ専用のカスタムサニタイズ関数
     function sanitize_css_selector( $input ) {
         // 許可するCSSセレクタパターン
-        $allowed_pattern = '/^[a-zA-Z0-9_\-#.,: \[\]="\'^$*|~>+]+$/';
+        $allowed_pattern = '/^[a-zA-Z0-9_\-#.,: \[\]="\'^$*|~>+%\/]+$/';
 
         // 空白トリミング
         $input = trim( $input );

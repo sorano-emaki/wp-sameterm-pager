@@ -2,27 +2,32 @@
 if(!defined('ABSPATH')) { exit; }
 class Smtrm_Get_Setting {
     private function get_setting($option_name) {
-        // return esc_attr(get_option($option_name),'');
         return htmlspecialchars(get_option($option_name,''),ENT_NOQUOTES );
     }
-
-    function entry_form_value() {
-        return $this->get_setting(Smtrm_Activation::SMTRM_ENTRY_FORM);
-    }
-
-    function select_box_value() {
-        return $this->get_setting(Smtrm_Activation::SMTRM_SELECT);
-    }
-
-    function radio_value() {
-        return $this->get_setting(Smtrm_Activation::SMTRM_RADIO);
-    }
-
     function pager_top() {
-        return $this->get_setting(Smtrm_Activation::SMTRM_TOP);
+        return $this->get_setting(Smtrm_Plugin_Activation::SMTRM_TOP);
     }
-
     function pager_bottom() {
-        return $this->get_setting(Smtrm_Activation::SMTRM_BOTTOM);
+        return $this->get_setting(Smtrm_Plugin_Activation::SMTRM_BOTTOM);
+    }
+    function ap_param_css_value() {
+        return $this->get_setting(Smtrm_Plugin_Activation::SMTRM_AP_PARAM_CSS);
+    }
+    function pager_oldest_text() {
+        return wp_kses_post(get_option(Smtrm_Plugin_Activation::SMTRM_OLDEST_POST,''));
+    }
+    function pager_latest_text() {
+        return wp_kses_post(get_option(Smtrm_Plugin_Activation::SMTRM_LATEST_POST,''));
+    }
+    public function get_block_specific_data($block_name) {
+        switch ($block_name) {
+            case 'smtrm/pager':
+                return [
+                    'userOldestText' => $this->pager_oldest_text(),
+                    'userLatestText' => $this->pager_latest_text(),
+                ];
+            default:
+                return [];
+        }
     }
 }

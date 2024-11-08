@@ -1,3 +1,4 @@
+/* 管理画面用スタイル admin.scss */
 .smtrm-admin-wrapper{
     display: flex;
     flex-direction: row;
@@ -7,22 +8,106 @@
     @media screen and (max-width: 834px){
         flex-direction: column-reverse;
     }
+    p,li,label{
+        font-size: 15px;
+        line-height: 2em;
+    }
+    h1, h2, h3, h4 {
+        color: #333; /* 基本の文字色 */
+        font-weight: bold; /* すべての見出しを太字 */
+        line-height: 1.2em;
+    }
+    
+    /* H1スタイル */
+    h1 {
+        font-size: 2.5em; /* 大きなサイズ */
+        color: #0073aa; /* メインの見出しは青 */
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+        border-bottom: 2px solid #0073aa; /* 下線を追加 */
+        padding-bottom: 0.3em;
+    }
+    
+    /* H2スタイル */
+    h2 {
+        font-size: 2em; /* H1より少し小さく */
+        color: #005177; /* H2は少し暗い青 */
+        margin-top: 0.4em;
+        margin-bottom: 0.4em;
+    }
+    
+    /* H3スタイル */
+    h3 {
+        font-size: 1.5em; /* 中くらいのサイズ */
+        color: #044563; 
+        margin-bottom: 0.3em;
+    }
+    
+    /* H4スタイル */
+    h4 {
+        font-size: 1.2em; /* 小さめのサイズ */
+        color: #333333; /* 黒に近い色 */
+        margin-top: 0.8em;
+        margin-bottom: 0.2em;
+        font-style: italic; /* 斜体にして目立たせる */
+    }
+
+    h5 {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #333;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #ccc; /* 下線 */
+    }
+
+    h6 {
+        font-size: 1em;
+        font-weight: bold;
+        color: #555;
+        margin-top: 15px;
+        margin-bottom: 5px;
+    }
+    
+    .tab-navigation {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .tab-navigation button {
+        padding: 10px 20px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+        cursor: pointer;
+    }
+    
+    .tab-navigation button.active {
+        background-color: #0073aa;
+        color: white;
+    }
+    
+    .tab-content {
+        margin-top: 20px;
+    }
 }
 .admin-content {
     flex: 3; /* 左カラム（メインコンテンツ） */
     padding: 20px;
+    padding-left: 0;
     position: relative;
     background-color: #f1f1f1;
     
     h1{
-        margin-bottom: 2em;
+        margin-bottom: 1em;
         line-height: 1em;
     }    
     .components-base-control {
         max-width: 400px;
-        margin-bottom: 20px;
+        margin: 20px;
     }
-    .components-button {
+    .save-button {
         position: absolute;
         bottom: 100px;
         right: 20px;
@@ -49,70 +134,11 @@
         border-left: 1px solid #ccc; /* カラム間の仕切り線 */
         min-height: calc(100vh - 32px);
         }
-    // padding: 20px;
-    // background-color: #f1f1f1;
-    // border-left: 1px solid #ddd;
-    // @media screen and (max-width: 834px){
-    //     text-align: right;
-    //     border-left: none;
-    //     border-bottom: 1px solid #ddd;
-    // }
     h3{
         padding-left: 10px;
     }
 }
 
-// .admin-sidebar ul {
-//     width: 98%;
-//     list-style: none;
-//     padding-left: 0;
-//     font-size: 1.4em;
-//     @media screen and (min-width: 835px){
-        
-//     }
-//     @media screen and (max-width: 834px){
-//         display: flex;
-//         flex-wrap: wrap;
-//         justify-content: flex-end;
-//         margin-bottom: 0;
-//     }
-
-// }
-
-// .admin-sidebar ul li {
-//     padding: 20px;
-//     padding-bottom: 16px;
-//     margin: 0;
-//     border: 1px #ddd solid;
-//     border-left: none;
-//     border-top-right-radius: 10px;
-//     background-color: #f0f0f1;
-
-//     @media screen and (max-width: 834px){
-//         margin-right: 10px;
-//         border-left: 1px #ddd solid;
-//         border-top-left-radius: 10px;
-//         border-bottom: none;
-//     }
-//     .active {
-//         pointer-events: none;
-//         color: inherit;
-        
-//     }
-// }
-// .admin-sidebar ul li:has(.active){
-//     border-bottom: 6px #007cba solid;
-// }
-
-// .admin-sidebar ul li a {
-//     text-decoration: none;
-//     font-weight: bold;
-//     color: #007cba;
-// }
-
-// .admin-sidebar ul li a:hover {
-//     text-decoration: underline;
-// }
 .smtrm-admin-loading{
     /* 管理画面全体を中央に配置するためのスタイル */
     display: flex;
@@ -124,7 +150,7 @@
     /* Spinnerのスタイル調整 */
     .custom-spinner {
         width: 100px;  /* スピナーの幅 */
-        height: 100x; /* スピナーの高さ */
+        height: 100px; /* スピナーの高さ */
         border-width: 4px; /* スピナーの円の太さ */
         border-color: #3498db; /* スピナーの色 (例えば青) */
         border-right-color: transparent; /* 回転を強調するために一部透明に */
@@ -173,7 +199,6 @@
     margin-left: -2px;
     color: #333;
 
-    // border-bottom: none;
     cursor: default;
     pointer-events: none;
     color: inherit;
@@ -205,19 +230,45 @@
         margin-left: 0;
     }
 }
-
-.help-content{
-    padding-right: 1em;
-    section{
-        padding: 1em;
-    }
+.smtrm-toc{
+    width: 80%;
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    padding-bottom: 10px;
+    max-width: 800px;
+    border: 2px solid #ccc;
+    position: relative;
+    background-color: #f0f0f1;
     ol{
         counter-reset: cnt;
         list-style: none;
+        text-align: left;
     }
     ol li::before {
         counter-increment: cnt;
         content: counters(cnt, ".") ". ";
+    }
+    a{
+        text-decoration: none;
+        font-weight: bold;
+    }
+    h2 {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: inherit;
+        padding: 0 20px;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+}
+.help-content{
+    padding-right: 1em;
+    section{
+        margin: 2em 1em;
     }
     ul{
         padding-left: 2em;
@@ -225,7 +276,6 @@
             list-style-type: disc;
         }
     }
-
     h1 {
         counter-reset: chapter; /* h1 で章番号のカウンタをリセット */
     }
@@ -241,6 +291,7 @@
 
     h3[id^="section"] {
         counter-increment: subchapter; /* サブ章番号をカウントアップ */
+        counter-reset: sections;
     }
 
     h3[id^="section"]::before {
@@ -248,10 +299,129 @@
     }
 
     h4[id^="section"] {
-        counter-increment: section; /* h4のカウントアップ */
+        counter-increment: sections; /* h4のカウントアップ */
     }
 
     h4[id^="section"]::before {
-        content: "(" counter(section) ") "; /* h4のカウンタ表示 */
+        content: "(" counter(sections) ") "; /* h4のカウンタ表示 */
     }
+    .example {
+        width: 100%;
+        margin: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        ul{
+            li{
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                .line {
+                    flex-grow: 1;
+                    min-width: 1em;
+                    border-top: 1px dashed gray;
+                    margin: auto 0.5em;
+                    @media screen and (max-width: 834px){
+                        margin: auto 0;
+                    }
+
+                }
+                @media screen and (max-width: 834px){
+                    flex-direction: column;
+                    border: 2px solid gray;
+                    margin: 1em 0;
+                }
+            }
+        }
+        
+    }
+    
+    li{
+        margin-bottom: 0.5em;
+    }
+    .copy-container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        @media screen and (max-width: 834px){
+            justify-content: space-between;
+        }
+    }
+    
+    .copy-button {
+        padding: 4px 8px;
+        font-size: 0.8em;
+    }
+}
+.smtrm-info table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1rem;
+    background-color: #f9f9f9; /* テーブル全体の背景色を少し明るいグレーに設定 */
+    border: 1px solid #ddd;
+}
+
+.smtrm-info th,
+.smtrm-info td {
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid #ddd; /* 各行の区切り線を追加 */
+}
+
+.smtrm-info th {
+    background-color: #e7eff9; /* 項目名セルの背景色を淡いブルーに設定 */
+    font-weight: bold;
+    color: #333; /* 文字色を濃いグレーに */
+    width: 25%;
+    border-right: 2px solid #c8d6e5; /* セル区切りを少し濃いブルーで設定 */
+}
+
+.smtrm-info td {
+    background-color: #fff; /* データセルの背景色を白に設定 */
+    color: #333;
+}
+
+.smtrm-info a {
+    color: #0073aa; /* リンクの色をWordPress標準のリンクカラーに */
+    text-decoration: none;
+}
+
+.smtrm-info a:hover {
+    text-decoration: underline;
+}
+
+.smtrm-system ul li {
+    padding: 5px 0;
+    font-weight: bold;
+}
+.faq-list {
+    list-style: none;
+    padding: 0;
+}
+
+.faq-list li {
+    margin-bottom: 1.5em;
+}
+
+.faq-list .question {
+    background-color: #e9f1f5; /* 質問の背景色 */
+    padding: 0.5em 1em;
+    font-weight: bold;
+    border-left: 4px solid #0073aa; /* 質問の左の強調ライン */
+    border-radius: 4px;
+}
+
+.faq-list .answer {
+    padding-left: 1.5em;
+    color: #333;
+    margin-top: 0.5em;
+}
+ul.faq-list li strong {
+    display: inline-block;
+    font-weight: bold;
+    color: #2a76b5;
+    margin-right: 0.5em;
 }

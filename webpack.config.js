@@ -22,7 +22,7 @@ const blockEntries = fs.readdirSync(blocksDir).reduce((entries, dir) => {
 // 管理画面のエントリーポイント
 const adminEntry = {
     'admin/admin': './src/admin/admin.js',       // メイン管理画面
-    'admin/additional': './src/admin/additional.js', // 追加設定
+    'admin/advanced': './src/admin/advanced.js', // 追加設定
     'admin/help': './src/admin/help.js',         // 解説ページ
 };
 
