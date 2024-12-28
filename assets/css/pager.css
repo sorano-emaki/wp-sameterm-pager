@@ -20,7 +20,7 @@
   display: inline-block;
 }
 /* ページャー全体のラッパー */
-.same-term-pager-wrapper {
+.same-term-wrapper {
   display: flex;
   flex-direction: column;
   container-type:inline-size;
@@ -31,10 +31,15 @@
 /* ページャー本体 */
 .same-term-pager {
   width: 100%;
-  margin: 24px 0 0 0;
+  margin: 1em 0;
+  padding: 0 4px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.article .same-term-pager,
+.entry-content .same-term-pager{
+  padding: 0;
 }
 .same-term-pager .same-term-nav-link {
   text-decoration: none;
@@ -63,56 +68,86 @@
 }
 
 /* 各種アイコン */
-.double-left::after {
+.same-term-icon.double-left::after {
   display: block;
   content: "\f340";
   text-align:start;
   transform: scale(0.9);
+  margin-left: 2px;
 }
-.arrow-left::after {
+.same-term-icon.arrow-left::after {
   display: block;
   content: "\f341";
   text-align: start;
 }
-.arrow-right::after {
+.same-term-icon.arrow-right::after {
   display: block;
   content: "\f345";
   text-align: end;
 }
-.double-right::after {
+.same-term-icon.double-right::after {
   display: block;
   content: "\f344";
   text-align: end;
   transform: scale(0.9);
+  margin-right: 2px;
 }
-.category-icon::after {
+.same-term-icon.category-icon::after {
   content: "\f318";
   padding: 0 4px;
 }
-.tag-icon::after {
+.same-term-icon.tag-icon::after {
   content: "\f323";
   padding: 0 4px;
 }
-.cancel-icon {
+.release-button .cancel-icon {
   padding: 0;
 }
-.cancel-icon::after {
+.release-button .cancel-icon::after {
   display: block;
   font-family: "dashicons";
+  font-size: inherit;
   content: "\f335";
   color: inherit;
   padding: 0 1px 0 0; 
   margin: auto;
 }
 /* 解除ボタン */
-a.release-button{
-  background-color: #333333;
+.release-button{
+  display: block;
+  background-color: #666666;
   color: white;
   font-size: 12px;
-  padding: 0 3px;
   border-radius: 2px;
-  display: inline-flex;
+}
+.release-button a{
+  display: flex;
   align-items: center;
+  background-color: inherit;
+  color: inherit;
+  font-size: inherit;
+  border-radius: inherit;
+  padding: 0 3px;
+}
+.release-button a:link{
+  background-color: inherit;
+  color: inherit;
+  border-radius: inherit;
+}
+.release-button a:visited{
+  background-color: inherit;
+  color: inherit;
+  border-radius: inherit;
+}
+.release-button a:hover{
+  background-color: inherit;
+  color: inherit;
+  border-radius: inherit;
+}
+.release-button a:active{
+  background-color: inherit;
+  color: inherit;
+  border-radius: inherit;
 }
 .same-term-pager .same-term-nav-link figure {
   min-width: 120px;
@@ -134,8 +169,8 @@ a.release-button{
 .same-term-pager .next-post-title {
   padding-right: 8px;
 }
-.prev-post-title,
-.next-post-title {
+.same-term-pager .prev-post-title,
+.same-term-pager .next-post-title {
   display: -webkit-box;
   overflow: hidden;
   line-clamp: 3;
@@ -147,11 +182,13 @@ a.release-button{
   width: 12%;
   min-width: 10%;
   justify-content: start;
+  padding: 1em 0;
 }
 .same-term-pager .latest-post {
   width: 12%;
   min-width: 10%;
   justify-content: end;
+  padding: 1em 0;
 }
 /* ページャーのフィルターエリア */
 .pager-filter {
@@ -241,12 +278,6 @@ a.release-button{
   padding: 0;
   text-align: end;
 }
-.same-term-part .double-left::after {
-  margin-left: 2px;
-}
-.same-term-part .double-right::after {
-  margin-right: 2px;
-}
 /* コンテナクエリ600px以下 */
 @container pager (max-width: 600px) {
   .same-term-pager {
@@ -275,11 +306,13 @@ a.release-button{
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: flex-end;
+    padding: 0 4px;
+
   }
-  .pager-filter small {
-    display: block;
+  .same-term-message {
     width: 100%;
     text-align: left;
+    flex: 1;
   }
   .same-term-pager .pc-none,
   .same-term-part .pc-none {
@@ -288,12 +321,6 @@ a.release-button{
   .same-term-pager .sp-none,
   .same-term-part .sp-none {
     display: none;
-  }
-  .same-term-pager .double-left::after {
-    margin-left: 2px;
-  }
-  .same-term-pager .double-right::after {
-    margin-right: 2px;
   }
 }
 /*834px以下*/
@@ -308,13 +335,10 @@ a.release-button{
   }
   .same-term-pager {
     flex-wrap: wrap;
-    margin: 0 0 1em 0;
   }
   .same-term-pager .same-term-nav-link {
-    padding: 0;
     margin: 0;
     line-height: 1;
-    font-size: 0.6em;
 }
   .same-term-pager .oldest-post {
     width: 100%;
@@ -323,11 +347,11 @@ a.release-button{
   }
   .same-term-pager .prev-post {
     flex: 1;
-    padding-left: 0;
+    padding: 0;
   }
   .same-term-pager .next-post {
     flex: 1;
-    padding-right: 0;
+    padding: 0;
   }
   .same-term-pager .latest-post {
     width: 100%;

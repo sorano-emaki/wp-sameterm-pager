@@ -6,7 +6,7 @@ export const useApiCheck = () => {
     const [isApiError, setIsApiError] = useState(false);
 
     useEffect(() => {
-        apiFetch({ path: '/wp/v2/settings' })
+        apiFetch({ path: '/smtrm/v1/settings' })
             .then(() => {
                 setIsApiError(false);
             })

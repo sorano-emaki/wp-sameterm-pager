@@ -25,5 +25,3 @@ languages/*.po~
 .vscode/
 
 # その他
-0.9.*/
-update_versions.sh

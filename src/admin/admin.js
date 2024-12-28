@@ -1,7 +1,8 @@
 import './admin.scss';
-
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 import { 
-    render,
+    // render,
     useState,
     useEffect
 } from '@wordpress/element';
@@ -17,6 +18,10 @@ import apiFetch from '@wordpress/api-fetch';
 import PageNavigation from './components/Navigation';  // Common navigation import 共通ナビゲーションのインポート
 import { useSaveConfirmation } from './components/SaveConfirmation';
 import { useApiCheck } from './components/ApiCheck';
+import { 
+    ErrorBoundary,
+} from 'react-error-boundary';
+import ErrorFallback from './components/ErrorFallback';
 
 const Admin = () => {
 
@@ -27,8 +32,8 @@ const Admin = () => {
     const [hasChanges, setHasChanges] = useState(false);    // Flag to indicate if there are changes 変更があったかどうかのフラグ
     const isApiError = useApiCheck();
     const confirmSave = useSaveConfirmation(hasChanges);
-    const [showPagerTop, setShowPagerTop] = useState(Boolean(smtrmPagerAdmin?.top));
-    const [showPagerBtm, setShowPagerBtm] = useState(Boolean(smtrmPagerAdmin?.bottom));
+    const [showPagerTop, setShowPagerTop] = useState(Number(smtrmPagerAdmin?.top));
+    const [showPagerBtm, setShowPagerBtm] = useState(Number(smtrmPagerAdmin?.bottom));
     const [latestPostText, setLatestPostText] = useState(smtrmPagerAdmin?.latestText || '');
     const [oldestPostText, setOldestPostText] = useState(smtrmPagerAdmin?.oldestText || '');
 
@@ -41,19 +46,21 @@ const Admin = () => {
         setIsSaving(true);
         setStatusMessage(null);
 
+        const data = {
+            'smtrm_pager_top': showPagerTop ? 1 : 0,
+            'smtrm_pager_bottom': showPagerBtm ? 1 : 0,
+            'smtrm_latest_post_text': latestPostText ?? '',
+            'smtrm_oldest_post_text': oldestPostText ?? '',
+        };
+
         try {
             const response = await apiFetch({
-                path: '/wp/v2/settings',
+                path: '/smtrm/v1/settings',
                 method: 'POST',
-                data: {
-                    'smtrm_pager_top': showPagerTop,
-                    'smtrm_pager_bottom': showPagerBtm,
-                    'smtrm_latest_post_text': latestPostText,
-                    'smtrm_oldest_post_text': oldestPostText,
-                },
+                data,
                 headers: {
                     'X-WP-Nonce': smtrmPagerAdmin.nonce // Use nonce nonceを使用
-                }
+                },
             });
 
             setStatusMessage({ type: 'success', text: __('Settings have been saved!', 'wp-sameterm-pager') });
@@ -73,6 +80,9 @@ const Admin = () => {
     };
 
     return (
+        <ErrorBoundary
+            FallbackComponent={ErrorFallback} // エラーが発生した際のフォールバックコンポーネント
+        >
         <div className="smtrm-admin-wrapper">
             <div className="admin-content">
                 <h1>{ __('Same Term Pager Plugin General Settings Page', 'wp-sameterm-pager') }</h1>
@@ -89,6 +99,7 @@ const Admin = () => {
                 {isApiError && (
                     <Notice status="error" isDismissible={false}>
                         <p>{ __('REST API is disabled. Please enable WordPress REST API.', 'wp-sameterm-pager') }</p>
+                        <a href="admin.php?page=wp_sameterm_pager&legacy=1">  {__('Use the Legacy Settings','wp-sameterm-pager') }</a>
                     </Notice>
                 )}
                 <h2>{ __('General Settings', 'wp-sameterm-pager') }</h2>
@@ -144,7 +155,7 @@ const Admin = () => {
                 >
                     {isSaving ? (
                         <>
-                            <Spinner /> { __('Saving...', 'wp-sameterm-pager') }
+                            <Spinner /> { __('Saving…', 'wp-sameterm-pager') }
                         </>
                     ) : (
                         __('Save', 'wp-sameterm-pager')
@@ -154,11 +165,14 @@ const Admin = () => {
             {/* Right column (Navigation) 右カラム（ナビゲーション） */}
             <PageNavigation />
         </div>
+        </ErrorBoundary>
     );
 };
 
 // Render the Admin component to the root DOM AdminコンポーネントをルートDOMにレンダリング
-render(
-    <Admin />,
-    document.getElementById('smtrm-pager-admin')
-);
+// render(
+//     <Admin />,
+//     document.getElementById('smtrm-pager-admin')
+// );
+const root = createRoot(document.getElementById('smtrm-pager-admin'));
+root.render(<Admin />);

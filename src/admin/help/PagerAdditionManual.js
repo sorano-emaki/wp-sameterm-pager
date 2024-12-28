@@ -1,10 +1,18 @@
 import { __ } from '@wordpress/i18n';  // WordPressの翻訳機能を使用
 import { Button } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 
 const PagerAdditionManual = () => {
     const [copiedText, setCopiedText] = useState(null);
+    // ボタンの表示状態を管理するためのstateを作成
+    const [isClipboardSupported, setIsClipboardSupported] = useState(true);
 
+    useEffect(() => {
+        // `navigator.clipboard`が利用可能かどうかをチェック
+        if (!navigator.clipboard || !navigator.clipboard.writeText) {
+            setIsClipboardSupported(false); // 利用できない場合は非表示に設定
+        }
+    }, []);
     const handleCopy = (text) => {
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(text).then(() => {
@@ -13,21 +21,22 @@ const PagerAdditionManual = () => {
             }).catch((error) => {
                 console.error("Copy failed", error);
             });
-        } else {
-            // Fallback: `execCommand` for unsupported environments
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            document.body.appendChild(textArea);
-            textArea.select();
-            try {
-                document.execCommand("copy");
-                setCopiedText(text);
-                setTimeout(() => setCopiedText(null), 2000);
-            } catch (error) {
-                console.error("Fallback copy failed", error);
-            }
-            document.body.removeChild(textArea);
         }
+        //  else {
+        //     // Fallback: `execCommand` for unsupported environments
+        //     const textArea = document.createElement("textarea");
+        //     textArea.value = text;
+        //     document.body.appendChild(textArea);
+        //     textArea.select();
+        //     try {
+        //         document.execCommand("copy");
+        //         setCopiedText(text);
+        //         setTimeout(() => setCopiedText(null), 2000);
+        //     } catch (error) {
+        //         console.error("Fallback copy failed", error);
+        //     }
+        //     document.body.removeChild(textArea);
+        // }
     };
 
     return (
@@ -113,7 +122,9 @@ const PagerAdditionManual = () => {
                 <h3 id="section3-1">{ __('Steps to Use Shortcodes', 'wp-sameterm-pager') }</h3>
                 <ol>
                     <li>{ __('Open the "Post" editing screen.', 'wp-sameterm-pager') }</li>
+                    {isClipboardSupported && (
                     <li>{ __('Enter the shortcode in the following format where you want to use it.You can copy the shortcode to the clipboard using the Copy button.', 'wp-sameterm-pager') }</li>
+                    )}
                 </ol>
                 <div className="example">
                     <ul>
@@ -122,6 +133,7 @@ const PagerAdditionManual = () => {
                             <span className="line"></span>
                             <div className="copy-container">
                                 <code>[sameterm_pager]</code>
+                                {isClipboardSupported && (
                                 <Button
                                     isPrimary
                                     onClick={() => handleCopy('[sameterm_pager]')}
@@ -129,6 +141,7 @@ const PagerAdditionManual = () => {
                                 >
                                     {copiedText === '[sameterm_pager]' ? __('Copied!', 'wp-sameterm-pager') : __('Copy', 'wp-sameterm-pager')}
                                 </Button>
+                                )}
                             </div>
                         </li>
                         <li>
@@ -136,6 +149,7 @@ const PagerAdditionManual = () => {
                             <span className="line"></span>
                             <div className="copy-container">
                                 <code>[sameterm_release]</code>
+                                {isClipboardSupported && (
                                 <Button
                                     isPrimary
                                     onClick={() => handleCopy('[sameterm_release]')}
@@ -143,6 +157,7 @@ const PagerAdditionManual = () => {
                                 >
                                     {copiedText === '[sameterm_release]' ? __('Copied!', 'wp-sameterm-pager') : __('Copy', 'wp-sameterm-pager')}
                                 </Button>
+                                )}
                             </div>
                         </li>
                         <li>
@@ -150,6 +165,7 @@ const PagerAdditionManual = () => {
                             <span className="line"></span>
                             <div className="copy-container">
                                 <code>[sameterm_oldest]</code>
+                                {isClipboardSupported && (
                                 <Button
                                     isPrimary
                                     onClick={() => handleCopy('[sameterm_oldest]')}
@@ -157,6 +173,7 @@ const PagerAdditionManual = () => {
                                 >
                                     {copiedText === '[sameterm_oldest]' ? __('Copied!', 'wp-sameterm-pager') : __('Copy', 'wp-sameterm-pager')}
                                 </Button>
+                                )}
                             </div>
                         </li>
                         <li>
@@ -164,6 +181,7 @@ const PagerAdditionManual = () => {
                             <span className="line"></span>
                             <div className="copy-container">
                                 <code>[sameterm_prev]</code>
+                                {isClipboardSupported && (
                                 <Button
                                     isPrimary
                                     onClick={() => handleCopy('[sameterm_prev]')}
@@ -171,6 +189,7 @@ const PagerAdditionManual = () => {
                                 >
                                     {copiedText === '[sameterm_prev]' ? __('Copied!', 'wp-sameterm-pager') : __('Copy', 'wp-sameterm-pager')}
                                 </Button>
+                                )}
                             </div>
                             
                         </li>
@@ -179,6 +198,7 @@ const PagerAdditionManual = () => {
                             <span className="line"></span>
                             <div className="copy-container">
                                 <code>[sameterm_next]</code>
+                                {isClipboardSupported && (
                                 <Button
                                     isPrimary
                                     onClick={() => handleCopy('[sameterm_next]')}
@@ -186,6 +206,7 @@ const PagerAdditionManual = () => {
                                 >
                                     {copiedText === '[sameterm_next]' ? __('Copied!', 'wp-sameterm-pager') : __('Copy', 'wp-sameterm-pager')}
                                 </Button>
+                                )}
                             </div>
                             
                         </li>
@@ -194,6 +215,7 @@ const PagerAdditionManual = () => {
                             <span className="line"></span>
                             <div className="copy-container">
                                 <code>[sameterm_latest]</code>
+                                {isClipboardSupported && (
                                 <Button
                                     isPrimary
                                     onClick={() => handleCopy('[sameterm_latest]')}
@@ -201,6 +223,7 @@ const PagerAdditionManual = () => {
                                 >
                                     {copiedText === '[sameterm_latest]' ? __('Copied!', 'wp-sameterm-pager') : __('Copy', 'wp-sameterm-pager')}
                                 </Button>
+                                )}
                             </div>
                         </li>
                     </ul>

@@ -29,7 +29,7 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 export default function Edit() {
-	const imageDirectoryUrl = smtrmCustomBlockData.pluginDirectoryUrl + 'images/';
+	const imageDirectoryUrl = smtrmCustomBlockData.pluginDirectoryUrl + 'assets/images/';
     let oldestPostText = sprintf(
         '<span class="pc-none">%s</span><span class="sp-none">%s</span>',
         __('Read the oldest post', 'wp-sameterm-pager'),
@@ -52,7 +52,7 @@ export default function Edit() {
     }
 	return (
 		<div { ...useBlockProps() }>
-            <div className="same-term-pager-wrapper">
+            <div className="same-term-wrapper">
                 <nav className="same-term-pager cf">
                     <a href="#" className="oldest-post same-term-nav-link">
                         <div className="double-left same-term-icon" aria-hidden="true"></div>
@@ -92,8 +92,8 @@ export default function Edit() {
                             <span>{__('Displaying posts filtered by Category: “Category Name”', 'wp-sameterm-pager')}</span>
                         </div>
                     </div>
-                    <div>
-                        <a href="#" className="release-button">
+                    <div className="release-button">
+                        <a href="#">
                             <span className="cancel-icon"></span>
                             <span>{__('Release', 'wp-sameterm-pager')}</span>
                         </a>

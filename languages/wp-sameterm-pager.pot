@@ -2,28 +2,27 @@
 # This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Same Term Pager 0.9.17\n"
+"Project-Id-Version: WP Same Term Pager 0.9.18\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-sameterm-pager\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-08T07:51:23+00:00\n"
+"POT-Creation-Date: 2024-12-16T02:52:53+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: wp-sameterm-pager\n"
 
 #. Plugin Name of the plugin
 #: wp-sameterm-pager.php
-#: class-smtrm-widget.php:14
+#: includes/class-smtrm-widget.php:27
 msgid "WP Same Term Pager"
 msgstr ""
 
 #. Plugin URI of the plugin
-#. Author URI of the plugin
 #: wp-sameterm-pager.php
-msgid "https://shokizerokara.com/"
+msgid "https://github.com/sorano-emaki/wp-sameterm-pager"
 msgstr ""
 
 #. Description of the plugin
@@ -36,61 +35,175 @@ msgstr ""
 msgid "Emaki Sorano"
 msgstr ""
 
-#: class-smtrm-admin-menu.php:10
-#: class-smtrm-admin-menu.php:11
+#. Author URI of the plugin
+#: wp-sameterm-pager.php
+msgid "https://shokizerokara.com/"
+msgstr ""
+
+#: includes/class-smtrm-admin-menu.php:21
+#: includes/class-smtrm-admin-menu.php:22
 msgid "Same Term Pager Settings"
 msgstr ""
 
-#: class-smtrm-admin-menu.php:21
-#: class-smtrm-admin-menu.php:22
+#: includes/class-smtrm-admin-menu.php:32
+#: includes/class-smtrm-admin-menu.php:33
+#: includes/class-smtrm-legacy-menu.php:66
 #: dist/admin/admin.js:1
 #: dist/admin/advanced.js:1
 #: dist/admin/help.js:1
 msgid "Advanced Settings"
 msgstr ""
 
-#: class-smtrm-admin-menu.php:31
-#: class-smtrm-admin-menu.php:32
+#: includes/class-smtrm-admin-menu.php:42
+#: includes/class-smtrm-admin-menu.php:43
 #: dist/admin/admin.js:1
 #: dist/admin/advanced.js:1
 #: dist/admin/help.js:1
 msgid "Help"
 msgstr ""
 
-#: class-smtrm-admin-menu.php:114
+#: includes/class-smtrm-admin-menu.php:171
+msgid "Your browser does not support modern features required for this page."
+msgstr ""
+
+#: includes/class-smtrm-admin-menu.php:172
+msgid "Please use the Legacy Settings Page instead."
+msgstr ""
+
+#: includes/class-smtrm-admin-menu.php:209
 #: dist/blocks/smtrm-pager/index.js:1
 msgid "Read the oldest post"
 msgstr ""
 
-#: class-smtrm-admin-menu.php:115
+#: includes/class-smtrm-admin-menu.php:210
 #: dist/blocks/smtrm-pager/index.js:1
 msgid "Read the latest post"
 msgstr ""
 
-#: class-smtrm-pager.php:68
+#: includes/class-smtrm-legacy-menu.php:30
+#: includes/class-smtrm-legacy-menu.php:31
+#: includes/class-smtrm-legacy-menu.php:64
+msgid "Same Term Pager Legacy Settings"
+msgstr ""
+
+#: includes/class-smtrm-legacy-menu.php:65
+#: dist/admin/admin.js:1
+#: dist/admin/advanced.js:1
+#: dist/admin/help.js:1
+msgid "General Settings"
+msgstr ""
+
+#: includes/class-smtrm-legacy-menu.php:68
+#: dist/admin/admin.js:1
+#: dist/admin/help.js:1
+msgid "Pager Above and Below Posts"
+msgstr ""
+
+#: includes/class-smtrm-legacy-menu.php:69
+#: dist/admin/admin.js:1
+msgid "Display pager above the post"
+msgstr ""
+
+#: includes/class-smtrm-legacy-menu.php:70
+#: dist/admin/admin.js:1
+msgid "Display pager below the post"
+msgstr ""
+
+#: includes/class-smtrm-legacy-menu.php:72
+#: dist/admin/admin.js:1
+#: dist/admin/help.js:1
+msgid "Text for \"Read the oldest post\""
+msgstr ""
+
+#: includes/class-smtrm-legacy-menu.php:73
+#: dist/admin/admin.js:1
+#: dist/admin/help.js:1
+msgid "Text for \"Read the latest post\""
+msgstr ""
+
+#: includes/class-smtrm-legacy-menu.php:75
+#: dist/admin/advanced.js:1
+msgid "Archive Page Setting"
+msgstr ""
+
+#: includes/class-smtrm-legacy-menu.php:76
+#: dist/admin/advanced.js:1
+msgid "CSS selectors to use if the filter function is not working (multiple selectors can be separated by commas)"
+msgstr ""
+
+#: includes/class-smtrm-legacy-menu.php:78
+#: dist/admin/admin.js:1
+#: dist/admin/advanced.js:1
+msgid "Save"
+msgstr ""
+
+#: includes/class-smtrm-legacy-menu.php:82
+msgid "Your current browser environment does not support the modern settings interface. You are now viewing the legacy settings page for compatibility. We recommend switching to a supported browser for the best experience."
+msgstr ""
+
+#: includes/class-smtrm-legacy-menu.php:85
+msgid "Your current WordPress version is below the recommended version (6.6). For the best experience, please update WordPress to the latest version. You are currently viewing the legacy settings page for compatibility."
+msgstr ""
+
+#: includes/class-smtrm-legacy-menu.php:110
+msgid "Failed security check."
+msgstr ""
+
+#: includes/class-smtrm-legacy-menu.php:117
+#: dist/admin/admin.js:1
+#: dist/admin/advanced.js:1
+msgid "Settings have been saved!"
+msgstr ""
+
+#: includes/class-smtrm-pager.php:96
 msgid "<span class=\"pc-none\">Read the oldest post</span><span class=\"sp-none\">Oldest</span>"
 msgstr ""
 
-#: class-smtrm-pager.php:120
+#: includes/class-smtrm-pager.php:178
 msgid "<span class=\"pc-none\">Read the latest post</span><span class=\"sp-none\">Latest</span>"
 msgstr ""
 
 #. Translators: 1: Taxonomy name (e.g., Category), 2: Term name (e.g., Technology)
-#: class-smtrm-pager.php:158
+#: includes/class-smtrm-pager.php:234
 msgid "Displaying posts filtered by %1$s: “%2$s”"
 msgstr ""
 
-#: class-smtrm-pager.php:162
+#: includes/class-smtrm-pager.php:238
 #: dist/blocks/smtrm-pager/index.js:1
 msgid "Release"
 msgstr ""
 
-#: class-smtrm-widget.php:16
+#: includes/class-smtrm-plugin-setup.php:86
+msgid "Settings"
+msgstr ""
+
+#: includes/class-smtrm-settings-api-handler.php:43
+msgid "Missing required parameters."
+msgstr ""
+
+#: includes/class-smtrm-settings-api-handler.php:54
+msgid "Settings updated successfully."
+msgstr ""
+
+#: includes/class-smtrm-settings-api-handler.php:80
+msgid "REST API endpoint is accessible."
+msgstr ""
+
+#: includes/class-smtrm-widget.php:29
 msgid "Display a pager on posts that can be filtered by category, tags or taxonomy."
 msgstr ""
 
-#: class-smtrm-widget.php:40
+#: includes/class-smtrm-widget.php:59
 msgid "An error occurred while displaying the pager."
+msgstr ""
+
+#. Translators: %1$s: Minimum WordPress version, %2$s: Minimum PHP version
+#: wp-sameterm-pager.php:61
+msgid "This plugin requires at least WordPress %1$s and PHP %2$s to function properly."
+msgstr ""
+
+#: wp-sameterm-pager.php:65
+msgid "Plugin Activation Error"
 msgstr ""
 
 #: dist/admin/admin.js:1
@@ -102,7 +215,19 @@ msgstr ""
 #: dist/admin/admin.js:1
 #: dist/admin/advanced.js:1
 #: dist/admin/help.js:1
-msgid "General Settings"
+msgid "An error occurred while loading the page."
+msgstr ""
+
+#: dist/admin/admin.js:1
+#: dist/admin/advanced.js:1
+#: dist/admin/help.js:1
+msgid "Please use the legacy settings page instead."
+msgstr ""
+
+#: dist/admin/admin.js:1
+#: dist/admin/advanced.js:1
+#: dist/admin/help.js:1
+msgid "Go to the legacy settings page"
 msgstr ""
 
 #: dist/admin/admin.js:1
@@ -119,31 +244,13 @@ msgid "REST API is disabled. Please enable WordPress REST API."
 msgstr ""
 
 #: dist/admin/admin.js:1
-#: dist/admin/help.js:1
-msgid "Pager Above and Below Posts"
-msgstr ""
-
-#: dist/admin/admin.js:1
-msgid "Display pager above the post"
-msgstr ""
-
-#: dist/admin/admin.js:1
-msgid "Display pager below the post"
+#: dist/admin/advanced.js:1
+msgid "Use the Legacy Settings"
 msgstr ""
 
 #: dist/admin/admin.js:1
 #: dist/admin/help.js:1
 msgid "Custom Text for Pager"
-msgstr ""
-
-#: dist/admin/admin.js:1
-#: dist/admin/help.js:1
-msgid "Text for \"Read the oldest post\""
-msgstr ""
-
-#: dist/admin/admin.js:1
-#: dist/admin/help.js:1
-msgid "Text for \"Read the latest post\""
 msgstr ""
 
 #: dist/admin/admin.js:1
@@ -156,21 +263,12 @@ msgstr ""
 
 #: dist/admin/admin.js:1
 #: dist/admin/advanced.js:1
-msgid "Settings have been saved!"
-msgstr ""
-
-#: dist/admin/admin.js:1
-#: dist/admin/advanced.js:1
 msgid "Failed to save settings."
 msgstr ""
 
 #: dist/admin/admin.js:1
-msgid "Saving..."
-msgstr ""
-
-#: dist/admin/admin.js:1
 #: dist/admin/advanced.js:1
-msgid "Save"
+msgid "Saving…"
 msgstr ""
 
 #: dist/admin/advanced.js:1
@@ -182,23 +280,11 @@ msgid "The REST API is disabled. Please enable the WordPress REST API."
 msgstr ""
 
 #: dist/admin/advanced.js:1
-msgid "Archive Page Setting"
-msgstr ""
-
-#: dist/admin/advanced.js:1
-msgid "CSS selectors to use if the filter function is not working (multiple selectors can be separated by commas)"
-msgstr ""
-
-#: dist/admin/advanced.js:1
 msgid "e.g. .class1, .class2, .class3"
 msgstr ""
 
 #: dist/admin/advanced.js:1
 msgid "There are invalid CSS selectors. Valid selectors include letters, numbers, IDs, classes, attribute selectors, and pseudo-classes."
-msgstr ""
-
-#: dist/admin/advanced.js:1
-msgid "Saving…"
 msgstr ""
 
 #: dist/admin/help.js:1

@@ -1,8 +1,10 @@
 // 追加設定画面 advanced.js
 import './admin.scss';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 import { __ } from '@wordpress/i18n'; // Importing i18n for translations
 import { 
-    render,
+    // render,
     useState,
     useEffect
 } from '@wordpress/element';
@@ -17,6 +19,10 @@ import PageNavigation from './components/Navigation';  // 共通ナビゲーシ�
 import { useSaveConfirmation } from './components/SaveConfirmation';
 import { useApiCheck } from './components/ApiCheck';
 import { validateSelectors } from './components/SelectorValidation';
+import { 
+    ErrorBoundary,
+} from 'react-error-boundary';
+import ErrorFallback from './components/ErrorFallback';
 
 const AdvancedSettings = () => {
     const [useLinkClass, setUseLinkClass] = useState(smtrmPagerAdmin?.archive);
@@ -48,7 +54,7 @@ const AdvancedSettings = () => {
     
         try {
             const response = await apiFetch({
-                path: '/wp/v2/settings',
+                path: '/smtrm/v1/settings',
                 method: 'POST',
                 data: {
                     'smtrm_archive_post_link_param_css': useLinkClass,
@@ -88,6 +94,9 @@ const AdvancedSettings = () => {
     };
 
     return (
+        <ErrorBoundary
+            FallbackComponent={ErrorFallback} // エラーが発生した際のフォールバックコンポーネント
+        >
         <div className="smtrm-admin-wrapper">
             <div className="admin-content">
                 <h1>{__('Same Term Pager Plugin Advanced Settings Page', 'wp-sameterm-pager')}</h1> {/* Same Term Pagerプラグイン 詳細設定ページ */}
@@ -105,6 +114,7 @@ const AdvancedSettings = () => {
                 {isApiError && (
                     <Notice status="error" isDismissible={false}>
                         <p>{__('The REST API is disabled. Please enable the WordPress REST API.', 'wp-sameterm-pager')}</p> {/* REST APIが無効です。WordPress REST APIを有効にしてください。 */}
+                        <a href="admin.php?page=wp_sameterm_pager&legacy=1">  {__('Use the Legacy Settings','wp-sameterm-pager') }</a>
                     </Notice>
                 )}
                 <h2>{__('Advanced Settings', 'wp-sameterm-pager')}</h2> {/* 詳細設定 */}
@@ -141,8 +151,11 @@ const AdvancedSettings = () => {
             {/* 右カラム（ナビゲーション） */}
             <PageNavigation />
         </div>
+        </ErrorBoundary>
     );
 };
 
 // エントリーポイントにレンダリング
-render(<AdvancedSettings />, document.getElementById('smtrm-pager-advanced'));
+// render(<AdvancedSettings />, document.getElementById('smtrm-pager-advanced'));
+const root = createRoot(document.getElementById('smtrm-pager-advanced'));
+root.render(<AdvancedSettings />);

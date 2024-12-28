@@ -13,6 +13,11 @@ const PageNavigation = () => {
         setCurrentPage(params.get('page'));
     }, []);
 
+    // テスト用エラーコード
+    // useEffect(() => {
+    //     throw new Error('Test error render');
+    // }, []);
+
     return (
         <div className="admin-sidebar">
             <h3>{ __('Settings Menu', 'wp-sameterm-pager') }</h3> {/* 設定メニュー */}
