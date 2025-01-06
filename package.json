@@ -1,6 +1,6 @@
 {
 	"name": "wp-sameterm-pager",
-	"version": "0.9.18",
+	"version": "0.10.0",
 	"license": "GPL-2.0-or-later",
 	"devDependencies": {
 		"@wordpress/compose": "^7.10.0",

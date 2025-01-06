@@ -2,7 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "smtrm/pager",
-  "version": "0.9.18",
+  "version": "0.10.0",
   "title": "Same Term Pager Block",
   "category": "widgets",
   "icon": "smiley",

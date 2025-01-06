@@ -1,8 +1,9 @@
 <?php
+
 if (!defined('ABSPATH')) {
     exit;
 }
-if ( ! class_exists( 'Smtrm_Pager' ) ) {
+if (!class_exists('Smtrm_Pager')) {
     class Smtrm_Pager implements Smtrm_Pager_Interface
     {
         private static $post_type;
@@ -25,9 +26,8 @@ if ( ! class_exists( 'Smtrm_Pager' ) ) {
          * taxonomy information, and the oldest/newest/previous/next posts. It is used to set up pagination
          * based on the same taxonomy term.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          */
-        //投稿データのセット処理
         public function set_post_data()
         {
             if (is_single()) {
@@ -49,19 +49,19 @@ if ( ! class_exists( 'Smtrm_Pager' ) ) {
                 self::$nextpost = get_adjacent_post(false, '', false);
             }
         }
+
         /**
          * Displays the pagination for posts within the same term.
          *
          * Outputs the HTML for the pagination wrapper and navigation links based on the current post's term.
          * Also includes a release button to remove the filter and show all posts.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          */
         public function sameterm_pager()
         {
             if (is_single()) {
-                // 投稿データのセット
-                $this->set_post_data(); 
+                $this->set_post_data();
                 echo '<div class="same-term-wrapper">';
                 if (self::$prevpost || self::$nextpost) {
                     echo '<nav class="same-term-pager cf">';
@@ -79,17 +79,17 @@ if ( ! class_exists( 'Smtrm_Pager' ) ) {
                 echo '</div>';
             }
         }
+
         /**
          * Displays the link to the oldest post within the same term.
          *
          * Generates a link to the oldest post under the same term if available. If no saved text for the oldest
          * post is available, a default text is used.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @return string HTML for the oldest post link.
          */
-        //最古の記事
         public function display_oldest_post()
         {
             if (self::$prevpost) {
@@ -107,17 +107,17 @@ if ( ! class_exists( 'Smtrm_Pager' ) ) {
             }
             return '<div class="oldest-post"></div>';
         }
+
         /**
          * Displays the link to the previous post within the same term.
          *
          * Generates a link to the previous post under the same term, including a thumbnail and title. If the
          * post has no thumbnail, a placeholder image is used.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @return string HTML for the previous post link.
          */
-        // 前の記事
         public function display_prev_post()
         {
             if (self::$prevpost) {
@@ -134,17 +134,17 @@ if ( ! class_exists( 'Smtrm_Pager' ) ) {
             }
             return '<div class="prev-post"></div>';
         }
+
         /**
          * Displays the link to the next post within the same term.
          *
          * Generates a link to the next post under the same term, including a thumbnail and title. If the
          * post has no thumbnail, a placeholder image is used.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @return string HTML for the next post link.
          */
-        // 次の記事
         public function display_next_post()
         {
             if (self::$nextpost) {
@@ -161,17 +161,17 @@ if ( ! class_exists( 'Smtrm_Pager' ) ) {
             }
             return '<div class="next-post"></div>';
         }
+
         /**
          * Displays the link to the latest post within the same term.
          *
          * Generates a link to the latest post under the same term if available. If no saved text for the latest
          * post is available, a default text is used.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @return string HTML for the latest post link.
          */
-        // 最新の記事
         public function display_latest_post()
         {
             if (self::$nextpost) {
@@ -189,18 +189,18 @@ if ( ! class_exists( 'Smtrm_Pager' ) ) {
             }
             return '<div class="latest-post"></div>';
         }
+
         /**
          * Displays a specific part of the pagination using a shortcode.
          *
          * This method allows for displaying individual parts of the pagination (oldest, previous, next, latest)
          * using shortcodes.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @param string $part The part of the pagination to display.
          * @return string HTML for the requested pagination part.
          */
-        //ショートコードを使った個別表示
         public function get_pager_part($part)
         {
             $this->set_post_data();
@@ -212,13 +212,14 @@ if ( ! class_exists( 'Smtrm_Pager' ) ) {
             ];
             return isset($parts[$part]) ? '<div class="same-term-wrapper"><div class="same-term-part cf">' . $parts[$part] . '</div></div>' : '';
         }
+
         /**
          * Displays a filter release button for the current term.
          *
          * This static method generates a button to release the filter applied to the posts, showing all posts
          * instead of filtering by the current term. It also displays a message indicating the current filter.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          */
         public static function smtrm_pager_release_button()
         {
@@ -236,7 +237,7 @@ if ( ! class_exists( 'Smtrm_Pager' ) ) {
                         esc_html($term_name)
                     );
                     $release_button = __('Release', 'wp-sameterm-pager');
-                    
+
                     echo <<<HTML
                     <div class="pager-filter cf">
                         <div class="same-term-message">
@@ -253,13 +254,14 @@ if ( ! class_exists( 'Smtrm_Pager' ) ) {
                 }
             }
         }
+
         /**
          * Retrieves the oldest or newest post based on the order parameter.
          *
          * This method retrieves a single post ID based on the specified order ('ASC' for the oldest or 'DESC' for the latest).
          * It uses taxonomy filters if applicable to limit the results.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @param string $order The order for retrieving the post ('ASC' or 'DESC').
          * @return array Array of post IDs based on the specified order.
@@ -267,31 +269,32 @@ if ( ! class_exists( 'Smtrm_Pager' ) ) {
         private static function smtrm_get_post($order)
         {
             $args = array(
-                'post_type'      => self::$post_type,
+                'post_type' => self::$post_type,
                 'posts_per_page' => 1,
-                'category'       => self::$cat_id_num,
-                'tag_id'         => self::$tag_id_num,
-                'orderby'        => 'date',
-                'order'          => $order,
-                'fields'         => 'ids',
+                'category' => self::$cat_id_num,
+                'tag_id' => self::$tag_id_num,
+                'orderby' => 'date',
+                'order' => $order,
+                'fields' => 'ids',
             );
             if (self::$term_id_num) {
                 $args['tax_query'] = [
                     [
                         'taxonomy' => self::$taxonomy,
-                        'field'    => 'id',
-                        'terms'    => self::$term_id_num,
+                        'field' => 'id',
+                        'terms' => self::$term_id_num,
                     ],
                 ];
             }
             return get_posts($args);
         }
+
         /**
          * Gets the complete pager area for a single post.
          *
          * This method captures the HTML output of the complete pager area and returns it as a string.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @return string HTML of the pager area.
          */
@@ -301,12 +304,13 @@ if ( ! class_exists( 'Smtrm_Pager' ) ) {
             $this->sameterm_pager();
             return ob_get_clean();
         }
+
         /**
          * Gets the release button for the filter applied to the current term.
          *
          * This method captures the HTML output of the filter release button and returns it as a string.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @return string HTML of the filter release button.
          */
@@ -316,13 +320,14 @@ if ( ! class_exists( 'Smtrm_Pager' ) ) {
             $this->smtrm_pager_release_button();
             return ob_get_clean();
         }
+
         /**
          * Adds the pager area to the post content.
          *
          * This method inserts the pager area above or below the post content based on the user settings.
          * It applies only to single post views.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @param string $content The original post content.
          * @return string The modified post content with the pager area.
@@ -345,7 +350,6 @@ if ( ! class_exists( 'Smtrm_Pager' ) ) {
         }
     }
 
-    //ショートコードの追加
     $smtrm_pager = new Smtrm_Pager();
     add_shortcode('sameterm_pager', array($smtrm_pager, 'get_pager_area'));
     add_shortcode('sameterm_release', array($smtrm_pager, 'get_pager_release_button'));
@@ -363,6 +367,5 @@ if ( ! class_exists( 'Smtrm_Pager' ) ) {
         return $smtrm_pager->get_pager_part('latest');
     });
 
-    //コンテンツフィルター
     add_filter('the_content', array($smtrm_pager, 'add_pager_area'));
 }

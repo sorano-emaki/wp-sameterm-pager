@@ -1,4 +1,5 @@
 <?php
+
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -9,9 +10,9 @@ if (!defined('ABSPATH')) {
  * a pager that can navigate posts within the same category, tag,
  * or taxonomy.
  *
- * @since 0.9.18
+ * @since 0.10.0
  */
-if ( ! interface_exists( 'Smtrm_Pager_Interface' ) ) {
+if (!interface_exists('Smtrm_Pager_Interface')) {
     interface Smtrm_Pager_Interface
     {
         /**
@@ -20,7 +21,7 @@ if ( ! interface_exists( 'Smtrm_Pager_Interface' ) ) {
          * This method should be implemented to return the HTML for the
          * pager, allowing navigation between posts within the same term.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @return string HTML content of the pager area.
          */

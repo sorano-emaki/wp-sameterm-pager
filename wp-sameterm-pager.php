@@ -3,7 +3,7 @@
 Plugin Name: WP Same Term Pager
 Plugin URI: https://github.com/sorano-emaki/wp-sameterm-pager
 Description: Navigate between posts within the same term using pagination.
-Version: 0.9.18
+Version: 0.10.0
 Author: Emaki Sorano
 Author URI: https://shokizerokara.com/
 License: GPLv2
@@ -55,7 +55,7 @@ if ( ! function_exists( 'smtrm_register_i18n' ) ){
      * located in the `languages` directory. This enables the plugin to support
      * internationalization (i18n) for various languages.
      *
-     * @since 0.9.18
+     * @since 0.10.0
      */
     function smtrm_register_i18n()
     {
@@ -71,7 +71,7 @@ if ( ! function_exists( 'smtrm_stop_plugin_execution' ) ){
      * If the requirements are met, it initializes the plugin's files and options. If not, the plugin is
      * deactivated, and an error message is displayed to the administrator.
      *
-     * @since 0.9.18
+     * @since 0.10.0
      * 
      * @global string $wp_version The current WordPress version.
      * @global string $php_version The current PHP version.
@@ -115,7 +115,7 @@ if ( ! function_exists( 'smtrm_stop_plugin_execution' ) ){
      * that define the plugin's functionality. It ensures that all
      * classes and functions are properly loaded before they are used.
      *
-     * @since 0.9.18
+     * @since 0.10.0
      */
     function smtrm_include_files() {
         require_once('globals.php');

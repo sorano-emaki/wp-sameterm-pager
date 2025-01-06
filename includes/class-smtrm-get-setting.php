@@ -1,8 +1,9 @@
 <?php
+
 if (!defined('ABSPATH')) {
     exit;
 }
-if ( ! class_exists( 'Smtrm_Get_Setting' ) ) {
+if (!class_exists('Smtrm_Get_Setting')) {
     class Smtrm_Get_Setting
     {
         /**
@@ -10,7 +11,7 @@ if ( ! class_exists( 'Smtrm_Get_Setting' ) ) {
          *
          * This method gets the value of a given option from the database and sanitizes it.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @param string $option_name The name of the option to retrieve.
          * @return string The sanitized option value.
@@ -19,10 +20,11 @@ if ( ! class_exists( 'Smtrm_Get_Setting' ) ) {
         {
             return htmlspecialchars(get_option($option_name, ''), ENT_NOQUOTES);
         }
+
         /**
          * Gets the setting for displaying the pager at the top of the content.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @return string The setting value for displaying the pager at the top.
          */
@@ -30,10 +32,11 @@ if ( ! class_exists( 'Smtrm_Get_Setting' ) ) {
         {
             return $this->get_setting(SMTRM_TOP);
         }
+
         /**
          * Gets the setting for displaying the pager at the bottom of the content.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @return string The setting value for displaying the pager at the bottom.
          */
@@ -41,10 +44,11 @@ if ( ! class_exists( 'Smtrm_Get_Setting' ) ) {
         {
             return $this->get_setting(SMTRM_BOTTOM);
         }
+
         /**
          * Retrieves the CSS class selector value for custom parameters.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @return string The CSS selector for custom parameters.
          */
@@ -52,10 +56,11 @@ if ( ! class_exists( 'Smtrm_Get_Setting' ) ) {
         {
             return $this->get_setting(SMTRM_AP_PARAM_CSS);
         }
+
         /**
          * Retrieves the custom text for the 'Read the oldest post' link.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @return string The custom text for the 'Read the oldest post' link, with allowed HTML tags.
          */
@@ -63,10 +68,11 @@ if ( ! class_exists( 'Smtrm_Get_Setting' ) ) {
         {
             return wp_kses_post(get_option(SMTRM_OLDEST_POST, ''));
         }
+
         /**
          * Retrieves the custom text for the 'Read the latest post' link.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @return string The custom text for the 'Read the latest post' link, with allowed HTML tags.
          */
@@ -74,13 +80,14 @@ if ( ! class_exists( 'Smtrm_Get_Setting' ) ) {
         {
             return wp_kses_post(get_option(SMTRM_LATEST_POST, ''));
         }
+
         /**
          * Retrieves specific data for a given block.
          *
          * Depending on the block name, this method returns an associative array with
          * the data needed for the block, such as user-customized texts.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @param string $block_name The name of the block.
          * @return array The data specific to the block, or an empty array if no data is found.

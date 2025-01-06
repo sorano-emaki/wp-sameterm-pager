@@ -1,8 +1,9 @@
 <?php
+
 if (!defined('ABSPATH')) {
     exit;
 }
-if ( ! class_exists( 'Smtrm_Widget' ) ) {
+if (!class_exists('Smtrm_Widget')) {
     class Smtrm_Widget extends WP_Widget
     {
         private $pager;
@@ -12,20 +13,15 @@ if ( ! class_exists( 'Smtrm_Widget' ) ) {
          *
          * Initializes the widget with its ID, name, and description.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @param Smtrm_Pager_Interface $pager An instance of a pager implementing the Smtrm_Pager_Interface.
          */
-        // コンストラクタ
         public function __construct(Smtrm_Pager_Interface $pager)
         {
-            // 親コンストラクタの設定
             parent::__construct(
-                // ウィジェットID
                 'sameterm_pager_widget',
-                // ウィジェット名
                 __('WP Same Term Pager', 'wp-sameterm-pager'),
-                // ウィジェットの概要
                 array('description' => __('Display a pager on posts that can be filtered by category, tags or taxonomy.', 'wp-sameterm-pager'))
             );
             $this->pager = $pager;
@@ -37,7 +33,7 @@ if ( ! class_exists( 'Smtrm_Widget' ) ) {
          * Displays the pager on posts that can be filtered by category, tags, or taxonomy.
          * Handles any exceptions that occur while rendering the pager and logs them.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @param array $args An array of widget display arguments including 'before_title', 'after_title',
          *                    'before_widget', and 'after_widget' provided by [register_sidebar].
@@ -47,11 +43,8 @@ if ( ! class_exists( 'Smtrm_Widget' ) ) {
          */
         public function widget($args, $instance)
         {
-
-            // ウィジェット内容の前に出力
             echo $args['before_widget'];
 
-            // ウィジェットの内容出力
             try {
                 echo $this->pager->get_pager_area();
             } catch (\Exception $e) {
@@ -59,15 +52,15 @@ if ( ! class_exists( 'Smtrm_Widget' ) ) {
                 echo esc_html(__('An error occurred while displaying the pager.', 'wp-sameterm-pager'));
             }
 
-            // ウィジェット内容の後に出力
             echo $args['after_widget'];
         }
+
         /**
          * Outputs the settings update form.
          *
          * This function is called in the admin panel to display the widget's settings form.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @param array $instance An array of the current settings for the widget.
          *
@@ -76,12 +69,13 @@ if ( ! class_exists( 'Smtrm_Widget' ) ) {
         public function form($instance)
         {
         }
+
         /**
          * Handles updating the widget's settings.
          *
          * Processes the widget's settings update when they are saved.
          *
-         * @since 0.9.18
+         * @since 0.10.0
          *
          * @param array $new_instance An array of the new settings for the widget.
          * @param array $old_instance An array of the previous settings for the widget.
@@ -94,7 +88,6 @@ if ( ! class_exists( 'Smtrm_Widget' ) ) {
         }
     }
 
-    // ウィジェットの登録
     function register_smtrm_widget()
     {
         $pager = new Smtrm_Pager();
