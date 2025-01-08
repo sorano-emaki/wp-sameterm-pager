@@ -1,0 +1,33 @@
+name: Build and Release Plugin
+
+# リリースイベントをトリガー
+on:
+  release:
+    types: [published]  # リリースが公開されたときに実行
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # コードをチェックアウト
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # プラグインZIPを作成
+      - name: Prepare plugin ZIP
+        run: |
+          mkdir wp-sameterm-pager
+          cp -r * wp-sameterm-pager/
+          rm -rf wp-sameterm-pager/.git*
+          zip -r wp-sameterm-pager.zip wp-sameterm-pager
+
+      # 作成したZIPをリリースに添付
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          release_id: ${{ github.event.release.id }}
+          asset_path: ./wp-sameterm-pager.zip
+          asset_name: wp-sameterm-pager.zip
+          asset_content_type: application/zip
