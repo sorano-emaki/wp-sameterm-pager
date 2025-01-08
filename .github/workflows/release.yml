@@ -1,11 +1,9 @@
 name: Build and Release Plugin
 
+# リリースイベントをトリガー
 on:
   release:
     types: [published]  # リリースが公開されたときに実行
-
-permissions:
-  contents: write
 
 jobs:
   build:
@@ -16,16 +14,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # デバッグ用ステップ（オプション）
-      - name: Debug GitHub context
-        run: echo "${{ toJson(github) }}"
-
       # プラグインZIPを作成
       - name: Prepare plugin ZIP
         run: |
-          mkdir wp-sameterm-pager
-          cp -r * wp-sameterm-pager/
-          rm -rf wp-sameterm-pager/.git wp-sameterm-pager/.github
+          mkdir -p wp-sameterm-pager
+          # 現在のディレクトリから wp-sameterm-pager へファイルをコピー
+          find . -maxdepth 1 -not -name 'wp-sameterm-pager' -not -name '.' -not -name '..' -exec cp -r {} wp-sameterm-pager/ \;
+          # .git* ディレクトリやファイルを削除
+          find wp-sameterm-pager -name '.git*' -exec rm -rf {} +
+          # ZIPファイルを作成
           zip -r wp-sameterm-pager.zip wp-sameterm-pager
 
       # 作成したZIPをリリースに添付
