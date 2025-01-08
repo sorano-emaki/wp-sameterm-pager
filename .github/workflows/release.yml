@@ -28,9 +28,10 @@ jobs:
       # 作成したZIPをリリースに添付
       - name: Upload release asset
         uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          release_id: ${{ github.event.release.id }}
+          upload_url: ${{ steps.get_url.outputs.upload_url }}
           asset_path: ./wp-sameterm-pager.zip
           asset_name: wp-sameterm-pager.zip
           asset_content_type: application/zip
