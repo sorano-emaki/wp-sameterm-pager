@@ -3,7 +3,8 @@ WP Same Term Pagerは、同じカテゴリー、タグ、カスタムタクソ�
 
 ## 最新バージョンのダウンロード
 開発者以外の方は以下のページからwp-sameterm-pager-{version}.zipをダウンロードしてご利用いただけます。 {version}部分にはバージョン表記が入ります。
-[Download from GitHub](https://github.com/sorano-emaki/wp-sameterm-pager/releases/latest)
+[GitHubからダウンロード](https://github.com/sorano-emaki/wp-sameterm-pager/releases/latest)
+
 開発者の方は「develop」ブランチをクローンしてご利用いただけます。
 
 ## Same Term Pagerとは？

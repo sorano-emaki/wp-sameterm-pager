@@ -4,6 +4,7 @@ WP Same Term Pager is a WordPress plugin that allows you to navigate posts withi
 ## Download Latest Version
 For non-developers, please download the file named wp-sameterm-pager-{version}.zip, where {version} represents the specific version number.
 [Download from GitHub](https://github.com/sorano-emaki/wp-sameterm-pager/releases/latest)
+
 For developers, please clone the develop branch of the GitHub repository to use it.
 
 ## What is the Same Term Pager Plugin?
@@ -64,6 +65,7 @@ The Same Term Pager plugin offers a pager specifically designed for post pages, 
 ### Translation
 
 - **Translation Files**: `.pot`, `.mo`, `.po`, and JSON translation files are located in the `languages` directory.
+
 English is the default language used in the plugin.
 
 The Japanese environment can be used as-is since the translation files have already been prepared.
