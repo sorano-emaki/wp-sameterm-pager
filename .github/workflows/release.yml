@@ -1,9 +1,10 @@
 name: Build and Release Plugin
 
-# リリースイベントをトリガー
+# タグ作成時にトリガー
 on:
-  release:
-    types: [published]  # リリースが公開されたときに実行
+  push:
+    tags:
+      - 'v*'  # vで始まるバージョンタグが対象
 
 jobs:
   build:
@@ -14,20 +15,38 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # GitHub CLI のインストール
+      - name: Install GitHub CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gh
+
       # プラグインZIPを作成
       - name: Prepare plugin ZIP
         run: |
+          VERSION=${GITHUB_REF#refs/tags/} # タグ名 (例: v0.10.0)
           mkdir -p wp-sameterm-pager
-          # 現在のディレクトリから wp-sameterm-pager へファイルをコピー
-          find . -maxdepth 1 -not -name 'wp-sameterm-pager' -not -name '.' -not -name '..' -exec cp -r {} wp-sameterm-pager/ \;
-          # .git* ディレクトリやファイルを削除
-          find wp-sameterm-pager -name '.git*' -exec rm -rf {} +
-          # ZIPファイルを作成
-          zip -r wp-sameterm-pager.zip wp-sameterm-pager
+          find . -maxdepth 1 \
+            -not -name '.' \
+            -not -name '..' \
+            -not -name '.git' \
+            -not -name '.github' \
+            -not -name '.gitignore' \
+            -not -name 'src' \
+            -not -name 'package.json' \
+            -not -name 'webpack.config.js' \
+            -exec cp -r {} wp-sameterm-pager/ \;
+          zip -r "wp-sameterm-pager-${VERSION}.zip" wp-sameterm-pager
 
-      # 作成したZIPをリリースに添付
-      - name: Upload release asset using GitHub CLI
+      # GitHub CLI を用いてリリースを作成し、ZIPファイルを添付
+      - name: Create GitHub Release and Upload Asset
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload ${{ github.event.release.tag_name }} wp-sameterm-pager.zip
+          VERSION=${GITHUB_REF#refs/tags/} # タグ名 (例: v0.10.0)
+
+          # リリースの作成
+          gh release create "$VERSION" \
+            "wp-sameterm-pager-${VERSION}.zip" \
+            --title "Release $VERSION" \
+            --notes "This is the release for version $VERSION."
