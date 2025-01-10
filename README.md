@@ -1,6 +1,11 @@
 # WP Same Term Pager – WordPress Term-Based Navigation Plugin
 WP Same Term Pager is a WordPress plugin that allows you to navigate posts within the same category, tag, or custom taxonomy seamlessly.
 
+## Download Latest Version
+For non-developers, please download the file named wp-sameterm-pager-{version}.zip, where {version} represents the specific version number.
+[Download from GitHub](https://github.com/sorano-emaki/wp-sameterm-pager/releases/latest)
+For developers, please clone the develop branch of the GitHub repository to use it.
+
 ## What is the Same Term Pager Plugin?
 This plugin displays pagination for post pages filtered by the same term (such as category, tag, or custom taxonomy item).
 
@@ -59,6 +64,12 @@ The Same Term Pager plugin offers a pager specifically designed for post pages, 
 ### Translation
 
 - **Translation Files**: `.pot`, `.mo`, `.po`, and JSON translation files are located in the `languages` directory.
+English is the default language used in the plugin.
+
+The Japanese environment can be used as-is since the translation files have already been prepared.
+
+If you would like to help us with multilingualization, please contact the developer, and we will handle the part of the operation procedure below if you help us only with translation by Poedit or other means.
+
 - **Tools Used**:
   - **WordPress CLI**:
     - Command to generate `.pot`:  
