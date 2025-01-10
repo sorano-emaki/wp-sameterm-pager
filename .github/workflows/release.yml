@@ -1,13 +1,12 @@
-name: Build and Release Plugin
+name: Attach Plugin ZIP to Release
 
-# タグ作成時にトリガー
+# リリースが手動で作成され、公開されたときにトリガー
 on:
-  push:
-    tags:
-      - 'v*'  # vで始まるバージョンタグが対象
+  release:
+    types: [published]  # リリースが公開されたときに実行
 
 jobs:
-  build:
+  attach-zip:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +23,7 @@ jobs:
       # プラグインZIPを作成
       - name: Prepare plugin ZIP
         run: |
-          VERSION=${GITHUB_REF#refs/tags/} # タグ名 (例: v0.10.0)
+          VERSION=${{ github.event.release.tag_name }} # タグ名 (例: v0.10.0)
           mkdir -p wp-sameterm-pager
           find . -maxdepth 1 \
             -not -name '.' \
@@ -38,15 +37,12 @@ jobs:
             -exec cp -r {} wp-sameterm-pager/ \;
           zip -r "wp-sameterm-pager-${VERSION}.zip" wp-sameterm-pager
 
-      # GitHub CLI を用いてリリースを作成し、ZIPファイルを添付
-      - name: Create GitHub Release and Upload Asset
+      # 作成したZIPをリリースに添付
+      - name: Upload ZIP to Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          VERSION=${GITHUB_REF#refs/tags/} # タグ名 (例: v0.10.0)
-
-          # リリースの作成
-          gh release create "$VERSION" \
+          VERSION=${{ github.event.release.tag_name }} # タグ名 (例: v0.10.0)
+          gh release upload "$VERSION" \
             "wp-sameterm-pager-${VERSION}.zip" \
-            --title "Release $VERSION" \
-            --notes "This is the release for version $VERSION."
+            --repo "${{ github.repository }}"
