@@ -7,6 +7,10 @@ For non-developers, please download the file named wp-sameterm-pager-{version}.z
 
 For developers, please clone the develop branch of the GitHub repository to use it.
 
+## Readme in Other Languages
+
+- [日本語 (Japanese)](README.ja.md)
+
 ## What is the Same Term Pager Plugin?
 This plugin displays pagination for post pages filtered by the same term (such as category, tag, or custom taxonomy item).
 
@@ -66,11 +70,11 @@ The Same Term Pager plugin offers a pager specifically designed for post pages, 
 
 - **Translation Files**: `.pot`, `.mo`, `.po`, and JSON translation files are located in the `languages` directory.
 
-English is the default language used in the plugin.
+The default language of this plugin is English.
 
-The Japanese environment can be used as-is since the translation files have already been prepared.
+For users in Japanese environments, translation files are already included, so you can use the plugin as-is.
 
-If you would like to help us with multilingualization, please contact the developer, and we will handle the part of the operation procedure below if you help us only with translation by Poedit or other means.
+If you would like to contribute to the plugin's localization, please contact the developer. You can assist by providing translations using tools like Poedit, and we will handle the operational steps outlined below on your behalf.
 
 - **Tools Used**:
   - **WordPress CLI**:
