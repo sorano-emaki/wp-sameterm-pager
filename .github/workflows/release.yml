@@ -23,19 +23,21 @@ jobs:
       # プラグインZIPを作成
       - name: Prepare plugin ZIP
         run: |
-          VERSION=${{ github.event.release.tag_name }} # タグ名 (例: v0.10.0)
-          # 作業ディレクトリを作成
+          VERSION=${GITHUB_REF#refs/tags/} # タグ名 (例: v0.10.0)
           mkdir wp-sameterm-pager
-          # 必要なファイルとディレクトリをすべてコピー
-          cp -r . wp-sameterm-pager/
-          # 不要なファイルとディレクトリを削除
-          rm -rf wp-sameterm-pager/.git \
-                 wp-sameterm-pager/.github \
-                 wp-sameterm-pager/.gitignore \
-                 wp-sameterm-pager/src \
-                 wp-sameterm-pager/package.json \
-                 wp-sameterm-pager/webpack.config.js
-          # ZIPを作成
+          
+          # rsync を使用してカレントディレクトリからサブディレクトリにコピー
+          rsync -av --exclude 'wp-sameterm-pager/' ./ wp-sameterm-pager/
+          
+          # 不要なファイル・ディレクトリを削除
+          rm -rf wp-sameterm-pager/.git
+          rm -rf wp-sameterm-pager/.github
+          rm -rf wp-sameterm-pager/.gitignore
+          rm -rf wp-sameterm-pager/src
+          rm -rf wp-sameterm-pager/package.json
+          rm -rf wp-sameterm-pager/webpack.config.js
+
+          # ZIPファイルの作成
           zip -r "wp-sameterm-pager-${VERSION}.zip" wp-sameterm-pager
 
       # 作成したZIPをリリースに添付
