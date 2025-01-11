@@ -9,7 +9,7 @@ For developers, please clone the develop branch of the GitHub repository to use 
 
 ## Readme in Other Languages
 
-- [日本語 (Japanese)](README.ja.md)
+- [日本語 (Japanese)](README-ja.md)
 
 ## What is the Same Term Pager Plugin?
 This plugin displays pagination for post pages filtered by the same term (such as category, tag, or custom taxonomy item).
