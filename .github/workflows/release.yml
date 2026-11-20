@@ -1,41 +1,43 @@
+
 name: Attach Plugin ZIP to Release
 
 # リリースが手動で作成され、公開されたときにトリガー
 on:
   release:
-    types: [published]  # リリースが公開されたときに実行
+    types: [published]
+
+permissions:
+  contents: write
 
 jobs:
   attach-zip:
     runs-on: ubuntu-latest
 
+    env:
+      VERSION: ${{ github.event.release.tag_name }}
+
     steps:
       # コードをチェックアウト
       - name: Checkout code
-        uses: actions/checkout@v3
-
-      # GitHub CLI のインストール
-      - name: Install GitHub CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gh
+        uses: actions/checkout@v7
 
       # プラグインZIPを作成
       - name: Prepare plugin ZIP
         run: |
-          VERSION=${GITHUB_REF#refs/tags/} # タグ名 (例: v0.10.0)
+          set -euo pipefail
+
           mkdir wp-sameterm-pager
-          
-          # rsync を使用してカレントディレクトリからサブディレクトリにコピー
-          rsync -av --exclude 'wp-sameterm-pager/' ./ wp-sameterm-pager/
-          
-          # 不要なファイル・ディレクトリを削除
-          rm -rf wp-sameterm-pager/.git
-          rm -rf wp-sameterm-pager/.github
-          rm -rf wp-sameterm-pager/.gitignore
-          rm -rf wp-sameterm-pager/src
-          rm -rf wp-sameterm-pager/package.json
-          rm -rf wp-sameterm-pager/webpack.config.js
+
+          # rsync を使用して必要なファイルをコピー
+          rsync -av \
+            --exclude='/wp-sameterm-pager/' \
+            --exclude='/.git/' \
+            --exclude='/.github/' \
+            --exclude='/.gitignore' \
+            --exclude='/src/' \
+            --exclude='/package.json' \
+            --exclude='/webpack.config.js' \
+            ./ wp-sameterm-pager/
 
           # ZIPファイルの作成
           zip -r "wp-sameterm-pager-${VERSION}.zip" wp-sameterm-pager
@@ -43,9 +45,9 @@ jobs:
       # 作成したZIPをリリースに添付
       - name: Upload ZIP to Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          VERSION=${{ github.event.release.tag_name }} # タグ名 (例: v0.10.0)
           gh release upload "$VERSION" \
             "wp-sameterm-pager-${VERSION}.zip" \
-            --repo "${{ github.repository }}"
+            --clobber \
+            --repo "$GITHUB_REPOSITORY"

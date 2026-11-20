@@ -48,8 +48,18 @@
   line-height: 1.2;
   font-size: 0.8em;
 }
+/* アイキャッチ画像を背景画像として表示する */
 .same-term-pager figure {
   margin: 0;
+}
+.same-term-pager .same-term-nav-thumbnail {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--smtrm-card-ratio);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .same-term-pager img {
   width: 100%;
@@ -100,10 +110,10 @@
   content: "\f323";
   padding: 0 4px;
 }
-.release-button .cancel-icon {
+.smtrm-clear-button .cancel-icon {
   padding: 0;
 }
-.release-button .cancel-icon::after {
+.smtrm-clear-button .cancel-icon::after {
   display: block;
   font-family: "dashicons";
   font-size: inherit;
@@ -113,14 +123,14 @@
   margin: auto;
 }
 /* 解除ボタン */
-.release-button{
+.smtrm-clear-button{
   display: block;
   background-color: #666666;
   color: white;
   font-size: 12px;
   border-radius: 2px;
 }
-.release-button a{
+.smtrm-clear-button a{
   display: flex;
   align-items: center;
   background-color: inherit;
@@ -129,22 +139,22 @@
   border-radius: inherit;
   padding: 0 3px;
 }
-.release-button a:link{
+.smtrm-clear-button a:link{
   background-color: inherit;
   color: inherit;
   border-radius: inherit;
 }
-.release-button a:visited{
+.smtrm-clear-button a:visited{
   background-color: inherit;
   color: inherit;
   border-radius: inherit;
 }
-.release-button a:hover{
+.smtrm-clear-button a:hover{
   background-color: inherit;
   color: inherit;
   border-radius: inherit;
 }
-.release-button a:active{
+.smtrm-clear-button a:active{
   background-color: inherit;
   color: inherit;
   border-radius: inherit;

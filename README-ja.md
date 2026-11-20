@@ -36,6 +36,91 @@ WP Same Term Pagerは、同じカテゴリー、タグ、カスタムタクソ�
 
 Same Term Pagerはターム絞り込み機能付き投稿ページ向けのページャーを提供しています。
 
+## Developer Hooks
+
+WP Same Term Pagerには、プラグインの動作や表示をカスタマイズするためのフィルターフックが用意されています。
+
+これらのフックを利用するには、WordPressやPHPに関する知識が必要です。
+
+### フィルターフック一覧
+
+| フィルターフック | 説明 |
+|---|---|
+| `smtrm_get_post_args` | `get_posts()`に渡す引数をカスタマイズします。 |
+| `smtrm_wrapper_classes` | ページネーションの外側ラッパーに付与するCSSクラスをカスタマイズします。 |
+| `smtrm_title_allowed_html` | 投稿タイトル内で許可するHTMLタグをカスタマイズします。 |
+| `smtrm_thumbnail_type` | サムネイルの表示方法をCSS背景画像または`<img>`要素から選択します。 |
+| `smtrm_clear_button_label` | フィルター解除ボタンのデフォルトのラベルをカスタマイズします。 |
+
+### 使用例
+
+以下のコードは、テーマの`functions.php`または独自プラグインに追加できます。
+
+**1. 投稿取得時の引数を変更する**
+
+`smtrm_get_post_args` を使用して、`get_posts()` に渡される引数を変更できます。
+
+**投稿の更新日で絞り込む**
+
+更新日が2026年1月1日以降の投稿だけをページネーションの対象にする例です。
+
+```php
+add_filter('smtrm_get_post_args', function ($args) {
+    $args['date_query'] = array(
+        array(
+            'column'    => 'post_modified',
+            'after'     => '2026-01-01',
+            'inclusive' => true,
+        ),
+    );
+
+    return $args;
+});
+```
+
+**注意：** この例では投稿取得時に日付条件を追加しています。既存の投稿取得条件に対して、さらに対象を絞り込みたい場合に使用してください。制限の厳しい条件を常に適用すると、本来ページネーションの対象となる投稿が除外される場合があります。
+
+**2. ページネーションのラッパーにCSSクラスを追加する**
+
+```php
+add_filter('smtrm_wrapper_classes', function ($classes) {
+    $classes[] = 'my-custom-class';
+    return $classes;
+});
+```
+
+**3. 投稿タイトルで許可するHTMLタグを追加する**
+
+デフォルトでは`<br>`タグのみ許可されています。
+以下の例では、`<span>`と`<strong>`も許可します。
+
+```php
+add_filter('smtrm_title_allowed_html', function ($tags) {
+    $tags['span'] = array(
+        'class' => true,
+    );
+    $tags['strong'] = array();
+    return $tags;
+});
+```
+
+**4. サムネイルの表示方法を変更する**
+
+デフォルトのCSS背景画像方式から、従来の`<img>`要素を使用する方式に変更する例です。
+
+```php
+add_filter('smtrm_thumbnail_type', function ($type) {
+    return 'img';
+});
+```
+
+**5. フィルター解除ボタンのデフォルトのラベルを変更する**
+
+```php
+add_filter('smtrm_clear_button_label', function ($label) {
+    return 'Clear Filter';
+});
+```
 
 ## システム要件
 - WordPress Version:5.2以上

@@ -1,15 +1,15 @@
-# Copyright (C) 2024 Emaki Sorano
+# Copyright (C) 2026 Emaki Sorano
 # This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Same Term Pager 0.10.0\n"
+"Project-Id-Version: WP Same Term Pager 0.11.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-sameterm-pager\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-12-16T02:52:53+00:00\n"
+"POT-Creation-Date: 2026-11-19T05:31:23+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: wp-sameterm-pager\n"
@@ -155,37 +155,37 @@ msgstr ""
 msgid "Settings have been saved!"
 msgstr ""
 
-#: includes/class-smtrm-pager.php:96
+#: includes/class-smtrm-pager.php:187
 msgid "<span class=\"pc-none\">Read the oldest post</span><span class=\"sp-none\">Oldest</span>"
 msgstr ""
 
-#: includes/class-smtrm-pager.php:178
+#: includes/class-smtrm-pager.php:302
 msgid "<span class=\"pc-none\">Read the latest post</span><span class=\"sp-none\">Latest</span>"
 msgstr ""
 
+#: includes/class-smtrm-pager.php:373
+#: dist/blocks/smtrm-pager/index.js:1
+msgid "Clear"
+msgstr ""
+
 #. Translators: 1: Taxonomy name (e.g., Category), 2: Term name (e.g., Technology)
-#: includes/class-smtrm-pager.php:234
+#: includes/class-smtrm-pager.php:395
 msgid "Displaying posts filtered by %1$s: “%2$s”"
 msgstr ""
 
-#: includes/class-smtrm-pager.php:238
-#: dist/blocks/smtrm-pager/index.js:1
-msgid "Release"
-msgstr ""
-
-#: includes/class-smtrm-plugin-setup.php:86
+#: includes/class-smtrm-plugin-setup.php:87
 msgid "Settings"
 msgstr ""
 
-#: includes/class-smtrm-settings-api-handler.php:43
+#: includes/class-smtrm-settings-api-handler.php:44
 msgid "Missing required parameters."
 msgstr ""
 
-#: includes/class-smtrm-settings-api-handler.php:54
+#: includes/class-smtrm-settings-api-handler.php:55
 msgid "Settings updated successfully."
 msgstr ""
 
-#: includes/class-smtrm-settings-api-handler.php:80
+#: includes/class-smtrm-settings-api-handler.php:81
 msgid "REST API endpoint is accessible."
 msgstr ""
 
@@ -198,11 +198,11 @@ msgid "An error occurred while displaying the pager."
 msgstr ""
 
 #. Translators: %1$s: Minimum WordPress version, %2$s: Minimum PHP version
-#: wp-sameterm-pager.php:61
+#: wp-sameterm-pager.php:98
 msgid "This plugin requires at least WordPress %1$s and PHP %2$s to function properly."
 msgstr ""
 
-#: wp-sameterm-pager.php:65
+#: wp-sameterm-pager.php:102
 msgid "Plugin Activation Error"
 msgstr ""
 
@@ -316,7 +316,7 @@ msgid "The term filter (smtrm_filter) is activated based on the type of archive 
 msgstr ""
 
 #: dist/admin/help.js:1
-msgid "The filter can be removed at any time using the \"Release\" button."
+msgid "The filter can be removed at any time using the \"Clear\" button."
 msgstr ""
 
 #: dist/admin/help.js:1
@@ -765,7 +765,11 @@ msgid "Copy"
 msgstr ""
 
 #: dist/admin/help.js:1
-msgid "To add the release button for the filtering function"
+msgid "To add the clear button for the filtering function"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "*"
 msgstr ""
 
 #: dist/admin/help.js:1
@@ -782,6 +786,10 @@ msgstr ""
 
 #: dist/admin/help.js:1
 msgid "To add a “Read the latest post” pagination link"
+msgstr ""
+
+#: dist/admin/help.js:1
+msgid "* You can still use the shortcode [sameterm_release]."
 msgstr ""
 
 #: dist/admin/help.js:1

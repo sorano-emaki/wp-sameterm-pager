@@ -22,7 +22,7 @@ Using the "oldest" link, you can navigate to the post with the earliest publicat
 
 The term filter (smtrm_filter) is activated based on the type of archive page the user navigates from, such as a category, tag, or custom taxonomy archive page. It does not activate when moving from the front page, date-based archive, author archive, search results page, or external websites.
 
-The filter can be removed at any time using the "Release" button.
+The filter can be removed at any time using the "Clear" button.
 
 When the filter is removed, users can navigate to previous and next posts by post date or move to the oldest or latest post among all posts.
 
@@ -40,6 +40,91 @@ On archive pages, pagers usually appear as "Previous," "Next," and numbered page
 
 The Same Term Pager plugin offers a pager specifically designed for post pages, including a filter feature that limits navigation to posts within the same term.
 
+## Developer Hooks
+
+WP Same Term Pager provides filter hooks that allow developers to customize the plugin's behavior and appearance using PHP code.
+
+These hooks are intended for users who are familiar with WordPress development.
+
+### Available Filters
+
+| Filter Hook | Description |
+|---|---|
+| `smtrm_get_post_args` | Customize the arguments passed to `get_posts()`. |
+| `smtrm_wrapper_classes` | Customize the CSS classes of the pagination wrapper. |
+| `smtrm_title_allowed_html` | Customize the HTML tags allowed in post titles. |
+| `smtrm_thumbnail_type` | Choose between CSS background images and `<img>` elements for thumbnails. |
+| `smtrm_clear_button_label` | Customize the default label of the filter clear button. |
+
+### Usage Examples
+
+Add the following code to your theme's `functions.php` file or a custom plugin.
+
+**1. Customize Post Query Arguments**
+
+Use `smtrm_get_post_args` to modify the arguments passed to `get_posts()`.
+
+**Filter Posts by Modification Date**
+
+This example limits pagination to posts modified on or after January 1, 2026.
+
+```php
+add_filter('smtrm_get_post_args', function ($args) {
+    $args['date_query'] = array(
+        array(
+            'column'    => 'post_modified',
+            'after'     => '2026-01-01',
+            'inclusive' => true,
+        ),
+    );
+
+    return $args;
+});
+```
+
+**Note:**  This example adds a date condition to the post query. Use this filter when you need to narrow down the posts within an existing set of conditions. Applying restrictive conditions globally may exclude posts that would otherwise appear in the pagination.
+
+**2. Add Custom CSS Classes**
+
+```php
+add_filter('smtrm_wrapper_classes', function ($classes) {
+    $classes[] = 'my-custom-class';
+    return $classes;
+});
+```
+
+**3. Allow Additional HTML Tags in Post Titles**
+
+By default, only the `<br>` tag is allowed in post titles.
+In the following example, `<span>` and `<strong>` are also allowed.
+
+```php
+add_filter('smtrm_title_allowed_html', function ($tags) {
+    $tags['span'] = array(
+        'class' => true,
+    );
+    $tags['strong'] = array();
+    return $tags;
+});
+```
+
+**4. Change the Thumbnail Display Method**
+
+The default thumbnail display method uses CSS background images. To use the previous `<img>` method instead:
+
+```php
+add_filter('smtrm_thumbnail_type', function ($type) {
+    return 'img';
+});
+```
+
+**5. Change the Default Clear Button Label**
+
+```php
+add_filter('smtrm_clear_button_label', function ($label) {
+    return 'Clear Filter';
+});
+```
 
 ## System Requirements
 - WordPress Version:5.2 or higher

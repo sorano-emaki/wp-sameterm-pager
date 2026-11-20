@@ -3,12 +3,12 @@
 Plugin Name: WP Same Term Pager
 Plugin URI: https://github.com/sorano-emaki/wp-sameterm-pager
 Description: Navigate between posts within the same term using pagination.
-Version: 0.10.0
+Version: 0.11.0
 Author: Emaki Sorano
 Author URI: https://shokizerokara.com/
 License: GPLv2
 Requires at least: 5.2
-Tested up to: 6.7
+Tested up to: 7.1
 Requires PHP: 7.3
 Text Domain: wp-sameterm-pager
 Domain Path: /languages

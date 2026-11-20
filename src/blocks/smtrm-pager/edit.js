@@ -92,10 +92,10 @@ export default function Edit() {
                             <span>{__('Displaying posts filtered by Category: “Category Name”', 'wp-sameterm-pager')}</span>
                         </div>
                     </div>
-                    <div className="release-button">
+                    <div className="release-button smtrm-clear-button">
                         <a href="#">
                             <span className="cancel-icon"></span>
-                            <span>{__('Release', 'wp-sameterm-pager')}</span>
+                            <span>{__('Clear', 'wp-sameterm-pager')}</span>
                         </a>
                     </div>
                 </div>

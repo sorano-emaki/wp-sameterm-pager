@@ -54,7 +54,7 @@ if (!class_exists('Smtrm_Pager')) {
          * Displays the pagination for posts within the same term.
          *
          * Outputs the HTML for the pagination wrapper and navigation links based on the current post's term.
-         * Also includes a release button to remove the filter and show all posts.
+         * Also includes a clear button to remove the filter and show all posts.
          *
          * @since 0.10.0
          */
@@ -62,7 +62,17 @@ if (!class_exists('Smtrm_Pager')) {
         {
             if (is_single()) {
                 $this->set_post_data();
-                echo '<div class="same-term-wrapper">';
+                $wrapper_classes = apply_filters(
+                    'smtrm_wrapper_classes',
+                    array('same-term-wrapper')
+                );
+                if (!is_array($wrapper_classes)) {
+                    $wrapper_classes = array('same-term-wrapper');
+                }
+                $wrapper_classes = array_filter(
+                    array_map('sanitize_html_class', $wrapper_classes)
+                );
+                echo '<div class="' . esc_attr(implode(' ', $wrapper_classes)) . '">';
                 if (self::$prevpost || self::$nextpost) {
                     echo '<nav class="same-term-pager cf">';
                     if (self::$prevpost) {
@@ -75,9 +85,82 @@ if (!class_exists('Smtrm_Pager')) {
                     }
                     echo '</nav>';
                 }
-                self::smtrm_pager_release_button();
+                self::smtrm_pager_clear_button();
                 echo '</div>';
             }
+        }
+
+        /**
+         * Gets the thumbnail HTML for a post.
+         *
+         * Generates either an image element or a CSS background image
+         * depending on the thumbnail type filter.
+         *
+         * @since 0.11.0
+         *
+         * @param int $post_id Post ID.
+         * @return string HTML for the thumbnail.
+         */
+        private function get_thumbnail($post_id)
+        {
+            $thumbnail_type = apply_filters(
+                'smtrm_thumbnail_type',
+                'background'
+            );
+
+            if ($thumbnail_type === 'img') {
+                return has_post_thumbnail($post_id) ?
+                    get_the_post_thumbnail(
+                        $post_id,
+                        'post-thumbnail',
+                        array('class' => 'attachment-thumb240 size-thumb240')
+                    ) :
+                    '<img width="120" height="68" alt="no-image" src="' .
+                    esc_url(SMTRM_DIR_URL . 'assets/images/no-image.png') .
+                    '" class="no-image post-navi-no-image" />';
+            }
+
+            $thumbnail_url = get_the_post_thumbnail_url(
+                $post_id,
+                'post-thumbnail'
+            );
+
+            if (!$thumbnail_url) {
+                $thumbnail_url = SMTRM_DIR_URL . 'assets/images/no-image.png';
+            }
+
+            return '<span class="same-term-nav-thumbnail" style="background-image: url(\'' .
+                esc_url($thumbnail_url) . '\')"></span>';
+        }
+
+        /**
+         * Gets the post title with allowed HTML tags.
+         *
+         * @since 0.11.0
+         *
+         * @param int $post_id Post ID.
+         * @return string Sanitized post title.
+         */
+        private function get_post_title($post_id)
+        {
+            $allowed_html = apply_filters(
+                'smtrm_title_allowed_html',
+                array(
+                    'br' => array(),
+                ),
+                $post_id
+            );
+
+            if (!is_array($allowed_html)) {
+                $allowed_html = array(
+                    'br' => array(),
+                );
+            }
+
+            return wp_kses(
+                get_the_title($post_id),
+                $allowed_html
+            );
         }
 
         /**
@@ -118,18 +201,18 @@ if (!class_exists('Smtrm_Pager')) {
          *
          * @return string HTML for the previous post link.
          */
+
         public function display_prev_post()
         {
             if (self::$prevpost) {
                 $link = new Smtrm_Get_Link();
-                $thumbnail = has_post_thumbnail(self::$prevpost->ID) ?
-                    get_the_post_thumbnail(self::$prevpost->ID, 'post-thumbnail', array('class' => 'attachment-thumb240 size-thumb240')) :
-                    '<img width="120" height="68" alt="no-image" src="' . SMTRM_DIR_URL . 'assets/images/no-image.png" class="no-image post-navi-no-image" />';
 
                 return '<a href="' . $link->get_link(self::$get_filter, self::$prevpost->ID) . '" title="' . esc_attr(get_the_title(self::$prevpost->ID)) . '" class="prev-post same-term-nav-link">' .
                     '<div class="arrow-left same-term-icon" aria-hidden="true"></div>' .
-                    '<figure class="prev-post-thumb">' . $thumbnail . '</figure>' .
-                    '<div class="prev-post-title"><span>' . get_the_title(self::$prevpost->ID) . '</span></div>' .
+                    '<figure class="prev-post-thumb">' .
+                    $this->get_thumbnail(self::$prevpost->ID) .
+                    '</figure>' .
+                    '<div class="prev-post-title"><span>' . $this->get_post_title(self::$prevpost->ID) . '</span></div>' .
                     '</a>';
             }
             return '<div class="prev-post"></div>';
@@ -145,18 +228,18 @@ if (!class_exists('Smtrm_Pager')) {
          *
          * @return string HTML for the next post link.
          */
+
         public function display_next_post()
         {
             if (self::$nextpost) {
                 $link = new Smtrm_Get_Link();
-                $thumbnail = has_post_thumbnail(self::$nextpost->ID) ?
-                    get_the_post_thumbnail(self::$nextpost->ID, 'post-thumbnail', array('class' => 'attachment-thumb240 size-thumb240')) :
-                    '<img width="120" height="68" alt="no-image" src="' . SMTRM_DIR_URL . 'assets/images/no-image.png" class="no-image post-navi-no-image" />';
 
                 return '<a href="' . $link->get_link(self::$get_filter, self::$nextpost->ID) . '" title="' . esc_attr(get_the_title(self::$nextpost->ID)) . '" class="next-post same-term-nav-link">' .
                     '<div class="arrow-right same-term-icon" aria-hidden="true"></div>' .
-                    '<figure class="next-post-thumb">' . $thumbnail . '</figure>' .
-                    '<div class="next-post-title"><span>' . get_the_title(self::$nextpost->ID) . '</span></div>' .
+                    '<figure class="next-post-thumb">' .
+                    $this->get_thumbnail(self::$nextpost->ID) .
+                    '</figure>' .
+                    '<div class="next-post-title"><span>' . $this->get_post_title(self::$nextpost->ID) . '</span></div>' .
                     '</a>';
             }
             return '<div class="next-post"></div>';
@@ -220,33 +303,69 @@ if (!class_exists('Smtrm_Pager')) {
          * instead of filtering by the current term. It also displays a message indicating the current filter.
          *
          * @since 0.10.0
+         *
+         * @deprecated 0.11.0
+         * Use smtrm_pager_clear_button() instead.
+         *
+         * @param array $atts Shortcode attributes.
          */
-        public static function smtrm_pager_release_button()
+        public static function smtrm_pager_release_button($atts = array())
         {
+            self::smtrm_pager_clear_button($atts);
+        }
+
+        /**
+         * Displays a filter clear button for the current term.
+         *
+         * This static method generates a button to clear the filter applied to the posts, showing all posts
+         * instead of filtering by the current term. It also displays a message indicating the current filter.
+         *
+         * @since 0.11.0
+         *
+         * @param array $atts Shortcode attributes.
+         */
+        public static function smtrm_pager_clear_button($atts = array())
+        {
+            $default_label = apply_filters(
+                'smtrm_clear_button_label',
+                __('Clear', 'wp-sameterm-pager')
+            );
+
+            $atts = shortcode_atts(
+                array(
+                    'label' => $default_label,
+                ),
+                $atts,
+                'sameterm_clear'
+            );
+
             if (is_single()) {
                 list(self::$get_filter, self::$taxonomy, self::$term_exists, self::$get_term) = Smtrm_Adjacent_Post::smtrm_param_check();
+
                 if (!empty(self::$term_exists)) {
                     $term_name = self::$get_term->name;
                     $taxonomy_name = get_taxonomy(self::$taxonomy)->labels->singular_name;
                     $icon_class = (self::$taxonomy == 'post_tag' || !is_taxonomy_hierarchical(self::$taxonomy)) ? 'tag-icon' : 'category-icon';
                     $url = get_the_permalink();
-                    $release_message = sprintf(
+
+                    $clear_message = sprintf(
                         /* Translators: 1: Taxonomy name (e.g., Category), 2: Term name (e.g., Technology) */
                         __('Displaying posts filtered by %1$s: “%2$s”', 'wp-sameterm-pager'),
                         esc_html($taxonomy_name),
                         esc_html($term_name)
                     );
-                    $release_button = __('Release', 'wp-sameterm-pager');
+
+                    $clear_button = esc_html($atts['label']);
 
                     echo <<<HTML
                     <div class="pager-filter cf">
                         <div class="same-term-message">
                             <div class="same-term-icon {$icon_class}"></div>
-                            <div class="same-term-filter">{$release_message}</div>
+                            <div class="same-term-filter">{$clear_message}</div>
                         </div>
-                        <div class="release-button">
+                        <div class="release-button smtrm-clear-button">
                             <a href="{$url}">
-                                <span class="cancel-icon"></span><span>{$release_button}</span>
+                                <span class="cancel-icon"></span><span>{$clear_button}</span>
                             </a>
                         </div>
                     </div>
@@ -265,8 +384,12 @@ if (!class_exists('Smtrm_Pager')) {
          *
          * @param string $order The order for retrieving the post ('ASC' or 'DESC').
          * @return array Array of post IDs based on the specified order.
+         *
+         * Filters the arguments used to retrieve adjacent posts.
+         * @since 0.11.0
+         * @param array $args Query arguments for get_posts().
          */
-        private static function smtrm_get_post($order)
+        public static function smtrm_get_post($order)
         {
             $args = array(
                 'post_type' => self::$post_type,
@@ -281,11 +404,12 @@ if (!class_exists('Smtrm_Pager')) {
                 $args['tax_query'] = [
                     [
                         'taxonomy' => self::$taxonomy,
-                        'field' => 'id',
+                        'field' => 'term_id',
                         'terms' => self::$term_id_num,
                     ],
                 ];
             }
+            $args = apply_filters('smtrm_get_post_args', $args);
             return get_posts($args);
         }
 
@@ -312,12 +436,30 @@ if (!class_exists('Smtrm_Pager')) {
          *
          * @since 0.10.0
          *
+         * @param array $atts Shortcode attributes.
          * @return string HTML of the filter release button.
          */
-        public function get_pager_release_button()
+        public function get_pager_release_button($atts = array())
         {
             ob_start();
-            $this->smtrm_pager_release_button();
+            $this->smtrm_pager_release_button($atts);
+            return ob_get_clean();
+        }
+
+        /**
+         * Gets the clear button for the filter applied to the current term.
+         *
+         * This method captures the HTML output of the filter clear button and returns it as a string.
+         *
+         * @since 0.11.0
+         *
+         * @param array $atts Shortcode attributes.
+         * @return string HTML of the filter clear button.
+         */
+        public function get_pager_clear_button($atts = array())
+        {
+            ob_start();
+            $this->smtrm_pager_clear_button($atts);
             return ob_get_clean();
         }
 
@@ -340,11 +482,15 @@ if (!class_exists('Smtrm_Pager')) {
             }
             $new_content = '';
             if ($saved_setting->pager_top()) {
+                $new_content .= '<div class="smtrm-pager-top">';
                 $new_content .= $this->get_pager_area();
+                $new_content .= '</div>';
             }
             $new_content .= $content;
             if ($saved_setting->pager_bottom()) {
+                $new_content .= '<div class="smtrm-pager-bottom">';
                 $new_content .= $this->get_pager_area();
+                $new_content .= '</div>';
             }
             return $new_content;
         }
@@ -353,6 +499,7 @@ if (!class_exists('Smtrm_Pager')) {
     $smtrm_pager = new Smtrm_Pager();
     add_shortcode('sameterm_pager', array($smtrm_pager, 'get_pager_area'));
     add_shortcode('sameterm_release', array($smtrm_pager, 'get_pager_release_button'));
+    add_shortcode('sameterm_clear', array($smtrm_pager, 'get_pager_clear_button'));
 
     add_shortcode('sameterm_oldest', function () use ($smtrm_pager) {
         return $smtrm_pager->get_pager_part('oldest');

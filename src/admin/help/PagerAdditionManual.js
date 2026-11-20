@@ -145,18 +145,18 @@ const PagerAdditionManual = () => {
                             </div>
                         </li>
                         <li>
-                            <span>{ __('To add the release button for the filtering function', 'wp-sameterm-pager') }</span>
+                            <span>{ __('To add the clear button for the filtering function', 'wp-sameterm-pager') }<a href="#shortcode-note">{__('*', 'wp-sameterm-pager')}</a></span>
                             <span className="line"></span>
                             <div className="copy-container">
-                                <code>[sameterm_release]</code>
+                                <code>[sameterm_clear]</code>
                                 {isClipboardSupported && (
-                                <Button
-                                    isPrimary
-                                    onClick={() => handleCopy('[sameterm_release]')}
-                                    className="copy-button"
-                                >
-                                    {copiedText === '[sameterm_release]' ? __('Copied!', 'wp-sameterm-pager') : __('Copy', 'wp-sameterm-pager')}
-                                </Button>
+                                    <Button
+                                        isPrimary
+                                        onClick={() => handleCopy('[sameterm_clear]')}
+                                        className="copy-button"
+                                    >
+                                        {copiedText === '[sameterm_clear]' ? __('Copied!', 'wp-sameterm-pager') : __('Copy', 'wp-sameterm-pager')}
+                                    </Button>
                                 )}
                             </div>
                         </li>
@@ -227,6 +227,7 @@ const PagerAdditionManual = () => {
                             </div>
                         </li>
                     </ul>
+                    <p id="shortcode-note">{ __('* You can still use the shortcode [sameterm_release].', 'wp-sameterm-pager') }</p>
                 </div>
                 <h3 id="section3-2">{ __('Preview and Publish', 'wp-sameterm-pager') }</h3>
                 <ul>

@@ -37,7 +37,7 @@ return (
             </p>
             <p>
                 {__(
-                'The filter can be removed at any time using the "Release" button.',
+                'The filter can be removed at any time using the "Clear" button.',
                 'wp-sameterm-pager'
                 )}
             </p>
